@@ -4,12 +4,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarteController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CompteBankController;
 use App\Http\Controllers\EntrepriseController;
 use App\Http\Controllers\ModalClientController;
 use App\Http\Controllers\ModalCompteController;
-use App\Http\Controllers\ModalEntreprisController;
 use App\Http\Controllers\ModalEmployerController;
+use App\Http\Controllers\ModalEntreprisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,10 @@ Route::get('/', function () {
     // return view('layout.welcome');
     return view('layouts.dashboard');
 });
+//Accueil
+Route::get('/dasboard',[DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dasboard',[DashboardController::class, 'cal'])->name('dashboard');
+
 Route::get('/compte/{id}',[CompteBankController::class, 'create'])->name('compte');
 Route::post('/compte/{id}',[CompteBankController::class, 'store'])->name('compte');
 Route::get('/list-compte', [CompteBankController::class, 'index'])->name('compte.list');
@@ -59,7 +64,7 @@ Route::get('/entreprise/toshow/{id}',[ModalEntreprisController::class, 'toshow']
 Route::get('/entreprise/show/{id}',[ModalEntreprisController::class, 'show'])->name('entreprise.show');
 
 // controller Modals employer
-// Route::get('/employer/list',[ModalEmployerController::class, 'index'])->name('employer.list');
+Route::get('/employer/list',[ModalEmployerController::class, 'index'])->name('employer.list');
 
 Auth::routes();
 

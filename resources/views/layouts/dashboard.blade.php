@@ -37,7 +37,7 @@
                     <ul class="elmts">
                         <li><a href="#"><i class="fa-solid fa-id-card-clip" style="margin-right: 1rem; font-size: 0.8em"></i>Profil</a></li>
                         <li><a href=""><i class="fa-solid fa-gear" style="margin-right: 1rem;"></i>parametre</a></li>
-                    </ul> 
+                    </ul>
                 </div>
             </nav>
         </div>
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <ul class="grandul">
-                <li><a href="#"><i class="fa fa-home" aria-hidden="true" style="margin-right: 1.2rem; font-size: 0.8em;"></i>Dashboard</a></li>
+                <li><a href="{{route('dashboard')}}"><i class="fa fa-home" aria-hidden="true" style="margin-right: 1.2rem; font-size: 0.8em;"></i>Dashboard</a></li>
                 <li>
                     <a href="#" class="client-btn">
                         <i class="fa fa-user" aria-hidden="true" style="margin-right: 1.2rem;font-size: 0.8em;"></i> Clients <span><i
@@ -73,7 +73,7 @@
                         <li><a href="{{ route('compte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Liste de compte</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('employer.index') }}"><i class="fa fa-users left" aria-hidden="true" style="margin-right: 0.7rem;font-size: 0.8em;"></i>
+                <li><a href="{{ route('employer.list') }}"><i class="fa fa-users left" aria-hidden="true" style="margin-right: 0.7rem;font-size: 0.8em;"></i>
                         Employer</a></li>
                 <li><a href="{{ route('entreprise.list') }}"><i class="fa fa-building" aria-hidden="true" style="margin-right: 1.3rem;font-size: 0.8em;"></i>
                         Entreprise</a></li>
