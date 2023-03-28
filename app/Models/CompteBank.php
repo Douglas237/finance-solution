@@ -10,20 +10,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class CompteBank extends Model
 {
     use HasFactory;
+    
+    protected $guarded = [];
 
     public function comptebankable()
-                {
-                return $this->morphTo();
-                }
+    { 
+        return $this->morphTo();
+    }
 
     public function transactions()
-                {
-                    return $this->morphMany(Transaction::class, 'transactionable');
-                }
+    {
+        return $this->morphMany(Transaction::class, 'transactionable');
+    }
 
     public function cartes()
-                {
-                    return $this->belongsToMany(Carte::class);
-                }
+    {
+        return $this->belongsToMany(Carte::class, 'carte__comptebanks','comptebank_id','carte_id')->withTimestamps();
+    }
 
 }

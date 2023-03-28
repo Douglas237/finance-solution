@@ -11,14 +11,12 @@ class Transaction extends Model
     use HasFactory;
 
     public function transactionable()
-        {
-            return $this->morphTo();
-        }
+    {
+        return $this->morphTo();
+    }
 
     public function notification()
-        {
-            return $this->hasOne(Notification::class);
-        }
-
-
+    {
+        return $this->hasOne(Notification::class);
+    }
 }

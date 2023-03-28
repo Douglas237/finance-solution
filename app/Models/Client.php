@@ -11,6 +11,8 @@ class Client extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function beneficiaire()
     {
         return $this->morphOne(Beneficiaire::class, 'beneficiaireable');

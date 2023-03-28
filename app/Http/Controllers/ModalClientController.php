@@ -1,0 +1,106 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Client;
+use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Validator;
+
+class ModalClientController extends Controller
+{
+    //edit client
+    public function edit($id){
+        $result = Client::find($id);
+        if (! $result) {
+            # code...
+            abort(404);
+        }
+        return $result;
+    }
+    // update client
+    public function modif(Request $request){
+        $new_client = Client::find($request->client_id);
+        if (! $new_client) {
+            # code...
+            abort(404);
+        }
+        $validatedData = Validator::make($request->all(),[
+            'nom'=> 'required|string',
+            'prenom'=> 'required|string',
+            'date_naissance'=>'required|date',
+            'sexe'=>'required|string',
+            'email'=>'required|string',
+            'telephone'=>'required|numeric',
+            'cni'=>'required|string',
+            'ville'=>'required|string',
+            'adress'=>'required|string',
+            'image'=>'nullable','image','mimes:jpeg,jpg,png,gif', 'max:10000',
+        ]);
+
+        if($validatedData->fails()) {
+            Toastr::error('The field not be empty.');
+            return redirect()
+            ->back()
+            ->withErrors($validatedData)
+            ->withInput();
+        }
+
+        if ($request->hasFile('image'))
+        {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = date('YmdHi') . ucfirst($request->nom) . '.' . $extension;
+            $file->move('uploads/images/client', $filename);
+            $image = $filename;
+        } 
+        else 
+        {
+            $image = 'default.png';
+        }
+
+        $new_client->update([
+            'nom'=> $request->nom,
+            'prenom'=> $request->prenom,
+            'date_naissance'=>$request->date_naissance,
+            'sexe'=> $request->sexe,
+            'email'=>$request->email,
+            'telephone'=>$request->telephone,
+            'cni'=>$request->cni,
+            'ville'=>$request->ville,
+            'adress'=>$request->adress,
+            'image'=>$image,
+        ]);
+
+        return $new_client;
+    }
+
+    public function destroy($id){
+        $todelete = Client::find($id);
+        if (! $todelete) {
+            # code...
+            abort(404);
+        }
+        $todelete->delete();
+        return $todelete;
+    }
+
+    public function toshow ($id){
+        $toshow = Client::find($id);
+        if (!$toshow) {
+            # code...
+            abort(404);
+        }
+        
+        return $toshow;
+    }
+    public function show ($id){
+        $shows = Client::find($id);
+        if (!$shows) {
+            # code...
+            abort(404);
+        }
+        
+        return view('shows.show_client', compact('shows'));
+    }
+}

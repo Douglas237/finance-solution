@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comptebanks', function (Blueprint $table) {
+        Schema::create('compte_banks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('numero_compte');
             $table->string('solde');
             $table->enum('type_compte', ["Compte courant", "Compte epagne"]);
             $table->date('date_ouverture');
             $table->integer('code');
-            $table->boolean('statut');
+            $table->boolean('statut'); 
             $table->morphs('comptebankable');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comptebanks');
+        Schema::dropIfExists('compte_banks');
     }
 };

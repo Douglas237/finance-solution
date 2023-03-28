@@ -5,30 +5,49 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
+
+
 class ClientController extends Controller
 {
-    public function index()
+    public function index(Request $request) 
     {
         $clients = Client::all();
-        return view("client.index", compact('clients'));
+
+        if($request->ajax()) {
+            $allData = DataTables::of($clients)
+            ->addIndexColumn()
+            ->addColumn('action', function($row){
+                $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary  btn_sm editCompte" id="edite">Edite</a>';
+                $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delet">Del</a>';
+                $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Detail" class="edit btn btn-warning btn_sm deleteCompte" id="detail">Detail</a>';
+                return $btn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+            return $allData;
+        }
+        // return view("compte-bancaire.list-compt", compact('compte_banks'));
+
+        return view("compte-bancaire.list_clients");
     }
 
     public function create()
     {
-        return view("client.create");
+        return view("compte-bancaire.infos-client");
     }
 
     public function store(Request $request)
     {
         $validatedData = Validator::make($request->all(),[
-            'nom'=> 'required|string|unique:clients',
+            'nom'=> 'required|string',
             'prenom'=> 'required|string',
             'date_naissance'=>'required|date',
-            'sexe'=>'required|enum',
+            'sexe'=>'required|string',
             'email'=>'required|string',
             'telephone'=>'required|numeric',
             'cni'=>'required|string',
@@ -48,7 +67,7 @@ class ClientController extends Controller
         try {
 
             $data = new Client();
-            $data->nom = ucfirst($request->nom);
+            $data->nom = ucfirst($request->nom); 
             $data->prenom = $request->prenom;
             $data->date_naissance = $request->date_naissance;
             $data->sexe = $request->sexe;
@@ -68,9 +87,8 @@ class ClientController extends Controller
                 $data->image = 'default.png';
             }
             $data->save();
-
             Toastr::success('Enregistrement du client réussit : ' . $request->nom);
-            return redirect()->route('client.index');
+            return redirect()->route('compte',[$data->id]);
         } catch(Exception $e) {
 
             Toastr::error(
@@ -82,15 +100,14 @@ class ClientController extends Controller
     }
 
     public function edit($id) {
-        $client = Client::FindOrFail($id);
-        return view('client.create', compact('clients'));
+        
     }
     public function update(Request $request, $id) {
         $validatedData = Validator::make($request->all(),[
             'nom'=> 'required|string|unique:clients',
             'prenom'=> 'required|string',
             'date_naissance'=>'required|date',
-            'sexe'=>'required|enum',
+            'sexe'=>'required',
             'email'=>'required|string',
             'telephone'=>'required|numeric',
             'cni'=>'required|string',
