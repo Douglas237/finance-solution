@@ -11,3 +11,9 @@ $('.navbare .navbar .content .dropdown').click(function () {
     $('.navbare .navbar .content .toggle').toggleClass("rotate3");
     // alert('bomjoure');
 });
+
+// gestion du menu
+$('#menu_icon').click(function () {
+    $('#sidebar').toggleClass('hide')
+    console.log('oui');
+});

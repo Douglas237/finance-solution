@@ -19,6 +19,9 @@
     <div class="nav-asside">
         <div class="navbare">
             <nav class="navbar navbar-expand-lg">
+                <div class="menu_icon" id="menu_icon">
+                    <img style="height: 3rem; width: 3rem" src="{{ asset('imgcon/menu.png') }}" alt="">
+                </div>
                 <div class="container-fluid content">
                     <div class="collapse navbar-collapse search" id="navbarSupportedContent">
                         <form class="d-flex" role="search">
@@ -45,7 +48,7 @@
             @yield('content')
         </div>
         {{-- asside --}}
-        <nav class="sidebar">
+        <nav class="sidebar" id="sidebar">
             <div class="logo">
                 <div style="background-color: #c8f5c3d3;height: 3.8rem;width: 3.8rem;border-radius: 50%" class="logoimg">
                     <img src="{{ asset('img-side/09.png') }}" alt="">
