@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->integer('numero_carte');
             $table->integer('codesecret');
-            $table->date('date_creation');
+            $table->date('date_creation'); 
             $table->date('date_expiration');
             $table->enum('type', ["carte electron","carte visa","master carte"]);
             $table->boolean('statut');

@@ -1,26 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-*
-{
-    font-family: 'dosis', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+    font-family: "dosis", sans-serif;
 }
-.centre
-{
+.centre {
     background-color: #fcfcfc;
 }
 
-ul ul{
+ul ul {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     user-select: none;
 }
-.nom
-{
+.nom {
     margin-left: 10rem;
 }
-.icons
-{
+.icons {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -28,20 +24,17 @@ ul ul{
     width: 15%;
     margin-right: 3rem;
 }
-.icons i
-{
+.icons i {
     margin-right: 1rem;
 }
-.search
-{
+.search {
     display: flex;
     justify-content: end;
 }
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     display: none;
 }
-.sidebar
-{
+.sidebar {
     position: fixed;
     /* border: 1px solid black; */
     height: 100%;
@@ -55,43 +48,70 @@ ul ul{
     height: 20rem;
     
 } */
-.sidebar::after
-{
-    content: '';
-    position: fixed; 
+.sidebar::after {
+    content: "";
+    position: fixed;
     z-index: -1;
     inset: 0;
     background-color: rgb(2, 53, 27);
-    opacity: .8;
+    opacity: 0.8;
     height: 100%;
     width: 18%;
 }
-.sidebar .logo
-{
+.sidebar .logo {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    /* border: 1px solid black; */
-    height: 12rem;
-    background-image: url(../img-side/09.png);
-    background-size: 15rem 13rem;
-    background-repeat: no-repeat;
-    margin-left: 2%;
-    margin-top: -10%;
+    justify-content: space-between;
+    /* align-items: center; */
+    /* border: 1px solid white; */
+    height: 5rem;
+    width: 100%;
+    /* background-image: url(../img-side/09.png); */
+    /* background-size: 15rem 13rem; */
+    /* background-repeat: no-repeat; */
+    /* margin-left: 2%; */
+    /* margin-top: -10%; */
 }
-.sidebar .grandul
-{
+.sidebar .logo .logoimg img {
+    border: 1px solid rgb(235, 28, 28);
+    position: relative;
+    top: -2.5rem;
+    left: -1.5rem;
+    margin-top: 1rem;
+    height: 9rem;
+    width: 7rem;
+}
+.sidebar .logo .logoimg {
+    overflow: hidden;
+    position: relative;
+    left: 1rem;
+    top: 1rem;
+}
+.sidebar .logo .logotext {
+    position: relative;
+    /* border: 1px solid white; */
+    left: -0.5rem;
+    top: 1rem;
+    right: -1rem;
+    height: 3.8rem;
+    /* width: %; */
+}
+.sidebar .logo .logotext p {
+    font-size: 1.2rem;
+    color: white;
+}
+.sidebar .logo .logotext span {
+    color: rgb(255, 255, 255);
+}
+.sidebar .grandul {
     padding: 0;
     margin-top: 2rem;
 }
-.sidebar .grandul li
-{
+.sidebar .grandul li {
     list-style: none;
     line-height: 3rem;
     margin-top: 1rem;
 }
-.sidebar .grandul li a
-{
+.sidebar .grandul li a {
     text-decoration: none;
     padding-left: 1.5rem;
     font-size: 1.5em;
@@ -100,78 +120,65 @@ ul ul{
     color: white;
     height: 100%;
 }
-.sidebar .grandul li a:hover
-{
-   background-color: rgba(97, 97, 97, 0.267);
-   border-radius: 5rem;
+.sidebar .grandul li a:hover {
+    background-color: rgba(97, 97, 97, 0.267);
+    border-radius: 5rem;
 }
-.sidebar .grandul li a .toggle1
-{
-   position: relative;
-   left: 3.4rem;
-   top: -0.025rem;
-   transition: 0.4s;
+.sidebar .grandul li a .toggle1 {
+    position: relative;
+    left: 3.4rem;
+    top: -0.025rem;
+    transition: 0.4s;
 }
-.sidebar .grandul li a .toggle2
-{
-   position: relative;
-   left: 2.3rem;
-   top: -0.025rem;
+.sidebar .grandul li a .toggle2 {
+    position: relative;
+    left: 2.3rem;
+    top: -0.025rem;
 }
-.sidebar .grandul li ul li 
-{
+.sidebar .grandul li ul li {
     padding-left: 3.5rem;
     font-size: 0.7em;
     border-bottom: none;
     line-height: 2rem;
 }
-.sidebar .grandul li ul li i
-{
+.sidebar .grandul li ul li i {
     font-size: 0.2em;
 }
-.sidebar .grandul li ul  
-{
+.sidebar .grandul li ul {
     width: 100%;
     display: none;
 }
-.sidebar .grandul .souscli.show 
-{
+.sidebar .grandul .souscli.show {
     width: 100%;
     display: block;
 }
-.sidebar .grandul .toggle1.rotate1 
-{
+.sidebar .grandul .toggle1.rotate1 {
     transform: rotate(-180deg);
 }
-.sidebar .grandul .souscpt.show2 
-{
+.sidebar .grandul .souscpt.show2 {
     width: 100%;
     display: block;
 }
-.sidebar .grandul .toggle2.rotate2 
-{
+.sidebar .grandul .toggle2.rotate2 {
     transform: rotate(-180deg);
 }
-.nav-asside
-{
+.nav-asside {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.navbare
-{
+.navbare {
     /* border: 1px solid black; */
-    position: absolute;
+    position: fixed;
+    z-index: 100;
     right: 0;
     width: 82%;
 }
-.navbare .navbar
-{
-    background-color: rgba(0, 0, 0, 0.904);
-    height: 4rem; 
+.navbare .navbar {
+    background-color: rgb(10, 9, 9);
+    height: 4rem;
 }
-.img
-{
+.img {
     border: 1px solid white;
     height: 3rem;
     width: 3rem;
@@ -179,8 +186,7 @@ ul ul{
     position: relative;
     right: 2.5rem;
 }
-.dropdown .toggle
-{
+.dropdown .toggle {
     position: relative;
     right: 2.5rem;
     top: 0.3rem;
@@ -189,9 +195,8 @@ ul ul{
     /* border: 1px solid white; */
     color: white;
 }
-.elmts
-{
-    position: absolute;
+.elmts {
+    position: absolute; 
     top: 4rem;
     right: 1rem;
     list-style-type: none;
@@ -202,12 +207,10 @@ ul ul{
     background-color: #04202d;
     display: none;
 }
-.elmts li
-{
-   line-height: 2rem;
+.elmts li {
+    line-height: 2rem;
 }
-.elmts li a
-{
+.elmts li a {
     text-decoration: none;
     color: rgb(253, 252, 252);
     font-size: 1em;
@@ -216,133 +219,107 @@ ul ul{
     width: 100%;
     padding-left: 1.3rem;
 }
-.elmts li a:hover
-{
+.elmts li a:hover {
     background-color: rgba(97, 97, 97, 0.267);
     border-radius: 5rem;
 }
-.navbare .navbar .content .elmts.show3
-{
+.navbare .navbar .content .elmts.show3 {
     display: block;
 }
-.navbare .navbar .content .toggle.rotate3
-{
+.navbare .navbar .content .toggle.rotate3 {
     transform: rotate(-180deg);
 }
-.centre
-{
-    position: fixed;
+.centre {
+    position: absolute;
     left: 18%;
     top: 4rem;
     width: 82%;
     height: 100%;
-    /* border: 1px solid black; */
+    /* border: 3px solid black; */
 }
 /* -------- formulaire de creation du compte --------- */
-.formcompte
-{
+.formcompte {
     width: 100%;
     height: 100%;
+    /* border: 3px solid black; */
+    overflow-y: auto;
 }
-.formcompte form
-{
+.formcompte form {
     width: 93%;
-    height: 65%;
+    height: 70%;
     margin-top: 7%;
     margin-left: 3.5%;
     background-color: white;
     border-radius: 10px;
     box-shadow: 5px 5px 80px rgb(231, 228, 228);
 }
-.premier
-{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 20%;
-    margin-top: 2rem;
-}
-.premier select
-{
-   height: 55%;
-   width: 40%;
-   border-radius: 5px;
-   border: 0.5px solid gray;
-   outline-color: rgb(123, 216, 123);
-}
-.deuxieme
-{
-    height: 20%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.deuxieme input
-{
-    height: 55%;
-    width: 40%;
-    border-radius: 5px;
-    outline-color: rgb(123, 216, 123);
-    border: 0.5px solid gray;
-}
-.troisieme
-{
-    height: 20%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.troisieme .radio
-{
-    display: flex;
-    flex-direction: column;
-    margin-right: 5rem;
-    height: 55%;
-    width: 40%
-}
-.troisieme .code
-{
-    height: 55%;
-    width: 40%;
-    border-radius: 5px;
-    outline-color: rgb(123, 216, 123);
-    border: 0.5px solid gray;
-}
-.envoi
-{
-    height: 18%;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-}
-.envoi input
-{
-    margin-right: 5.8rem;
-    height: 50%;
-    width: 15%;
-    border-radius: 5px;
-    border: none;
-    background-color: rgb(123, 216, 123);
-}
-.formcompte .title
-{
+.formcompte .title {
     position: relative;
     left: 3.4%;
     top: 7%;
 }
-.formcompte .title p
-{
+.formcompte .title p {
     font-size: 2em;
     color: gray;
 }
-.note
-{
+.note {
     position: relative;
-    top: 5%;
-    left: 8.8%;
+    top: 1%;
+    left: 1%;
 }
-.note p
-{
+.note p {
     font-size: 2em;
     color: gray;
 }
+.formcompte .tout {
+    /* border: 1px solid black; */
+}
+.formcompte .tout .right {
+    /* border: 1px solid green; */
+}
+.formcompte .tout .envoi {
+    display: flex;
+    justify-content: center;
+    margin-top: -0.5rem;
+    /* align-items: flex-end; */
+    /* height: 1.3rem; */
+}
+.formcompte .tout .envoi button {
+    width: 9rem;
+}
+.formcompte .tout .first {
+    margin-bottom: 2rem;
+    background-color: white !important;
+    outline-color: green !important;
+}
+
+/* show client */
+.infoclient {
+    border: 3px solid black;
+    height: 85%;
+    width: 80%;
+    margin: 10%;
+    margin-top: 7%;
+}
+.imgclient {
+    border: 3px solid green;
+    height: 25%;
+}
+.corpclient{
+    display: flex;
+    flex-direction: row;
+    border: 3px solid red;
+    height: 75%;
+}
+.infoleft{
+    border: 3px solid rgb(217, 255, 0);
+    height: 100%;
+    width: 50%;
+}
+.inforight{
+    border: 3px solid rgb(38, 0, 255);
+    height: 100%;
+    width: 50%;
+}
+
+/* --------------- Media query ---------------- */

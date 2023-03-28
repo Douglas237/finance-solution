@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('carte__comptebanks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('comptebank_id')->constrained('comptebanks');
-            $table->foreignId('carte_id')->constrained('cartes');
+            $table->bigInteger('comptebank_id');
+            $table->bigInteger('carte_id');
             $table->timestamps();
         });
     }

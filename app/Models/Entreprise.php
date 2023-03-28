@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Entreprise extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 
     public function beneficiaire()
     {

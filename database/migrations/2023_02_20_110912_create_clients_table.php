@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('ville');
             $table->string('adress');
             $table->string('image')->nullable();
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 
