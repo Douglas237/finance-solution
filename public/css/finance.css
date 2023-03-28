@@ -46,7 +46,7 @@ ul ul {
 /* .logo
 {
     height: 20rem;
-    
+
 } */
 .sidebar::after {
     content: "";
@@ -175,7 +175,7 @@ ul ul {
     width: 82%;
 }
 .navbare .navbar {
-    background-color: rgb(10, 9, 9);
+    background-color: rgb(228, 223, 223);
     height: 4rem;
 }
 .img {
@@ -196,7 +196,7 @@ ul ul {
     color: white;
 }
 .elmts {
-    position: absolute; 
+    position: absolute;
     top: 4rem;
     right: 1rem;
     list-style-type: none;
@@ -231,6 +231,9 @@ ul ul {
 }
 .centre {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     left: 18%;
     top: 4rem;
     width: 82%;
@@ -270,12 +273,6 @@ ul ul {
 .note p {
     font-size: 2em;
     color: gray;
-}
-.formcompte .tout {
-    /* border: 1px solid black; */
-}
-.formcompte .tout .right {
-    /* border: 1px solid green; */
 }
 .formcompte .tout .envoi {
     display: flex;
@@ -321,5 +318,49 @@ ul ul {
     height: 100%;
     width: 50%;
 }
+/* -------- nouveau --------------------------- */
+.menu_icon
+{
+    margin-left: 1rem;
+    border: 2px solid black;
+}
+.hide{
+    display: none;
+}/* --------------- Dashboad ---------------- */
+/* .img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+.card {
+    margin: 10px;
+    display: inline;
+    border-radius: 15px !important;
+}
+.card-body {
+    display: grid;
+    justify-content: space-between;
+    transition: 0.3s;
+    border-radius: 15px;
+    background-color: #65b455
+}
+  .card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .imag {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 15px;
+  }
+  .imag h1 {
+    margin-left: 50px;
+    color: #fff;
+  }
+  .card-body i {
+    /* display: flex; */
+    justify-content: space-between;
+    align-items: center;
+  }
 
 /* --------------- Media query ---------------- */
