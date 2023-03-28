@@ -59,7 +59,7 @@ Route::get('/entreprise/toshow/{id}',[ModalEntreprisController::class, 'toshow']
 Route::get('/entreprise/show/{id}',[ModalEntreprisController::class, 'show'])->name('entreprise.show');
 
 // controller Modals employer
-// Route::get('/employer/list',[ModalEmployerController::class, 'index'])->name('employer.list');
+Route::get('/employer/list',[ModalEmployerController::class, 'index'])->name('employer.list');
 
 Auth::routes();
 

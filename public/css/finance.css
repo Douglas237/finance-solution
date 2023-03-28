@@ -175,7 +175,7 @@ ul ul {
     width: 82%;
 }
 .navbare .navbar {
-    background-color: rgb(10, 9, 9);
+    background-color: rgb(228, 223, 223);
     height: 4rem;
 }
 .img {
@@ -321,5 +321,13 @@ ul ul {
     height: 100%;
     width: 50%;
 }
-
+/* -------- nouveau --------------------------- */
+.menu_icon
+{
+    margin-left: 1rem;
+    border: 2px solid black;
+}
+.hide{
+    display: none;
+}
 /* --------------- Media query ---------------- */
