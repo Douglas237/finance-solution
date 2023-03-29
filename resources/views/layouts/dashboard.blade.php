@@ -17,7 +17,7 @@
 <body>
     {{-- nav barre --}}
     <div class="nav-asside">
-        <div class="navbare">
+        <div class="navbare" id="navbare">
             <nav class="navbar navbar-expand-lg">
                 <div class="menu_icon" id="menu_icon">
                     <img style="height: 3rem; width: 3rem" src="{{ asset('imgcon/menu.png') }}" alt="">
@@ -44,7 +44,7 @@
                 </div>
             </nav>
         </div>
-        <div class="centre">
+        <div class="centre" id="centre">
             @yield('content')
         </div>
         {{-- asside --}}

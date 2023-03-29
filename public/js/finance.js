@@ -14,6 +14,8 @@ $('.navbare .navbar .content .dropdown').click(function () {
 
 // gestion du menu
 $('#menu_icon').click(function () {
-    $('#sidebar').toggleClass('hide')
+    $('#sidebar').toggleClass('hide');
+    $('#navbare').toggleClass('ajout');
+    $('#centre').toggleClass('ajout');
     console.log('oui');
 });

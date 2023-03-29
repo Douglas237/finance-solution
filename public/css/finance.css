@@ -324,10 +324,16 @@ ul ul {
 /* -------- nouveau --------------------------- */
 .menu_icon
 {
-    margin-left: 1rem;
+    margin-left: 1.5rem;
     border: 2px solid black;
 }
 .hide{
     display: none;
+}
+.ajout{
+    border: 1px solid black;
+    right: 0;
+    left: 0;
+    width: 100%;
 }
 /* --------------- Media query ---------------- */
