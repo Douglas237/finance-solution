@@ -235,7 +235,7 @@ ul ul {
     justify-content: center;
     align-items: center;
     left: 18%;
-    top: 4rem;
+    top: 2rem;
     width: 82%;
     height: 100%;
     /* border: 3px solid black; */
@@ -361,6 +361,15 @@ ul ul {
     /* display: flex; */
     justify-content: space-between;
     align-items: center;
+  }
+  .modal-body {
+    height: 100%;
+  }
+  .modal-body .form-control input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
   }
 
 /* --------------- Media query ---------------- */

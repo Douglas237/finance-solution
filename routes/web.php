@@ -9,6 +9,7 @@ use App\Http\Controllers\CompteBankController;
 use App\Http\Controllers\EntrepriseController;
 use App\Http\Controllers\ModalClientController;
 use App\Http\Controllers\ModalCompteController;
+use App\Http\Controllers\BeneficiaireController;
 use App\Http\Controllers\ModalEmployerController;
 use App\Http\Controllers\ModalEntreprisController;
 
@@ -65,6 +66,11 @@ Route::get('/entreprise/show/{id}',[ModalEntreprisController::class, 'show'])->n
 
 // controller Modals employer
 Route::get('/employer/list',[ModalEmployerController::class, 'index'])->name('employer.list');
+
+//  manager beneficiaire
+Route::get('/list-beneficiaire', [BeneficiaireController::class, 'index'])->name('beneficiaire.list');
+Route::get('/create-beneficiaire/{id}', [BeneficiaireController::class, 'create'])->name('beneficiaire.create');
+Route::post('/beneficiaire/{id}', [BeneficiaireController::class, 'store'])->name('beneficiaire.store');
 
 Auth::routes();
 
