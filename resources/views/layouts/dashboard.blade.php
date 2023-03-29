@@ -40,7 +40,7 @@
                     <ul class="elmts">
                         <li><a href="#"><i class="fa-solid fa-id-card-clip" style="margin-right: 1rem; font-size: 0.8em"></i>Profil</a></li>
                         <li><a href=""><i class="fa-solid fa-gear" style="margin-right: 1rem;"></i>parametre</a></li>
-                    </ul> 
+                    </ul>
                 </div>
             </nav>
         </div>
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <ul class="grandul">
-                <li><a href="#"><i class="fa fa-home" aria-hidden="true" style="margin-right: 1.2rem; font-size: 0.8em;"></i>Dashboard</a></li>
+                <li><a href="{{route('dashboard')}}"><i class="fa fa-home" aria-hidden="true" style="margin-right: 1.2rem; font-size: 0.8em;"></i>Dashboard</a></li>
                 <li>
                     <a href="#" class="client-btn">
                         <i class="fa fa-user" aria-hidden="true" style="margin-right: 1.2rem;font-size: 0.8em;"></i> Clients <span><i
