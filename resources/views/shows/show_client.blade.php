@@ -2,24 +2,54 @@
 
 @section('content')
     <div class="infoclient">
+        <h1>Detail</h1>
         <div class="imgclient" id="imgclient">
-            <div class="circle"> 
-                <img src="{{ asset('uploads/images/client/'.$shows->image) }}" alt="" style="width: 8rem;height: 8rem; border-radius: 50%;float: right;">
+            <div class="circle">
+                <img src="{{ asset('uploads/images/client/'.$shows->image) }}" alt="">
             </div>
         </div>
         <div class="corpclient">
-            <div class="infoleft">
-                <p> {{ $shows->nom }}</p>
-                <p> {{ $shows->email }}</p>
-                <p> {{ $shows->ville }}</p>
-                <p> {{ $shows->date_naissance }}</p>
-                <p> {{ $shows->sexe }}</p>
+            <div class="row">
+                <div class="col-3">
+                    <label for="">Nom :</label>
+                    <p> {{ $shows->nom }}</p>
+                </div>
+                <div class="col-3">
+                    <label for="">Prenom :</label>
+                    <p> {{ $shows->prenom }}</p>
+                </div>
+                <div class="col-3">
+                    <label for="">Sexe :</label>
+                    <p> {{ $shows->sexe }}</p>
+                </div>
             </div>
-            <div class="inforight">
-                <p> {{ $shows->prenom }}</p>
-                <p> {{ $shows->telephone }}</p>
-                <p> {{ $shows->cni }}</p>
-                <p> {{ $shows->adress}}</p>
+            <div class="row">
+                <div class="col-3">
+                    <label for="">Adress-Mail :</label>
+                    <p> {{ $shows->email }}</p>
+                </div>
+                <div class="col-3">
+                    <label for="">Telephone :</label>
+                    <p> {{ $shows->telephone }}</p>
+                </div>
+                <div class="col-3">
+                    <label for="">Date Naissance :</label>
+                    <p> {{ $shows->date_naissance }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label for="">N° CNI :</label>
+                    <p> {{ $shows->cni }}</p>
+                </div>
+                <div class="col-3">
+                    <label for="">Ville :</label>
+                    <p> {{ $shows->ville }}</p>
+                </div>
+                <div class="col-3">
+                    <label for="">Adress :</label>
+                    <p> {{ $shows->adress}}</p>
+                </div>
             </div>
         </div>
     </div>

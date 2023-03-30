@@ -150,7 +150,7 @@
                         data: 'cni',
                         name: 'cni'
                     },
-                    { 
+                    {
                         data: 'ville',
                         name: 'ville'
                     },
@@ -172,7 +172,7 @@
                 $.ajax({
                     url:'{{url("client",'') }}' + '/' + id + '/edit',
                     method: 'GET',
-                    
+
                     success:function(response){
                         $('#modaltitle').html('Edite client');
                         $('#client_id').val(response.id);
@@ -199,7 +199,7 @@
                     url:'{{route("modif")}}',
                     method: 'POST',
                     data:formdata,
-                    processData:false, 
+                    processData:false,
                     contentType:false,
 
                     success:function(response){
@@ -244,7 +244,7 @@
                     error:function(error){
                         console.log(error);
                     }
-               }); 
+               });
             });
         });
     </script>

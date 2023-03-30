@@ -69,8 +69,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="edition" class="btn btn-primary">Edite</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="edition" class="btn btn-success">Edite</button>
                 </div>
             </div>
         </div>
@@ -220,7 +220,7 @@
                     error:function (error) {
                         console.log(error);
                     }
-                }); 
+                });
             });
             // show account
             $('body').on('click','#detail',function() {

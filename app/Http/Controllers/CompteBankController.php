@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\CompteBank;
 use App\Models\Entreprise;
+use App\Models\Beneficiaire;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Brian2694\Toastr\Facades\Toastr;
@@ -37,7 +38,7 @@ class CompteBankController extends Controller
     }
     //
     public function create($id)
-    { 
+    {
         return view('compte-bancaire.infos-compt',compact('id'));
     }
 
@@ -65,7 +66,7 @@ class CompteBankController extends Controller
             if (request('nature') == 'client') {
                 # code...
                 $client=Client::Find($id);
-                $client->comptebanks()->create( 
+                $client->comptebanks()->create(
                     [
                         'numero_compte' => request('num'),
                         'solde' => (int) request('solde'),
@@ -73,13 +74,13 @@ class CompteBankController extends Controller
                         'date_ouverture' => request('date_ouverture'),
                         'code' => (int) request('code'),
                         'statut' => request('statut'),
-                    ] 
+                    ]
                 );
             }
             elseif(request('nature') == 'entreprise')
             {
                 $client = Entreprise::find($id);
-                $client->comptebanks()->create( 
+                $client->comptebanks()->create(
                     [
                         'numero_compte' => request('num'),
                        'solde' => (int) request('solde'),
@@ -87,19 +88,19 @@ class CompteBankController extends Controller
                         'date_ouverture' => request('date_ouverture'),
                         'code' => (int) request('code'),
                        'statut' => request('statut'),
-                    ] 
+                    ]
                 );
             }
-    
+
             // dd($client->comptebanks);
-            return redirect()->route('Client.create');
+            return redirect()->route('beneficiaire.create', [$id]);
         }
         elseif(request('lier') == 'oui')
         {
             if (request('nature') == 'client') {
                 # code...
                 $client=Client::Find($id);
-                $compte = $client->comptebanks()->create( 
+                $compte = $client->comptebanks()->create(
                     [
                         'numero_compte' => request('num'),
                         'solde' => (int) request('solde'),
@@ -107,13 +108,13 @@ class CompteBankController extends Controller
                         'date_ouverture' => request('date_ouverture'),
                         'code' => (int) request('code'),
                         'statut' => request('statut'),
-                    ] 
+                    ]
                 );
             }
             elseif(request('nature') == 'entreprise')
             {
                 $client = Entreprise::find($id);
-                $compte = $client->comptebanks()->create( 
+                $compte = $client->comptebanks()->create(
                     [
                         'numero_compte' => request('num'),
                        'solde' => (int) request('solde'),
@@ -121,11 +122,11 @@ class CompteBankController extends Controller
                         'date_ouverture' => request('date_ouverture'),
                         'code' => (int) request('code'),
                        'statut' => request('statut'),
-                    ] 
+                    ]
                 );
-               
+
             }
-    
+
             // dd($client->comptebanks);
             return redirect()->route('carte',[$compte]);
         }
