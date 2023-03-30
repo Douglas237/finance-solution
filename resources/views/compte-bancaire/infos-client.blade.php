@@ -5,7 +5,7 @@
             <p><strong>Nouveau Compte bancaire</strong></p>
             <button style="margin-right: 7rem;height: 3.5rem;" type="button" class="btn btn-outline-success"><a href="{{ route('entreprise') }}">Entreprise</a></button>
         </div>
-        <form action="{{route('Client.store')}}" method="POST" class="form-control" enctype="multipart/form-data">
+        <form action="{{route('Client.store')}}" method="POST" id="oui" class="form-control" enctype="multipart/form-data">
             @csrf
             <div class="note">
                 <p><strong>Informations du client</strong></p>

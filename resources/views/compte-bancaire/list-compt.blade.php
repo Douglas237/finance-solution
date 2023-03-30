@@ -116,6 +116,16 @@
                 severSide: true,
                 processing: true,
                 ajax: "{{ route('compte.list') }}",
+                "bPaginate": true,  
+                "bInfo": true,  
+                "bFilter": true,
+                "bAutoWidth": false,
+                "aoColumns" : [
+                    { sWidth: '50px' },
+                    { sWidth: '100px' },
+                    { sWidth: '120px' },
+                    { sWidth: '30px' }
+                ],
                 columns: [{
                         data: 'id',
                         name: 'id'
