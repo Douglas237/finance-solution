@@ -292,23 +292,47 @@ ul ul {
 
 /* show client */
 .infoclient {
-    border: 3px solid black;
+    /* border: 0.5px solid ; */
     height: 85%;
     width: 80%;
-    margin: 10%;
-    margin-top: 7%;
+    box-shadow: 10px 10px 80px rgb(231, 228, 228);;
+    /* box-shadow: 5px 5px 80px rgb(231, 228, 228); */
+    /* margin: 10%; */
+    /* margin-top: 7%; */
+}
+.infoclient h1 {
+    text-align: center;
 }
 .imgclient {
-    border: 3px solid green;
-    height: 25%;
+    border: 1px solid 0.5;
+    height: 50%;
+}
+.circle img {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 35%;
+    margin-left: 25%;
+    border-radius: 50%;
+    margin-top:8px;
 }
 .corpclient{
     display: flex;
-    flex-direction: row;
-    border: 3px solid red;
+    margin-left: 15%;
+    flex-direction: column;
+    /* border: 3px solid red; */
     height: 75%;
 }
-.infoleft{
+.col-3 {
+    text-align: center;
+    font-size: 15px;
+    border-radius: 10px;
+    margin: 10px 20px;
+    box-shadow: 10px 10px 80px rgb(143, 139, 139);
+}
+/* .infoleft{
     border: 3px solid rgb(217, 255, 0);
     height: 100%;
     width: 50%;
@@ -317,7 +341,7 @@ ul ul {
     border: 3px solid rgb(38, 0, 255);
     height: 100%;
     width: 50%;
-}
+} */
 /* -------- nouveau --------------------------- */
 .menu_icon
 {

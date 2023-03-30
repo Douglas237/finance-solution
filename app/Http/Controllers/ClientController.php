@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ClientController extends Controller
 {
-    public function index(Request $request) 
+    public function index(Request $request)
     {
         $clients = Client::all();
 
@@ -67,7 +67,7 @@ class ClientController extends Controller
         try {
 
             $data = new Client();
-            $data->nom = ucfirst($request->nom); 
+            $data->nom = ucfirst($request->nom);
             $data->prenom = $request->prenom;
             $data->date_naissance = $request->date_naissance;
             $data->sexe = $request->sexe;
@@ -100,7 +100,7 @@ class ClientController extends Controller
     }
 
     public function edit($id) {
-        
+
     }
     public function update(Request $request, $id) {
         $validatedData = Validator::make($request->all(),[
