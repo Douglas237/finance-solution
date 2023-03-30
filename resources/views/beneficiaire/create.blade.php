@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+{{-- @extends('layouts.dashboard')
 @section('content')
     <div class="formcompte">
         <div class="title">
@@ -35,4 +35,4 @@
             <p>{{$id}}</p>
         </form>
     </div>
-@endsection
+@endsection --}}
