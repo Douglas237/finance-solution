@@ -3,6 +3,7 @@
     <div class="formcompte">
         <div class="title">
             <p><strong>Nouveau Compte bancaire</strong></p>
+            <button style="margin-right: 7rem; height: 3.5rem ; float:right; " type="button" class="btn btn-outline-success"><a href="{{ route('beneficiaire.create',[$id]) }}">Beneficiaire</a></button>
         </div>
         <form action="{{ route('compte', [$id]) }}" id="oui" class="form-control" method="POST">
             @csrf
