@@ -93,7 +93,7 @@ class CompteBankController extends Controller
             }
 
             // dd($client->comptebanks);
-            return redirect()->route('dashboard');
+            return redirect()->route('compte.list');
         }
         elseif(request('lier') == 'oui')
         {
