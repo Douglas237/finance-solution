@@ -33,5 +33,8 @@ $("#sidebar").mouseleave(function () {
     $(".sidebar .grandul .souscli").removeClass("show");
     $(".sidebar .grandul .souscpt").removeClass("show2");
     $(".navbare .navbar .content .elmts").removeClass("show3");
+    $(".sidebar .grandul .toggle1").removeClass("rotate1");
+    $(".sidebar .grandul .toggle2").removeClass("rotate2");
+    $(".navbare .navbar .content .toggle").removeClass("rotate3");
     console.log("oui");
 });
