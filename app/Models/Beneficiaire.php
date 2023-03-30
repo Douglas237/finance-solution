@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Beneficiaire extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 
     public function beneficiaireable()
     {
