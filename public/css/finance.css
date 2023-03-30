@@ -711,4 +711,44 @@ ul ul {
     .sidebar .grandul li ul li a {
         width: 23rem;
     }
+    
+}
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card {
+    margin: 10px;
+    border-radius: 15px ;
+}
+.card-body {
+    display: grid;
+    justify-content: space-around;
+    transition: 0.3s;
+    border-radius: 15px;
+    background-color: #65b455;
+}
+.card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.imag {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 15px;
+}
+.imag h1 {
+    margin-left: 50px;
+    color: #fff;
+}
+.card-body i {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container {
+    margin-top: 8rem;
+    display: flex;
+    flex-direction: row;
 }

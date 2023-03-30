@@ -31,7 +31,7 @@
                         </div>
                         <div class="toutimgs">
                             <div class="img">
-        
+                                <img src="{{ asset('uploads/images/client/202303090853Francoi.jpg') }}" alt="" style="border-radius: 50%; width:45px;">
                             </div>
                             <a href="#" class="dropdown"><i class="fa fa-caret-down toggle" aria-hidden="true"></i></a>
                             <ul class="elmts">
