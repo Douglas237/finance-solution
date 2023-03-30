@@ -49,7 +49,7 @@
         {{-- asside --}}
         <nav class="sidebar" id="sidebar">
             <div class="logo">
-                <div style="background-color: #c8f5c3d3;height: 4rem;width: 4rem;border-radius: 50%" class="logoimg">
+                <div class="logoimg">
                     <img src="{{ asset('img-side/09.png') }}" alt="">
                 </div>
                 <div class="logotext">
