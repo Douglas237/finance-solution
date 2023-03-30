@@ -255,7 +255,7 @@ ul ul {
 .centre {
     position: absolute;
     left: 5%;
-    top: 2rem;
+    top: 5rem;
     width: 95%;
     height: 100%;
     transition: all 0.5s ease;
@@ -295,12 +295,7 @@ ul ul {
     font-size: 2em;
     color: gray;
 }
-.formcompte .tout {
-    /* border: 1px solid black; */
-}
-.formcompte .tout .right {
-    /* border: 1px solid green; */
-}
+
 .formcompte .tout .envoi {
     display: flex;
     justify-content: center;
@@ -359,6 +354,40 @@ ul ul {
     margin: 10px 20px;
     box-shadow: 10px 10px 80px rgb(143, 139, 139);
 }
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card {
+    margin: 10px;
+    border-radius: 15px !important;
+}
+.card-body {
+    display: grid;
+    justify-content: space-between;
+    transition: 0.3s;
+    border-radius: 15px;
+    background-color: #65b455
+}
+  .card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .imag {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 15px;
+  }
+  .imag h1 {
+    margin-left: 50px;
+    color: #fff;
+  }
+  .card-body i {
+    /* display: flex; */
+    justify-content: space-between;
+    align-items: center;
+  }
 /* .infoleft {
     border: 3px solid rgb(217, 255, 0);
     height: 100%;

@@ -93,7 +93,7 @@ class CompteBankController extends Controller
             }
 
             // dd($client->comptebanks);
-            return redirect()->route('beneficiaire.create', [$id]);
+            return redirect()->route('dashboard');
         }
         elseif(request('lier') == 'oui')
         {
