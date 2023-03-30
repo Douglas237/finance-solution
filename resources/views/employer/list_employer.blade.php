@@ -111,6 +111,16 @@
             var table = $(".data-table").DataTable({
                 severSide: true,
                 processing: true,
+                "bPaginate": true,  
+                "bInfo": true,  
+                "bFilter": true,
+                "bAutoWidth": false,
+                "aoColumns" : [
+                    { sWidth: '50px' },
+                    { sWidth: '100px' },
+                    { sWidth: '120px' },
+                    { sWidth: '30px' }
+                ],
                 ajax: "{{ route('employer.list') }}",
                 columns: [{
                         data: 'id',

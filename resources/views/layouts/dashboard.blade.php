@@ -17,40 +17,39 @@
 <body>
     {{-- nav barre --}}
     <div class="nav-asside">
-        <div class="navbare">
+        <div class="navbare" id="navbare">
             <nav class="navbar navbar-expand-lg">
-                <div class="menu_icon" id="menu_icon">
-                    <img style="height: 3rem; width: 3rem" src="{{ asset('imgcon/menu.png') }}" alt="">
-                </div>
-                <div class="container-fluid content">
-                    <div class="collapse navbar-collapse search" id="navbarSupportedContent">
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        </form>
+                <div class="content">
+                    <div class="menu_icon" id="menu_icon">
+                        <img style="height: 3rem; width: 3rem" src="{{ asset('imgcon/menu.png') }}" alt="">
                     </div>
-                    <div class="icons">
-                        <i class="fa-regular fa-flag" style="color: white; font-size: 1rem"></i>
-                        <i class="fa-regular fa-bell" style="color: white; font-size: 1rem"></i>
-                        <i class="fa fa-sliders" aria-hidden="true" style="color: white; font-size: 1rem"></i>
+                    <div class="toutleft">
+                        <div class="icons">
+                            <i class="fa-regular fa-flag oir" style="color: #02501c; font-size: 1rem;"></i>
+                            <i class="fa-regular fa-bell oir" style="color: #02501c; font-size: 1rem"></i>
+                            <i class="fa fa-sliders oir" aria-hidden="true" style="color: #02501c; font-size: 1rem"></i>
+                        </div>
+                        <div class="toutimgs">
+                            <div class="img">
+        
+                            </div>
+                            <a href="#" class="dropdown"><i class="fa fa-caret-down toggle" aria-hidden="true"></i></a>
+                            <ul class="elmts">
+                                <li><a href="#"><i class="fa-solid fa-id-card-clip" style="margin-right: 1rem; font-size: 0.8em"></i>Profil</a></li>
+                                <li><a href=""><i class="fa-solid fa-gear" style="margin-right: 1rem;"></i>parametre</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="img">
-
-                    </div>
-                    <a href="#" class="dropdown"><i class="fa fa-caret-down toggle" aria-hidden="true"></i></a>
-                    <ul class="elmts">
-                        <li><a href="#"><i class="fa-solid fa-id-card-clip" style="margin-right: 1rem; font-size: 0.8em"></i>Profil</a></li>
-                        <li><a href=""><i class="fa-solid fa-gear" style="margin-right: 1rem;"></i>parametre</a></li>
-                    </ul>
                 </div>
             </nav>
         </div>
-        <div class="centre">
+        <div class="centre" id="centre">
             @yield('content')
         </div>
         {{-- asside --}}
         <nav class="sidebar" id="sidebar">
             <div class="logo">
-                <div style="background-color: #c8f5c3d3;height: 3.8rem;width: 3.8rem;border-radius: 50%" class="logoimg">
+                <div style="background-color: #c8f5c3d3;height: 4rem;width: 4rem;border-radius: 50%" class="logoimg">
                     <img src="{{ asset('img-side/09.png') }}" alt="">
                 </div>
                 <div class="logotext">
@@ -58,10 +57,10 @@
                 </div>
             </div>
             <ul class="grandul">
-                <li><a href="{{route('dashboard')}}"><i class="fa fa-home" aria-hidden="true" style="margin-right: 1.2rem; font-size: 0.8em;"></i>Dashboard</a></li>
+                <li><a href="{{route('dashboard')}}"><i class="fa fa-home" aria-hidden="true" style="margin-right: 1.2rem; font-size: 0.8em;"></i><span class="dash">Dashboard</span></a></li>
                 <li>
                     <a href="#" class="client-btn">
-                        <i class="fa fa-user" aria-hidden="true" style="margin-right: 1.2rem;font-size: 0.8em;"></i> Clients <span><i
+                        <i class="fa fa-user" aria-hidden="true" style="margin-right: 1.2rem;font-size: 0.8em;"></i> <span class="dash">Clients</span><span class="clitogle"><i
                                 class="fa fa-caret-down toggle1" style="font-size: 0.8em;" aria-hidden="true"></i></span>
                     </a>
                     <ul class="souscli">
@@ -70,18 +69,18 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="compte-btn"><i class="fa fa-user-plus" aria-hidden="true" style="margin-right: 1rem; font-size: 0.8em;"></i>Comptes <i class="fa fa-caret-down toggle2" style="font-size: 0.8em;" aria-hidden="true"></i></a>
+                    <a href="#" class="compte-btn"><i class="fa fa-user-plus" aria-hidden="true" style="margin-right: 1rem; font-size: 0.8em;"></i><span class="dash">Comptes</span><i class="fa fa-caret-down toggle2" style="font-size: 0.8em;" aria-hidden="true"></i></a>
                     <ul class="souscpt">
                         <li><a href="{{ route('Client.create')}}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Nouveau compte</a></li>
                         <li><a href="{{ route('compte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Liste de compte</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('employer.list') }}"><i class="fa fa-users left" aria-hidden="true" style="margin-right: 0.7rem;font-size: 0.8em;"></i>
-                        Employer</a></li>
+                    <span class="dash">Employer</span></a></li>
                 <li><a href="{{ route('entreprise.list') }}"><i class="fa fa-building" aria-hidden="true" style="margin-right: 1.3rem;font-size: 0.8em;"></i>
-                        Entreprise</a></li>
+                    <span class="dash">Entreprise</span></a></li>
                 <li><a href="#"> <i class="fa fa-share" aria-hidden="true" style="margin-right: 0.8rem;font-size: 0.8em;"></i>
-                        Transaction</a></li>
+                    <span class="dash">Transaction</span></a></li>
             </ul>
         </nav>
     </div>
