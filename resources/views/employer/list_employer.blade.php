@@ -1,12 +1,8 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <!-- Vertically centered scrollable modal -->
-    {{-- <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        ...
-    </div> --}}
-    <!-- Modal -->
-    <div class="modal fade" data-bs-backdrop="static" id="employer_modal" data-bs-keyboard="false" tabindex="-1"
+
+<div class="modal fade" data-bs-backdrop="static" id="employer_modal" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -18,17 +14,17 @@
                     <form id="employermodal" class="form-control" enctype="multipart/form-data">
                         @csrf
                         <div class="note">
-                            <p><strong id="modaltitle">Informations du l'employer</strong></p>
+                            <p><strong id="modaltitle">Informations du client</strong></p>
                         </div>
                         <div class="row tout">
                             <div class="col right">
                               <input type="hidden" id="employer_id" name="employer_id">
                               <input type="text" name="nom" id="nom" class="form-control first" placeholder="nom" aria-label="nom" required>
-                              <input type="text" name="email" id="email" class="form-control first" placeholder="email" aria-label="email" required>
-                              <input type="text" name="ville" id="ville" class="form-control first" placeholder="ville" aria-label="ville" required>
+                              <input type="text" name="prenom" id="prenom" class="form-control first" placeholder="prenom" aria-label="prenom" required>
                               <input type='date' name="date_naissance" id="date_naissance" class="form-control first" placeholder="Select Date" />
+                              <input type="text" name="email" id="email" class="form-control first" placeholder="email" aria-label="email" required>
                               <div style="margin-top: -1.5rem">
-                                <p style="padding: 0;margin: 0;">Sex</p>
+                                  <p style="padding: 0;margin: 0;">Sex</p>
                                   <div class="form-check">
                                     <input class="form-check-input sex" type="radio" value="male" name="sexe" id="male">
                                     <label class="form-check-label" for="male">
@@ -36,7 +32,7 @@
                                     </label>
                                   </div>
                                   <div class="form-check">
-                                    <input class="form-check-input sex" type="radio" value="femelle" name="sexe"  id="femelle" checked>
+                                    <input class="form-check-input sex" type="radio" value="femmel" name="sexe"  id="femelle" checked>
                                     <label class="form-check-label" for="femelle">
                                       Femme
                                     </label>
@@ -44,10 +40,10 @@
                               </div>
                             </div>
                             <div class="col gauche">
-                              <input type="text" name="prenom" id="prenom" class="form-control first" placeholder="prenom" aria-label="prenom" required>
+                              <input type="text" name="poste" id="poste" class="form-control first" placeholder="poste" aria-label="poste" required>
                               <input type="text" name="telephone" id="telephone" class="form-control first" placeholder="telephone" aria-label="telephone" required>
                               <input type="text" name="cni" id="cni" class="form-control first" placeholder="num_cni" aria-label="num_cni" required>
-                              <input type="text" name="poste" id="poste" class="form-control first" placeholder="adress" aria-label="adress" required>
+                              <input type="text" name="password" id="password" class="form-control first" placeholder="password" aria-label="password" required>
                               <input type="file" name="image" id="image" class="form-control first" aria-label="file example" required>
                             </div>
                         </div>
@@ -60,10 +56,15 @@
             </div>
         </div>
     </div>
+
     <div class="form-control">
+        <div class="title" style="display: flex;flex-direction: row;justify-content: space-between">
+            <p><strong>Nouveau employer</strong></p>
+            <button style="margin-right: 7rem;height: 3.5rem;" type="button" id="addemployer" class="btn btn-outline-success">Add employer</button>
+        </div>
         <div class="formcompte">
             <div class="title">
-                <p><strong>Liste des Clients</strong></p>
+                <p><strong>Liste des employer</strong></p>
             </div>
             <div class="alltabs">
                 <div class="tabs_1">
@@ -79,6 +80,7 @@
                                 <th scope="col">email</th>
                                 I<th scope="col">telephone</th>
                                 <th scope="col">Poste</th>
+                                <th scope="col">Password</th>
                                 <th scope="col">image</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -99,7 +101,6 @@
             </div>
         </div>
     </div>
-
     <script type="text/javascript">
         $(function() {
 
@@ -108,9 +109,11 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+            var form = $('#employermodal')[0];
             var table = $(".data-table").DataTable({
                 severSide: true,
                 processing: true,
+                ajax: "{{ route('employer') }}",
                 "bPaginate": true,  
                 "bInfo": true,  
                 "bFilter": true,
@@ -121,7 +124,6 @@
                     { sWidth: '120px' },
                     { sWidth: '30px' }
                 ],
-                ajax: "{{ route('employer.list') }}",
                 columns: [{
                         data: 'id',
                         name: 'id'
@@ -158,6 +160,10 @@
                         data: 'poste',
                         name: 'poste'
                     },
+                    { 
+                        data: 'password',
+                        name: 'password'
+                    },
                     {
                         data: 'image',
                         name: 'image'
@@ -165,50 +171,57 @@
                     {
                         data: 'action',
                         name: 'action'
-                    },
+                    }
 
                 ]
             });
+            // creation d'un employer
+            $('body').on('click','#addemployer', function() {
+                $('#employer_modal').modal('show');
+                $('#modaltitle').html('new employer');
+            });
 
-            // Edition d'un client
-            $('body').on('click','#edite', function(){
-                var id = $(this).data("id");
+            // edition d'un client
+            $('body').on('click','#edite', function () {
+                var id = $(this).data('id');
                 $.ajax({
-                    url:'{{url("employer/edit",'') }}' + '/' + id ,
-                    method: 'GET',
-                    
-                    success:function(response){
+                    url:'{{url("employer/toedite",'')}}'+'/'+id,
+                    method:'GET',
+
+                    success:function (response) {
                         $('#modaltitle').html('Edite employer');
                         $('#employer_id').val(response.id);
                         $('#nom').val(response.nom);
                         $('#prenom').val(response.prenom);
                         $('#date_naissance').val(response.date_naissance);
                         $('#sexe').val(response.sexe);
-                        $('#cni').val(response.cni);
                         $('#email').val(response.email);
                         $('#telephone').val(response.telephone);
+                        $('#cni').val(response.cni);
                         $('#poste').val(response.poste);
+                        $('#password').val(response.password);
                         $('#employer_modal').modal('show');
-                        console.log(response);
+                        console.log(response.id);
                     },
-                    error: function (error) {
+                    error:function(error){
                         console.log(error);
                     }
                 });
             });
-            var form = $('#clientmodal')[0];
+            
             $('body').on('click','#editer',function () {
                 var formdata = new FormData(form);
                 $.ajax({
-                    url:'{{route("")}}',
-                    method: 'POST',
+                    url:'{{route("employer.edite")}}',
+                    method:'POST',
                     data:formdata,
-                    processData:false, 
+                    processData:false,
                     contentType:false,
 
                     success:function(response){
                         table.ajax.reload();
-                        $('#client_modal').modal('hide');
+                        $('#employer_modal').modal('hide');
+                        $("#employermodal").trigger("reset");
                         console.log(response);
                     },
                     error:function(error){
@@ -217,39 +230,40 @@
                 });
             });
 
-            // Suppression d'un client
-            // $('body').on('click','#delet',function () {
-            //    var id = $(this).data("id");
-            //    $.ajax({
-            //         url:'{{url("client",'')}}'+'/'+id+'/delete',
-            //         method: 'DELETE',
+            // delete an employer
+            $('body').on('click','#delet',function () {
+               var id = $(this).data("id");
+               $.ajax({
+                    url:'{{url("employer/delete",'')}}'+'/'+id,
+                    method: 'DELETE',
 
-            //         success:function(response){
-            //             table.ajax.reload();
-            //             console.log(response);
-            //         },
-            //         error:function(error){
-            //             console.log(error);
-            //         }
-            //    });
-            // });
+                    success:function(response){
+                        table.ajax.reload();
+                        console.log(response);
+                    },
+                    error:function(error){
+                        console.log(error);
+                    }
+               });
+            });
 
-            // //  Detaile du client
-            // $('body').on('click','#detail',function name(params) {
-            //    var id = $(this).data("id");
-            //    $.ajax({
-            //         url:'{{url("client",'')}}'+'/'+id+'/toshow',
-            //         method:'GET',
+            // detail employer
 
-            //         success:function(response){
-            //             window.location.href = "{{url('client')}}"+"/"+id+'/show';
-            //         },
+            $('body').on('click','#detail',function name(params) {
+               var id = $(this).data("id");
+               $.ajax({
+                    url:'{{url("employer/toshow",'')}}'+'/'+id,
+                    method:'GET',
 
-            //         error:function(error){
-            //             console.log(error);
-            //         }
-            //    }); 
-            // });
+                    success:function(response){
+                        window.location.href = "{{url('employer/show')}}"+"/"+id;
+                    },
+
+                    error:function(error){
+                        console.log(error);
+                    }
+               });
+            });
         });
     </script>
 @endsection
