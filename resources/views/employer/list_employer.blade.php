@@ -8,17 +8,17 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="close" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="employermodal" class="form-control" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" id="employer_id" name="employer_id">
                         <div class="note">
                             <p><strong id="modaltitle">Informations du client</strong></p>
                         </div>
                         <div class="row tout">
                             <div class="col right">
-                              <input type="hidden" id="employer_id" name="employer_id">
                               <input type="text" name="nom" id="nom" class="form-control first" placeholder="nom" aria-label="nom" required>
                               <input type="text" name="prenom" id="prenom" class="form-control first" placeholder="prenom" aria-label="prenom" required>
                               <input type='date' name="date_naissance" id="date_naissance" class="form-control first" placeholder="Select Date" />
@@ -50,7 +50,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="close" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" id="editer" class="btn btn-primary">Edite</button>
                 </div>
             </div>
@@ -179,11 +179,17 @@
             $('body').on('click','#addemployer', function() {
                 $('#employer_modal').modal('show');
                 $('#modaltitle').html('new employer');
+                $('#editer').html('Create');
+            });
+            $('body').on('click','#close', function() {
+                $("#employermodal").trigger("reset");
+                $('#employer_id').val('');
             });
 
             // edition d'un client
             $('body').on('click','#edite', function () {
                 var id = $(this).data('id');
+                $('#editer').html('edit');
                 $.ajax({
                     url:'{{url("employer/toedite",'')}}'+'/'+id,
                     method:'GET',
@@ -223,6 +229,7 @@
                         $('#employer_modal').modal('hide');
                         $("#employermodal").trigger("reset");
                         console.log(response);
+                        
                     },
                     error:function(error){
                         console.log(error);
