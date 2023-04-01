@@ -57,7 +57,7 @@ class ModalClientController extends Controller
         else 
         {
             $image = 'default.png';
-        }
+        } 
 
         $new_client->update([
             'nom'=> $request->nom,
