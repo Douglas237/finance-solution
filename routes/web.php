@@ -70,8 +70,8 @@ Route::get('/employer/list',[ModalEmployerController::class, 'index'])->name('em
 
 //  manager beneficiaire
 Route::get('/list-beneficiaire', [BeneficiaireController::class, 'index'])->name('beneficiaire.list');
-// Route::get('/create-beneficiaire/{id}', [BeneficiaireController::class, 'create'])->name('beneficiaire.create');
-// Route::post('/beneficiaire/{id}', [BeneficiaireController::class, 'store'])->name('beneficiaire.store');
+Route::get('/create-beneficiaire/{id}', [BeneficiaireController::class, 'create'])->name('beneficiaire.create');
+Route::post('/beneficiaire/{id}', [BeneficiaireController::class, 'store'])->name('beneficiaire.store');
 
 Auth::routes();
 

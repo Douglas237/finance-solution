@@ -47,6 +47,6 @@ class CarteController extends Controller
             ]
         );
         $compte->cartes()->attach($new_carte);
-        return redirect()->route('compte.list');
+        return redirect()->route('beneficiaire.create', $id);
     }
 }
