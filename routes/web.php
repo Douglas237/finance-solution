@@ -10,6 +10,7 @@ use App\Http\Controllers\EntrepriseController;
 use App\Http\Controllers\ModalClientController;
 use App\Http\Controllers\ModalCompteController;
 use App\Http\Controllers\BeneficiaireController;
+use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\ModalEmployerController;
 use App\Http\Controllers\ModalEntreprisController;
 
@@ -64,9 +65,13 @@ Route::delete('/entreprise/delet/{id}',[ModalEntreprisController::class, 'destro
 Route::get('/entreprise/toshow/{id}',[ModalEntreprisController::class, 'toshow'])->name('entreprise.toshow');
 Route::get('/entreprise/show/{id}',[ModalEntreprisController::class, 'show'])->name('entreprise.show');
 
-// controller Modals employer
-// controller Modals employer
-Route::get('/employer/list',[ModalEmployerController::class, 'index'])->name('employer.list');
+// controller pour employer
+Route::get('/employer/liste',[ModalEmployerController::class, 'index'])->name('employer');
+Route::get('/employer/toedite/{id}',[ModalEmployerController::class, 'toedite'])->name('employer.toedite');
+Route::post('/employer/edite',[ModalEmployerController::class, 'edite'])->name('employer.edite');
+Route::delete('/employer/delete/{id}',[ModalEmployerController::class, 'destroy'])->name('employer.destroy');
+Route::get('/employer/toshow/{id}', [ModalEmployerController::class, 'toshow']);
+Route::get('/employer/show/{id}', [ModalEmployerController::class, 'show']);
 
 //  manager beneficiaire
 Route::get('/list-beneficiaire', [BeneficiaireController::class, 'index'])->name('beneficiaire.list');

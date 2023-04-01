@@ -147,7 +147,7 @@
                     { sWidth: '100px' },
                     { sWidth: '120px' },
                     { sWidth: '30px' }
-                ],
+                ], 
                 columns: [{
                         data: 'id',
                         name: 'id'
