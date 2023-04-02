@@ -74,6 +74,7 @@
                     <ul class="souscpt">
                         <li><a href="{{ route('Client.create')}}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Nouveau compte</a></li>
                         <li><a href="{{ route('compte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Liste de compte</a></li>
+                        <li><a href="{{ route('carte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Liste des cartes</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('employer') }}"><i class="fa fa-users left" aria-hidden="true" style="margin-right: 0.7rem;font-size: 0.8em;"></i>

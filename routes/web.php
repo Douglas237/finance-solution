@@ -4,13 +4,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarteController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CompteBankController;
 use App\Http\Controllers\EntrepriseController;
+use App\Http\Controllers\ModalCarteController;
 use App\Http\Controllers\ModalClientController;
 use App\Http\Controllers\ModalCompteController;
 use App\Http\Controllers\BeneficiaireController;
-use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\ModalEmployerController;
 use App\Http\Controllers\ModalEntreprisController;
 
@@ -72,6 +73,14 @@ Route::post('/employer/edite',[ModalEmployerController::class, 'edite'])->name('
 Route::delete('/employer/delete/{id}',[ModalEmployerController::class, 'destroy'])->name('employer.destroy');
 Route::get('/employer/toshow/{id}', [ModalEmployerController::class, 'toshow']);
 Route::get('/employer/show/{id}', [ModalEmployerController::class, 'show']);
+
+//manager carte modal
+Route::get('/carte-liste',[ModalCarteController::class, 'index'])->name('carte.list');
+Route::get('/carte-toedit/{id}',[ModalCarteController::class, 'toedit'])->name('carte.toedit');
+Route::post('/carte-edit', [ModalCarteController::class, 'edit'])->name('carte.edit');
+Route::delete('/carte-delete/{id}', [ModalCarteController::class, 'destroy'])->name('carte.delete');
+Route::get('/carte-toshow/{id}', [ModalCarteController::class, 'toshow']);
+Route::get('/carte-show/{id}', [ModalCarteController::class, 'show']);
 
 //  manager beneficiaire
 Route::get('/list-beneficiaire', [BeneficiaireController::class, 'index'])->name('beneficiaire.list');
