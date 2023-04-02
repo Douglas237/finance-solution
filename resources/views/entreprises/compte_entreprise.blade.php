@@ -88,6 +88,7 @@
                                 <th scope="col">N° </th>
                                 <th scope="col">N° compte</th>
                                 <th scope="col">Proprietaire</th>
+                                <th scope="col">Nom de l'entreprise</th>
                                 <th scope="col">Solde</th>
                                 <th scope="col">Type de compte</th>
                                 <th scope="col">Date ouverture</th>
@@ -116,7 +117,7 @@
             var table = $(".data-table").DataTable({
                 severSide: true,
                 processing: true,
-                ajax: "{{ route('compte.list') }}",
+                ajax: "{{ route('compte.entreprise') }}",
                 "bPaginate": true,  
                 "bInfo": true,  
                 "bFilter": true,
@@ -138,6 +139,10 @@
                     {
                         data: 'proprietaire',
                         name: 'proprietaire'
+                    },
+                    {
+                        data: 'non_entreprise',
+                        name: 'non_entreprise'
                     },
                     {
                         data: 'solde',

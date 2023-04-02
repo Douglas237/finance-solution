@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Client;
 use App\Models\CompteBank;
 use App\Models\Entreprise;
@@ -17,55 +18,96 @@ class CompteBankController extends Controller
 {
     public function index(Request $request)
     {
-        $compte_banks = CompteBank::all();
-        if($request->ajax()) {
+        $compte_banks = CompteBank::join('clients', 'clients.id', '=', 'compte_banks.comptebankable_id')
+                                    ->where('compte_banks.comptebankable_type', '=', 'App\Models\Client')
+                                    ->get();
+        // dd($compte_banks);
+        if ($request->ajax()) {
             $allData = DataTables::of($compte_banks)
-            ->addIndexColumn()
-            ->addColumn('action', function($row){
-                $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
-                '.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn_sm editCompte" id="edite">Edite</a>';
-                $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
-                '.$row->id.'" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delete">Del</a>';
-                $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
-                '.$row->id.'" data-original-title="Detail" class="edit btn btn-warning btn_sm detailcompt" id="detail">Detail</a>';
-                return $btn;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
+                ->addIndexColumn()
+                ->addColumn('proprietaire', function($compte_banks){
+                    return $compte_banks->nom;
+                })
+                ->addColumn('action', function ($row) {
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
+                ' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn_sm editCompte" id="edite">Edite</a>';
+                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
+                ' . $row->id . '" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delete">Del</a>';
+                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
+                ' . $row->id . '" data-original-title="Detail" class="edit btn btn-warning btn_sm detailcompt" id="detail">Detail</a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
             return $allData;
         }
         return view("compte-bancaire.list-compt", compact('compte_banks'));
     }
+
+    // nouveau : pour lister les comptes des entreprises
+
+    public function entreprise(Request $request)
+    {
+        $compte_banks = CompteBank::join('entreprises', 'entreprises.id', '=', 'compte_banks.comptebankable_id')
+                                    ->where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')
+                                    ->get();
+        // dd($compte_banks);
+        if ($request->ajax()) {
+            $allData = DataTables::of($compte_banks)
+                ->addIndexColumn()
+                ->addColumn('proprietaire', function($compte_banks){
+                    return $compte_banks->nom_respon;
+                })
+                ->addColumn('non_entreprise', function($compte_banks){
+                    return $compte_banks->nom_entreprise;
+                })
+                ->addColumn('action', function ($row) {
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
+                ' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn_sm editCompte" id="edite">Edite</a>';
+                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
+                ' . $row->id . '" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delete">Del</a>';
+                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
+                ' . $row->id . '" data-original-title="Detail" class="edit btn btn-warning btn_sm detailcompt" id="detail">Detail</a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+            return $allData;
+        }
+        return view("entreprises.compte_entreprise", compact('compte_banks'));
+    }
     //
+
+
     public function create($id)
     {
-        return view('compte-bancaire.infos-compt',compact('id'));
+        return view('compte-bancaire.infos-compt', compact('id'));
     }
 
     public function store(Request $request, $id)
     {
-        $validatedData = Validator::make($request->all(),[
-            'num'=> 'required|string',
-            'solde'=> 'required|string',
-            'code'=>'required|string',
-            'type'=>'required|string',
-            'nature'=>'required|string',
-            'date_ouverture'=>'required|date',
-            'statut'=>'required|boolean',
-            'lier'=>'required|string',
+        $validatedData = Validator::make($request->all(), [
+            'num' => 'required|string',
+            'solde' => 'required|string',
+            'code' => 'required|string',
+            'type' => 'required|string',
+            'nature' => 'required|string',
+            'date_ouverture' => 'required|date',
+            'statut' => 'required|boolean',
+            'lier' => 'required|string',
         ]);
-        if($validatedData->fails()) {
+        if ($validatedData->fails()) {
             Toastr::error('The field not be empty.');
             return redirect()
-            ->back()
-            ->withErrors($validatedData)
-            ->withInput();
+                ->back()
+                ->withErrors($validatedData)
+                ->withInput();
         }
         if (request('lier') == 'non') {
             # code...
             if (request('nature') == 'client') {
                 # code...
-                $client=Client::Find($id);
+                $client = Client::Find($id);
                 $client->comptebanks()->create(
                     [
                         'numero_compte' => request('num'),
@@ -76,18 +118,16 @@ class CompteBankController extends Controller
                         'statut' => request('statut'),
                     ]
                 );
-            }
-            elseif(request('nature') == 'entreprise')
-            {
+            } elseif (request('nature') == 'entreprise') {
                 $client = Entreprise::find($id);
                 $client->comptebanks()->create(
                     [
                         'numero_compte' => request('num'),
-                       'solde' => (int) request('solde'),
+                        'solde' => (int) request('solde'),
                         'type_compte' => request('type'),
                         'date_ouverture' => request('date_ouverture'),
                         'code' => (int) request('code'),
-                       'statut' => request('statut'),
+                        'statut' => request('statut'),
                     ]
                 );
             }
@@ -99,7 +139,19 @@ class CompteBankController extends Controller
         {
             if (request('nature') == 'client') {
                 # code...
-                $client=Client::Find($id);
+                $client = Client::Find($id);
+                $compte = $client->comptebanks()->create(
+                    [
+                        'numero_compte' => request('num'),
+                        'solde' => (int) request('solde'),
+                        'type_compte' => request('type'),
+                        'date_ouverture' => request('date_ouverture'),
+                        'code' => (int) request('code'),
+                        'statut' => request('statut'),
+                    ]
+                );
+            } elseif (request('nature') == 'entreprise') {
+                $client = Entreprise::find($id);
                 $compte = $client->comptebanks()->create(
                     [
                         'numero_compte' => request('num'),
@@ -111,24 +163,9 @@ class CompteBankController extends Controller
                     ]
                 );
             }
-            elseif(request('nature') == 'entreprise')
-            {
-                $client = Entreprise::find($id);
-                $compte = $client->comptebanks()->create(
-                    [
-                        'numero_compte' => request('num'),
-                       'solde' => (int) request('solde'),
-                        'type_compte' => request('type'),
-                        'date_ouverture' => request('date_ouverture'),
-                        'code' => (int) request('code'),
-                       'statut' => request('statut'),
-                    ]
-                );
-
-            }
 
             // dd($client->comptebanks);
-            return redirect()->route('carte',[$compte]);
+            return redirect()->route('carte', [$compte]);
         }
     }
 }
