@@ -116,7 +116,7 @@
             var table = $(".data-table").DataTable({
                 severSide: true,
                 processing: true,
-                ajax: "{{ route('compte.list') }}",
+                ajax: "{{ route('compte.entreprise') }}",
                 "bPaginate": true,  
                 "bInfo": true,  
                 "bFilter": true,

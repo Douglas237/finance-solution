@@ -36,6 +36,7 @@ Route::get('/dasboard',[DashboardController::class, 'cal'])->name('dashboard');
 Route::get('/compte/{id}',[CompteBankController::class, 'create'])->name('compte');
 Route::post('/compte/{id}',[CompteBankController::class, 'store'])->name('compte');
 Route::get('/list-compte', [CompteBankController::class, 'index'])->name('compte.list');
+Route::get('/compte-entreprise', [CompteBankController::class, 'entreprise'])->name('compte.entreprise');
 Route::resource('Client', ClientController::class);
 Route::get('/entreprise', [EntrepriseController::class, 'create'])->name('entreprise');
 Route::post('/entreprise', [EntrepriseController::class, 'store'])->name('entreprise');
@@ -75,7 +76,7 @@ Route::get('/employer/show/{id}', [ModalEmployerController::class, 'show']);
 
 //  manager beneficiaire
 Route::get('/list-beneficiaire', [BeneficiaireController::class, 'index'])->name('beneficiaire.list');
-// Route::get('/create-beneficiaire/{id}', [BeneficiaireController::class, 'create'])->name('beneficiaire.create');
+Route::get('/create-beneficiaire/{id}', [BeneficiaireController::class, 'create'])->name('beneficiaire.create');
 // Route::post('/beneficiaire/{id}', [BeneficiaireController::class, 'store'])->name('beneficiaire.store');
 
 Auth::routes();
