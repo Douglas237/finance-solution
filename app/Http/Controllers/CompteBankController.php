@@ -58,6 +58,9 @@ class CompteBankController extends Controller
                 ->addColumn('proprietaire', function($compte_banks){
                     return $compte_banks->nom_respon;
                 })
+                ->addColumn('non_entreprise', function($compte_banks){
+                    return $compte_banks->nom_entreprise;
+                })
                 ->addColumn('action', function ($row) {
                     $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
                 ' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn_sm editCompte" id="edite">Edite</a>';
@@ -75,7 +78,7 @@ class CompteBankController extends Controller
     }
     //
 
-    
+
     public function create($id)
     {
         return view('compte-bancaire.infos-compt', compact('id'));
