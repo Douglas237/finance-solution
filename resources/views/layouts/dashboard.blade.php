@@ -73,6 +73,8 @@
                     <a href="#" class="compte-btn"><i class="fa fa-user-plus" aria-hidden="true" style="margin-right: 1rem; font-size: 0.8em;"></i><span class="dash">Comptes</span><i class="fa fa-caret-down toggle2" style="font-size: 0.8em;" aria-hidden="true"></i></a>
                     <ul class="souscpt">
                         <li><a href="{{ route('Client.create')}}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Nouveau compte</a></li>
+                        <li><a href="{{ route('compte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Liste de compte</a></li>
+                        <li><a href="{{ route('carte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Liste des cartes</a></li>
                         <li><a href="{{ route('compte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Compte clients</a></li>
                         <li><a href="{{ route('compte.entreprise') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Compte entreprise</a></li>
                     </ul>

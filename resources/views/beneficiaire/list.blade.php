@@ -1,4 +1,4 @@
-{{-- @extends('layouts.dashboard')
+@extends('layouts.dashboard')
 
 @section('content')
 <div class="form-control">
@@ -61,4 +61,4 @@ var table = $(".data-table").DataTable
 </script>
 
 
-@endsection --}}
+@endsection

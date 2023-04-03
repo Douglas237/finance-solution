@@ -290,7 +290,7 @@ ul ul {
     height: 70%;
     margin-top: 7%;
     margin-left: 3.5%;
-    background-color: white;
+    background-color: #fff;
     border-radius: 10px;
     box-shadow: 5px 5px 80px rgb(231, 228, 228);
 }
@@ -435,7 +435,7 @@ ul ul {
 }
 .toutimgs {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     width: 35%;
     /* border: 1px solid rgb(0, 68, 255); */
 }
@@ -464,6 +464,9 @@ ul ul {
 }
   .modal-body {
     height: 100%;
+  }
+  .form-control {
+    background-color: #65b455;
   }
   .modal-body .form-control input {
     display: flex;
@@ -715,7 +718,7 @@ ul ul {
         width: 95%;
         /* border: 3px solid black; */
         margin-top: 4rem;
-        left: 5%;
+        left: 15%;
     }
     /* .navbare {
         width: 70.5%;
@@ -753,7 +756,7 @@ ul ul {
     .sidebar .grandul li ul li a {
         width: 23rem;
     }
-    
+
 }
 .img {
     display: flex;
@@ -793,4 +796,11 @@ ul ul {
     margin-top: 8rem;
     display: flex;
     flex-direction: row;
+}
+.table {
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+    padding: 15px;
+    box-shadow: 4px 4px 5px #aaa;
+    border-radius: 5px;
+    background-color: #fff;
 }
