@@ -3,10 +3,11 @@
 @section('content')
     <div class="infoclient">
         <div class="imgclient" id="imgclient">
-            {{-- <div class="circle"> 
+            {{-- <div class="circle">
                 <img src="{{ asset('uploads/images/client/'.$shows->image) }}" alt="" style="width: 8rem;height: 8rem; border-radius: 50%;float: right;">
             </div> --}}
         </div>
+        <button style="margin-right: 7rem; height: 3.5rem ; float:right; " type="button" class="btn btn-outline-success"><a href="{{ route('beneficiaire.create',[$id]) }}">Beneficiaire</a></button>
         <div class="corpclient">
             <div class="row">
                 <div class="col-3">

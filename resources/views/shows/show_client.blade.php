@@ -8,6 +8,7 @@
                 <img src="{{ asset('uploads/images/client/'.$shows->image) }}" alt="">
             </div>
         </div>
+        <button style="margin-right: 7rem; height: 3.5rem ; float:right; " type="button" class="btn btn-outline-success"><a href="{{ route('beneficiaire.create',[$id]) }}">Beneficiaire</a></button>
         <div class="corpclient">
             <div class="row">
                 <div class="col-3">
