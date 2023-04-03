@@ -31,7 +31,7 @@
                         </div>
                         <div class="toutimgs">
                             <div class="img">
-        
+                                <img src="{{ asset('uploads/images/client/202303090853Francoi.jpg') }}" alt="" style="border-radius: 50%; width:45px;">
                             </div>
                             <a href="#" class="dropdown"><i class="fa fa-caret-down toggle" aria-hidden="true"></i></a>
                             <ul class="elmts">
@@ -49,7 +49,7 @@
         {{-- asside --}}
         <nav class="sidebar" id="sidebar">
             <div class="logo">
-                <div style="background-color: #c8f5c3d3;height: 4rem;width: 4rem;border-radius: 50%" class="logoimg">
+                <div class="logoimg">
                     <img src="{{ asset('img-side/09.png') }}" alt="">
                 </div>
                 <div class="logotext">
@@ -66,6 +66,7 @@
                     <ul class="souscli">
                         <li><a href="#"><i class="fa-regular fa-circle" style="margin-right: 0.8rem;font-size: 0.5em;"></i>Nouveau client</a></li>
                         <li><a href="{{ route('Client.index') }}"> <i class="fa-regular fa-circle" style="margin-right: 0.8rem;font-size: 0.5em;"></i>Liste de client</a></li>
+                        <li><a href="{{ route('beneficiaire.list') }}"> <i class="fa-regular fa-circle" style="margin-right: 0.8rem;font-size: 0.5em;"></i>Liste de beneficiaire</a></li>
                     </ul>
                 </li>
                 <li>
@@ -73,9 +74,12 @@
                     <ul class="souscpt">
                         <li><a href="{{ route('Client.create')}}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Nouveau compte</a></li>
                         <li><a href="{{ route('compte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Liste de compte</a></li>
+                        <li><a href="{{ route('carte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Liste des cartes</a></li>
+                        <li><a href="{{ route('compte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Compte clients</a></li>
+                        <li><a href="{{ route('compte.entreprise') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Compte entreprise</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('employer.list') }}"><i class="fa fa-users left" aria-hidden="true" style="margin-right: 0.7rem;font-size: 0.8em;"></i>
+                <li><a href="{{ route('employer') }}"><i class="fa fa-users left" aria-hidden="true" style="margin-right: 0.7rem;font-size: 0.8em;"></i>
                     <span class="dash">Employer</span></a></li>
                 <li><a href="{{ route('entreprise.list') }}"><i class="fa fa-building" aria-hidden="true" style="margin-right: 1.3rem;font-size: 0.8em;"></i>
                     <span class="dash">Entreprise</span></a></li>

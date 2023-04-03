@@ -3,18 +3,31 @@
 @section('content')
     <div class="infoclient">
         <div class="imgclient" id="imgclient">
-            <div class="circle"> 
+            {{-- <div class="circle">
                 <img src="{{ asset('uploads/images/client/'.$shows->image) }}" alt="" style="width: 8rem;height: 8rem; border-radius: 50%;float: right;">
-            </div>
+            </div> --}}
         </div>
+        <button style="margin-right: 7rem; height: 3.5rem ; float:right; " type="button" class="btn btn-outline-success"><a href="{{ route('beneficiaire.create',[$id]) }}">Beneficiaire</a></button>
         <div class="corpclient">
-            <div class="infoleft">
-                <p> {{ $shows->nom_entreprise }}</p>
-                <p> {{ $shows->nom_respon }}</p>
-                <p> {{ $shows->type_entreprise }}</p>
-                <p> {{ $shows->cni_respon }}</p>
+            <div class="row">
+                <div class="col-3">
+                    <label for="">Nom Entreprise :</label>
+                    <p> {{ $shows->nom_entreprise }}</p>
+                </div>
+                <div class="col-3">
+                    <label for="">Nom du responsable :</label>
+                    <p> {{ $shows->nom_respon }}</p>
+                </div>
             </div>
-            <div class="inforight">
+            <div class="row">
+                <div class="col-3">
+                    <label for="">Type entreprise :</label>
+                    <p> {{ $shows->type_entreprise }}</p>
+                </div>
+                <div class="col-3">
+                    <label for="">N° CNI :</label>
+                    <p> {{ $shows->cni_respon }}</p>
+                </div>
             </div>
         </div>
     </div>

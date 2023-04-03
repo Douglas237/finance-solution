@@ -69,8 +69,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="edition" class="btn btn-primary">Edite</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="edition" class="btn btn-success">Edite</button>
                 </div>
             </div>
         </div>
@@ -87,6 +87,7 @@
                             <tr>
                                 <th scope="col">N° </th>
                                 <th scope="col">N° compte</th>
+                                <th scope="col">Proprietaire</th>
                                 <th scope="col">Solde</th>
                                 <th scope="col">Type de compte</th>
                                 <th scope="col">Date ouverture</th>
@@ -133,6 +134,10 @@
                     {
                         data: 'numero_compte',
                         name: 'num'
+                    },
+                    {
+                        data: 'proprietaire',
+                        name: 'proprietaire'
                     },
                     {
                         data: 'solde',
@@ -220,7 +225,7 @@
                     error:function (error) {
                         console.log(error);
                     }
-                }); 
+                });
             });
             // show account
             $('body').on('click','#detail',function() {

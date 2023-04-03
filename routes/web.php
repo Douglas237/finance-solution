@@ -4,11 +4,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarteController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CompteBankController;
 use App\Http\Controllers\EntrepriseController;
+use App\Http\Controllers\ModalCarteController;
 use App\Http\Controllers\ModalClientController;
 use App\Http\Controllers\ModalCompteController;
+use App\Http\Controllers\BeneficiaireController;
 use App\Http\Controllers\ModalEmployerController;
 use App\Http\Controllers\ModalEntreprisController;
 
@@ -34,6 +37,7 @@ Route::get('/dasboard',[DashboardController::class, 'cal'])->name('dashboard');
 Route::get('/compte/{id}',[CompteBankController::class, 'create'])->name('compte');
 Route::post('/compte/{id}',[CompteBankController::class, 'store'])->name('compte');
 Route::get('/list-compte', [CompteBankController::class, 'index'])->name('compte.list');
+Route::get('/compte-entreprise', [CompteBankController::class, 'entreprise'])->name('compte.entreprise');
 Route::resource('Client', ClientController::class);
 Route::get('/entreprise', [EntrepriseController::class, 'create'])->name('entreprise');
 Route::post('/entreprise', [EntrepriseController::class, 'store'])->name('entreprise');
@@ -55,7 +59,7 @@ Route::delete('/delcompte/delet/{id}',[ModalCompteController::class, 'destroy'])
 Route::get('/detcompte/toshow/{id}',[ModalCompteController::class, 'toshow']);
 Route::get('/detcompte/show/{id}',[ModalCompteController::class, 'show']);
 
-// controller Modals enreprise
+// controller Modals entreprise
 Route::get('/entreprise/liste',[ModalEntreprisController::class, 'index'])->name('entreprise.list');
 Route::get('/entreprise/toedit/{id}',[ModalEntreprisController::class, 'toedit'])->name('entreprise.toedit');
 Route::post('/entreprise/edit',[ModalEntreprisController::class, 'edit'])->name('entreprise.edit');
@@ -63,8 +67,26 @@ Route::delete('/entreprise/delet/{id}',[ModalEntreprisController::class, 'destro
 Route::get('/entreprise/toshow/{id}',[ModalEntreprisController::class, 'toshow'])->name('entreprise.toshow');
 Route::get('/entreprise/show/{id}',[ModalEntreprisController::class, 'show'])->name('entreprise.show');
 
-// controller Modals employer
-Route::get('/employer/list',[ModalEmployerController::class, 'index'])->name('employer.list');
+// controller pour employer
+Route::get('/employer/liste',[ModalEmployerController::class, 'index'])->name('employer');
+Route::get('/employer/toedite/{id}',[ModalEmployerController::class, 'toedite'])->name('employer.toedite');
+Route::post('/employer/edite',[ModalEmployerController::class, 'edite'])->name('employer.edite');
+Route::delete('/employer/delete/{id}',[ModalEmployerController::class, 'destroy'])->name('employer.destroy');
+Route::get('/employer/toshow/{id}', [ModalEmployerController::class, 'toshow']);
+Route::get('/employer/show/{id}', [ModalEmployerController::class, 'show']);
+
+//manager carte modal
+Route::get('/carte-liste',[ModalCarteController::class, 'index'])->name('carte.list');
+Route::get('/carte-toedit/{id}',[ModalCarteController::class, 'toedit'])->name('carte.toedit');
+Route::post('/carte-edit', [ModalCarteController::class, 'edit'])->name('carte.edit');
+Route::delete('/carte-delete/{id}', [ModalCarteController::class, 'destroy'])->name('carte.delete');
+Route::get('/carte-toshow/{id}', [ModalCarteController::class, 'toshow']);
+Route::get('/carte-show/{id}', [ModalCarteController::class, 'show']);
+
+//  manager beneficiaire
+Route::get('/list-beneficiaire', [BeneficiaireController::class, 'index'])->name('beneficiaire.list');
+Route::get('/create-beneficiaire/{id}', [BeneficiaireController::class, 'create'])->name('beneficiaire.create');
+Route::post('/beneficiaire/{id}', [BeneficiaireController::class, 'store'])->name('beneficiaire.store');
 
 Auth::routes();
 

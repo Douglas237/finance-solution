@@ -95,6 +95,36 @@
             </div>
         </div>
     </div>
+    {{-- export script --}}
+    <script>
+        $(document).ready(function(){
+           $('#example').DataTable({
+            pageLength:25,
+            responsive:true,
+            dom : '<"html5buttons"B>lTfgitp',
+            buttons : [
+                {extend : 'copy'},
+                {extend : 'csv'},
+                {extend : 'excel', title : 'ExampleFile'},
+                {extend : 'pdf', title : 'ExampleFile'},
+
+                {estend : 'print',
+
+                customize : function (win) {
+                    $(win.document.body).addClass('white-bg');
+                    $(win.document.body).css('font-size','10px');
+                    $(win.document.body).find('table')
+                    .addClass('compact')
+                    .css('font-size','inherit');
+                }
+            }
+            ]
+
+           });
+
+
+        });
+    </script>
 
     <script type="text/javascript">
         $(function() {
@@ -108,8 +138,8 @@
                 severSide: true,
                 processing: true,
                 ajax: "{{ route('Client.index') }}",
-                "bPaginate": true,  
-                "bInfo": true,  
+                "bPaginate": true,
+                "bInfo": true,
                 "bFilter": true,
                 "bAutoWidth": false,
                 "aoColumns" : [
@@ -117,7 +147,7 @@
                     { sWidth: '100px' },
                     { sWidth: '120px' },
                     { sWidth: '30px' }
-                ],
+                ], 
                 columns: [{
                         data: 'id',
                         name: 'id'
@@ -150,7 +180,7 @@
                         data: 'cni',
                         name: 'cni'
                     },
-                    { 
+                    {
                         data: 'ville',
                         name: 'ville'
                     },
@@ -166,13 +196,15 @@
                 ]
             });
 
+
+
             // Edition d'un client
             $('body').on('click','#edite', function(){
                 var id = $(this).data("id");
                 $.ajax({
                     url:'{{url("client",'') }}' + '/' + id + '/edit',
                     method: 'GET',
-                    
+
                     success:function(response){
                         $('#modaltitle').html('Edite client');
                         $('#client_id').val(response.id);
@@ -199,7 +231,7 @@
                     url:'{{route("modif")}}',
                     method: 'POST',
                     data:formdata,
-                    processData:false, 
+                    processData:false,
                     contentType:false,
 
                     success:function(response){
@@ -244,7 +276,7 @@
                     error:function(error){
                         console.log(error);
                     }
-               }); 
+               });
             });
         });
     </script>
