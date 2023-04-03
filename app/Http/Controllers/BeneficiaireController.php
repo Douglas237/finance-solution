@@ -54,10 +54,9 @@ class BeneficiaireController extends Controller
             ->withErrors($validatedData)
             ->withInput();
         }
-
         if (request('type') == 'client') {
             # code...
-            $client=Client::Find($id);
+            $client = Client::Find($id);
             $client->beneficiaire()->create(
                 [
                     'nom'=> ucfirst($request->nom),
@@ -65,9 +64,9 @@ class BeneficiaireController extends Controller
                     'cni'=>$request->cni,
                     'telephone'=>$request->telephone,
                     'sexe' => $request->sexe,
-                ]
-            );
+                ]);
         }
+
         elseif(request('type') == 'entreprise')
         {
             $client = Entreprise::find($id);
@@ -81,7 +80,6 @@ class BeneficiaireController extends Controller
                 ]
             );
         }
-
         return redirect()->route('Client.index');
 
     }

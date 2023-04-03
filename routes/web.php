@@ -59,7 +59,7 @@ Route::delete('/delcompte/delet/{id}',[ModalCompteController::class, 'destroy'])
 Route::get('/detcompte/toshow/{id}',[ModalCompteController::class, 'toshow']);
 Route::get('/detcompte/show/{id}',[ModalCompteController::class, 'show']);
 
-// controller Modals enreprise
+// controller Modals entreprise
 Route::get('/entreprise/liste',[ModalEntreprisController::class, 'index'])->name('entreprise.list');
 Route::get('/entreprise/toedit/{id}',[ModalEntreprisController::class, 'toedit'])->name('entreprise.toedit');
 Route::post('/entreprise/edit',[ModalEntreprisController::class, 'edit'])->name('entreprise.edit');

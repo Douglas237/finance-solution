@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\CompteBank;
 use App\Models\Entreprise;
-use App\Models\Beneficiaire;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Brian2694\Toastr\Facades\Toastr;
@@ -133,7 +132,7 @@ class CompteBankController extends Controller
             }
 
             // dd($client->comptebanks);
-            return redirect()->route('beneficiaire.create', $id);
+            return redirect()->route('compte.list');
         }
         elseif(request('lier') == 'oui')
         {
