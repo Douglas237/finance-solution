@@ -13,6 +13,8 @@ use App\Http\Controllers\BeneficiaireController;
 use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\ModalEmployerController;
 use App\Http\Controllers\ModalEntreprisController;
+use App\Http\Controllers\VersementController;
+use App\Http\Controllers\TransfertController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +75,19 @@ Route::post('/employer/edite',[ModalEmployerController::class, 'edite'])->name('
 Route::delete('/employer/delete/{id}',[ModalEmployerController::class, 'destroy'])->name('employer.destroy');
 Route::get('/employer/toshow/{id}', [ModalEmployerController::class, 'toshow']);
 Route::get('/employer/show/{id}', [ModalEmployerController::class, 'show']);
+
+// controller pour versements
+Route::get('/versements/list', [VersementController::class, 'index'])->name('versements');
+Route::post('/versement/edit', [VersementController::class, 'edit'])->name('versement.edit');
+Route::get('/versement/toedite/{id}', [VersementController::class, 'toedite'])->name('versement.toedite');
+Route::delete('/payment/delete/{id}', [VersementController::class, 'destroy'])->name('payment.destroy');
+
+//  controller pour transfert
+Route::get('/transfert/list', [TransfertController::class, 'index'])->name('transfert');
+Route::post('/transfert/edit', [TransfertController::class, 'edit'])->name('transfert.edit');
+Route::get('/transfert/toedite/{id}', [TransfertController::class, 'toedit'])->name('transfert.toedite');
+Route::delete('/transfert/delete/{id}', [TransfertController::class, 'destroy'])->name('transfert.destroy');
+
 
 //  manager beneficiaire
 Route::get('/list-beneficiaire', [BeneficiaireController::class, 'index'])->name('beneficiaire.list');
