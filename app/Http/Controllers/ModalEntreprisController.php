@@ -53,7 +53,7 @@ class ModalEntreprisController extends Controller
             'cni_respon' => 'required|string',
             'image' => 'nullable', 'image', 'mimes:jpeg,jpg,png,gif', 'max:10000',
         ]);
-        
+
         if ($validatedData->fails()) {
             Toastr::error('The field not be empty.');
             return redirect()
@@ -61,7 +61,7 @@ class ModalEntreprisController extends Controller
                 ->withErrors($validatedData)
                 ->withInput();
         }
-        
+
         if ($request->hasFile('image'))
         {
             $file = $request->file('image');
@@ -69,8 +69,8 @@ class ModalEntreprisController extends Controller
             $filename = date('YmdHi') . ucfirst($request->nom) . '.' . $extension;
             $file->move('uploads/images/client', $filename);
             $image = $filename;
-        } 
-        else 
+        }
+        else
         {
             $image = 'default.png';
         }
@@ -108,6 +108,6 @@ class ModalEntreprisController extends Controller
             # code...
             abort(404);
         }
-        return view('shows.show_entreprise', compact('shows'));
+        return view('shows.show_entreprise', compact('shows', 'id'));
     }
 }

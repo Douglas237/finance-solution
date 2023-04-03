@@ -53,11 +53,11 @@ class ModalClientController extends Controller
             $filename = date('YmdHi') . ucfirst($request->nom) . '.' . $extension;
             $file->move('uploads/images/client', $filename);
             $image = $filename;
-        } 
-        else 
+        }
+        else
         {
             $image = 'default.png';
-        } 
+        }
 
         $new_client->update([
             'nom'=> $request->nom,
@@ -91,7 +91,7 @@ class ModalClientController extends Controller
             # code...
             abort(404);
         }
-        
+
         return $toshow;
     }
     public function show ($id){
@@ -100,7 +100,7 @@ class ModalClientController extends Controller
             # code...
             abort(404);
         }
-        
-        return view('shows.show_client', compact('shows'));
+
+        return view('shows.show_client', compact('shows', 'id'));
     }
 }
