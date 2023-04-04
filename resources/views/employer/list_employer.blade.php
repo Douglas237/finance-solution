@@ -15,7 +15,7 @@
                         @csrf
                         <input type="hidden" id="employer_id" name="employer_id">
                         <div class="note">
-                            <p><strong id="modaltitle">Informations du client</strong></p>
+                            <p><strong id="modaltitle">Informations du client</strong></p> 
                         </div>
                         <div class="row tout">
                             <div class="col right">
