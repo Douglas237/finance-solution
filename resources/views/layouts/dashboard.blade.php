@@ -83,8 +83,13 @@
                     <span class="dash">Employer</span></a></li>
                 <li><a href="{{ route('entreprise.list') }}"><i class="fa fa-building" aria-hidden="true" style="margin-right: 1.3rem;font-size: 0.8em;"></i>
                     <span class="dash">Entreprise</span></a></li>
-                <li><a href="#"> <i class="fa fa-share" aria-hidden="true" style="margin-right: 0.8rem;font-size: 0.8em;"></i>
-                    <span class="dash">Transaction</span></a></li>
+                <li><a href="#" class="transaction-btn"> <i class="fa fa-share" aria-hidden="true" style="margin-right: 0.8rem;font-size: 0.8em;"></i>
+                    <span class="dash">Transaction</span><i class="fa fa-caret-down toggle4" style="font-size: 0.8em;" aria-hidden="true"></i></a>
+                    <ul class="soustrans">
+                        <li><a href="{{ route('transfert') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Transferts</a></li>
+                        <li><a href="{{ route('versements') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Versements</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </div>

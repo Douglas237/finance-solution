@@ -4,7 +4,11 @@ $(".sidebar .grandul .client-btn").click(function () {
 });
 $(".sidebar .grandul .compte-btn").click(function () {
     $(".sidebar .grandul .souscpt").toggleClass("show2");
-    $(".sidebar .grandul .toggle2").toggleClass("rotate2");
+    $(".sidebar .grandul .toggle2").toggleClass("rotate2"); 
+});
+$(".sidebar .grandul .transaction-btn").click(function () {
+    $(".sidebar .grandul .soustrans").toggleClass("show4");
+    $(".sidebar .grandul .toggle4").toggleClass("rotate4"); 
 });
 $(".navbare .navbar .content .dropdown").click(function () {
     $(".navbare .navbar .content .elmts").toggleClass("show3");
@@ -32,9 +36,11 @@ $("#sidebar").mouseleave(function () {
     $("#centre").removeClass("ajout1");
     $(".sidebar .grandul .souscli").removeClass("show");
     $(".sidebar .grandul .souscpt").removeClass("show2");
+    $(".sidebar .grandul .soustrans").removeClass("show4");
     $(".navbare .navbar .content .elmts").removeClass("show3");
     $(".sidebar .grandul .toggle1").removeClass("rotate1");
     $(".sidebar .grandul .toggle2").removeClass("rotate2");
+    $(".sidebar .grandul .toggle4").removeClass("rotate4");
     $(".navbare .navbar .content .toggle").removeClass("rotate3");
     console.log("oui");
 });

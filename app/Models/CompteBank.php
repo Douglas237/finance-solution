@@ -28,4 +28,11 @@ class CompteBank extends Model
         return $this->belongsToMany(Carte::class, 'carte__comptebanks','comptebank_id','carte_id')->withTimestamps();
     }
 
+    public function versements(){
+        return $this->hasMany(Versement::class, 'comptebank_id', 'id');
+    }
+
+    public function transferts(){
+        return $this->hasMany(Transfert::class, 'comptebank_id', 'id');
+    }
 }
