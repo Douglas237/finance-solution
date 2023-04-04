@@ -88,6 +88,7 @@
                     <ul class="soustrans">
                         <li><a href="{{ route('transfert') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Transferts</a></li>
                         <li><a href="{{ route('versements') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Versements</a></li>
+                        <li><a href="{{ route('retrait') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Retrait</a></li>
                     </ul>
                 </li>
             </ul>

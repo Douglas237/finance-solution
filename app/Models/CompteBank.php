@@ -35,4 +35,7 @@ class CompteBank extends Model
     public function transferts(){
         return $this->hasMany(Transfert::class, 'comptebank_id', 'id');
     }
+    public function retraits(){
+        return $this->hasMany(Retrai::class, 'comptebank_id', 'id');
+    }
 }
