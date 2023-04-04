@@ -46,7 +46,7 @@ class VersementController extends Controller
                 'montant' => 'required|string',
                 'num_compte' => 'required|string',
             ]);
-    
+
             if ($validatedData->fails()) {
                 Toastr::error('The field not be empty.');
                 return redirect()
@@ -58,7 +58,7 @@ class VersementController extends Controller
             // $id = $idcompte[0];
             $idcompte = CompteBank::where('numero_compte',$request->num_compte)->get();
             DB::transaction(function () use ($request, $idcompte) {
-               
+
                 Versement::create([
                     'nom_versant'=> $request->nom_versant,
                     'prenom_versant'=> $request->prenom_versant,
@@ -70,10 +70,10 @@ class VersementController extends Controller
                 $idcompte[0]->update([
                     'solde' =>$idcompte[0]->solde+(int)request('montant'),
                 ]);
-                
+
             });
             return response()->json(['message' => 'mise a jour avec succes'], 200);
-    
+
         }
 
         $validatedData = Validator::make($request->all(), [
@@ -92,7 +92,7 @@ class VersementController extends Controller
                 ->withInput();
         }
         $initsolde = CompteBank::where('numero_compte',$payment->num_compte)->get();
-        
+
         $newsolde = CompteBank::where('numero_compte',$request->num_compte)->get();
         DB::transaction(function () use ($payment, $request, $newsolde, $initsolde){
             $initsolde[0]-> update([

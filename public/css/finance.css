@@ -844,10 +844,37 @@ ul ul {
 .container1 h4 {
     color: #fff;
 }
+.container1 h1 {
+    color: #fff;
+}
 .card1 .centered {
     position: absolute;
-    top: 50%;
+    top: 5rem;
     left: 50%;
     bottom: 50%;
     transform: translate(-50%, -50%);
+}
+.puce {
+    position: absolute;
+    top: 3rem;
+    left: 2rem;
+}
+.puce img {
+    width: 90px;
+}
+.bottom-right {
+    bottom: 5rem;
+}
+.card1 .bottom-right {
+    position: absolute;
+    bottom: -13rem;
+    right: 16px;
+}
+.bottom-right img {
+    width: 90px;
+}
+.card1 .band {
+    width: 100%;
+    height: 50%;
+    background-color: red;
 }
