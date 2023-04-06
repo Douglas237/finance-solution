@@ -7,7 +7,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Employé</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" id="close" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -15,7 +15,7 @@
                         @csrf
                         <input type="hidden" id="employer_id" name="employer_id">
                         <div class="note">
-                            <p><strong id="modaltitle">Informations du client</strong></p> 
+                            <p><strong id="modaltitle">Informations du client</strong></p>
                         </div>
                         <div class="row tout">
                             <div class="col right">
@@ -114,8 +114,8 @@
                 severSide: true,
                 processing: true,
                 ajax: "{{ route('employer') }}",
-                "bPaginate": true,  
-                "bInfo": true,  
+                "bPaginate": true,
+                "bInfo": true,
                 "bFilter": true,
                 "bAutoWidth": false,
                 "aoColumns" : [
@@ -156,11 +156,11 @@
                         data: 'telephone',
                         name: 'telephone'
                     },
-                    { 
+                    {
                         data: 'poste',
                         name: 'poste'
                     },
-                    { 
+                    {
                         data: 'password',
                         name: 'password'
                     },
@@ -214,7 +214,7 @@
                     }
                 });
             });
-            
+
             $('body').on('click','#editer',function () {
                 var formdata = new FormData(form);
                 $.ajax({
@@ -229,7 +229,7 @@
                         $('#employer_modal').modal('hide');
                         $("#employermodal").trigger("reset");
                         console.log(response);
-                        
+
                     },
                     error:function(error){
                         console.log(error);

@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
+
     <!-- Modal -->
     <div class="modal fade" data-bs-backdrop="static" id="client_modal" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -147,7 +148,7 @@
                     { sWidth: '100px' },
                     { sWidth: '120px' },
                     { sWidth: '30px' }
-                ], 
+                ],
                 columns: [{
                         data: 'id',
                         name: 'id'

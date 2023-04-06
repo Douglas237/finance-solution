@@ -30,10 +30,13 @@
                     {{-- <img src="" alt="Avatar" style=""> --}}
                     <div class="container1">
                         <div class="band">
-                          <p>m</p>
+                          <p><span>m</span></p>
                         </div>
-                      <h4><b>John Doe</b></h4>
-                      <p>Architect & Engineer</p>
+                        <div class="date">
+                            <h4><b>Express of</b></h4>
+                      <p>{{ $shows->date_expiration}}</p>
+                        </div>
+
                     </div>
                   </div>
 
