@@ -20,8 +20,11 @@
         <div class="navbare" id="navbare">
             <nav class="navbar navbar-expand-lg">
                 <div class="content">
-                    <div class="menu_icon" id="menu_icon">
-                        <img style="height: 3rem; width: 3rem" src="{{ asset('imgcon/menu.png') }}" alt="">
+                    <div >
+                        <img class="menu_icon" id="menu_icon" style="height: 3rem; width: 3rem" src="{{ asset('imgcon/menuh.png') }}" alt="">
+                    </div>
+                    <div >
+                        <img class="menu_icon1" id="menu_icon1" style="height: 3rem; width: 3rem" src="{{ asset('imgcon/menuh.png') }}" alt="">
                     </div>
                     <div class="toutleft">
                         <div class="icons">
@@ -73,7 +76,6 @@
                     <a href="#" class="compte-btn"><i class="fa fa-user-plus" aria-hidden="true" style="margin-right: 1rem; font-size: 0.8em;"></i><span class="dash">Comptes</span><i class="fa fa-caret-down toggle2" style="font-size: 0.8em;" aria-hidden="true"></i></a>
                     <ul class="souscpt">
                         <li><a href="{{ route('Client.create')}}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Nouveau compte</a></li>
-                        <li><a href="{{ route('compte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Liste de compte</a></li>
                         <li><a href="{{ route('carte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Liste des cartes</a></li>
                         <li><a href="{{ route('compte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Compte clients</a></li>
                         <li><a href="{{ route('compte.entreprise') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Compte entreprise</a></li>
@@ -88,6 +90,7 @@
                     <ul class="soustrans">
                         <li><a href="{{ route('transfert') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Transferts</a></li>
                         <li><a href="{{ route('versements') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Versements</a></li>
+                        <li><a href="{{ route('retrait') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Retrait</a></li>
                     </ul>
                 </li>
             </ul>
@@ -95,6 +98,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ asset('icons/js/all.js') }}"></script>
     <script src="{{ asset('js/finance.js') }}"></script>
 </body>

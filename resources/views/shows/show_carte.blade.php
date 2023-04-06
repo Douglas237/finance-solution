@@ -17,13 +17,26 @@
                         <div class="centered">
                             <h1><b>{{ $shows->numero_carte}}</b></h1>
                         </div>
+                        <div class="puce">
+                            <img src="{{asset('img-side/11.png')}}" alt="">
+                        </div>
+                        <div class="bottom-right">
+                            <img src="{{asset('img-side/12.png')}}" alt="">
+                            <img src="{{asset('img-side/13.png')}}" alt="">
+                        </div>
                     </div>
                   </div>
                   <div class="card1">
                     {{-- <img src="" alt="Avatar" style=""> --}}
                     <div class="container1">
-                      <h4><b>John Doe</b></h4>
-                      <p>Architect & Engineer</p>
+                        <div class="band">
+                          <p><span>m</span></p>
+                        </div>
+                        <div class="date">
+                            <h4><b>Express of</b></h4>
+                      <p>{{ $shows->date_expiration}}</p>
+                        </div>
+
                     </div>
                   </div>
 
