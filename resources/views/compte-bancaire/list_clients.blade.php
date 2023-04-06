@@ -19,33 +19,44 @@
                         </div>
                         <div class="row tout">
                             <div class="col right">
-                              <input type="hidden" id="client_id" name="client_id">
-                              <input type="text" name="nom" id="nom" class="form-control first" placeholder="nom" aria-label="nom" required>
-                              <input type="text" name="email" id="email" class="form-control first" placeholder="email" aria-label="email" required>
-                              <input type="text" name="ville" id="ville" class="form-control first" placeholder="ville" aria-label="ville" required>
-                              <input type='date' name="date_naissance" id="date_naissance" class="form-control first" placeholder="Select Date" />
-                              <div style="margin-top: -1.5rem">
-                                <p style="padding: 0;margin: 0;">Sex</p>
-                                  <div class="form-check">
-                                    <input class="form-check-input sex" type="radio" value="male" name="sexe" id="male">
-                                    <label class="form-check-label" for="male">
-                                      Homme
-                                    </label>
-                                  </div>
-                                  <div class="form-check">
-                                    <input class="form-check-input sex" type="radio" value="femelle" name="sexe"  id="femelle" checked>
-                                    <label class="form-check-label" for="femelle">
-                                      Femme
-                                    </label>
-                                  </div>
-                              </div>
+                                <input type="hidden" id="client_id" name="client_id">
+                                <input type="text" name="nom" id="nom" class="form-control first"
+                                    placeholder="nom" aria-label="nom" required>
+                                <input type="text" name="email" id="email" class="form-control first"
+                                    placeholder="email" aria-label="email" required>
+                                <input type="text" name="ville" id="ville" class="form-control first"
+                                    placeholder="ville" aria-label="ville" required>
+                                <input type='date' name="date_naissance" id="date_naissance" class="form-control first"
+                                    placeholder="Select Date" />
+                                <div style="margin-top: -1.5rem">
+                                    <p style="padding: 0;margin: 0;">Sex</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input sex" type="radio" value="male" name="sexe"
+                                            id="male">
+                                        <label class="form-check-label" for="male">
+                                            Homme
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input sex" type="radio" value="femelle" name="sexe"
+                                            id="femelle" checked>
+                                        <label class="form-check-label" for="femelle">
+                                            Femme
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col gauche">
-                              <input type="text" name="prenom" id="prenom" class="form-control first" placeholder="prenom" aria-label="prenom" required>
-                              <input type="text" name="telephone" id="telephone" class="form-control first" placeholder="telephone" aria-label="telephone" required>
-                              <input type="text" name="cni" id="cni" class="form-control first" placeholder="num_cni" aria-label="num_cni" required>
-                              <input type="text" name="adress" id="adress" class="form-control first" placeholder="adress" aria-label="adress" required>
-                              <input type="file" name="image" id="image" class="form-control first" aria-label="file example" required>
+                                <input type="text" name="prenom" id="prenom" class="form-control first"
+                                    placeholder="prenom" aria-label="prenom" required>
+                                <input type="text" name="telephone" id="telephone" class="form-control first"
+                                    placeholder="telephone" aria-label="telephone" required>
+                                <input type="text" name="cni" id="cni" class="form-control first"
+                                    placeholder="num_cni" aria-label="num_cni" required>
+                                <input type="text" name="adress" id="adress" class="form-control first"
+                                    placeholder="adress" aria-label="adress" required>
+                                <input type="file" name="image" id="image" class="form-control first"
+                                    aria-label="file example" required>
                             </div>
                         </div>
                     </form>
@@ -98,30 +109,40 @@
     </div>
     {{-- export script --}}
     <script>
-        $(document).ready(function(){
-           $('#example').DataTable({
-            pageLength:25,
-            responsive:true,
-            dom : '<"html5buttons"B>lTfgitp',
-            buttons : [
-                {extend : 'copy'},
-                {extend : 'csv'},
-                {extend : 'excel', title : 'ExampleFile'},
-                {extend : 'pdf', title : 'ExampleFile'},
+        $(document).ready(function() {
+            $('#example').DataTable({
+                pageLength: 25,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [{
+                        extend: 'copy'
+                    },
+                    {
+                        extend: 'csv'
+                    },
+                    {
+                        extend: 'excel',
+                        title: 'ExampleFile'
+                    },
+                    {
+                        extend: 'pdf',
+                        title: 'ExampleFile'
+                    },
 
-                {estend : 'print',
+                    {
+                        estend: 'print',
 
-                customize : function (win) {
-                    $(win.document.body).addClass('white-bg');
-                    $(win.document.body).css('font-size','10px');
-                    $(win.document.body).find('table')
-                    .addClass('compact')
-                    .css('font-size','inherit');
-                }
-            }
-            ]
+                        customize: function(win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ]
 
-           });
+            });
 
 
         });
@@ -143,11 +164,18 @@
                 "bInfo": true,
                 "bFilter": true,
                 "bAutoWidth": false,
-                "aoColumns" : [
-                    { sWidth: '50px' },
-                    { sWidth: '100px' },
-                    { sWidth: '120px' },
-                    { sWidth: '30px' }
+                "aoColumns": [{
+                        sWidth: '50px'
+                    },
+                    {
+                        sWidth: '100px'
+                    },
+                    {
+                        sWidth: '120px'
+                    },
+                    {
+                        sWidth: '30px'
+                    }
                 ],
                 columns: [{
                         data: 'id',
@@ -200,13 +228,13 @@
 
 
             // Edition d'un client
-            $('body').on('click','#edite', function(){
+            $('body').on('click', '#edite', function() {
                 var id = $(this).data("id");
                 $.ajax({
-                    url:'{{url("client",'') }}' + '/' + id + '/edit',
+                    url: '{{ url('client', '') }}' + '/' + id + '/edit',
                     method: 'GET',
 
-                    success:function(response){
+                    success: function(response) {
                         $('#modaltitle').html('Edite client');
                         $('#client_id').val(response.id);
                         $('#nom').val(response.nom);
@@ -220,64 +248,80 @@
                         $('#adress').val(response.adress);
                         $('#client_modal').modal('show');
                     },
-                    error: function (error) {
+                    error: function(error) {
                         console.log(error);
                     }
                 });
             });
             var form = $('#clientmodal')[0];
-            $('body').on('click','#editer',function () {
+            $('body').on('click', '#editer', function() {
                 var formdata = new FormData(form);
                 $.ajax({
-                    url:'{{route("modif")}}',
+                    url: '{{ route('modif') }}',
                     method: 'POST',
-                    data:formdata,
-                    processData:false,
-                    contentType:false,
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
 
-                    success:function(response){
+                    success: function(response) {
                         table.ajax.reload();
                         $('#client_modal').modal('hide');
                         console.log(response);
                     },
-                    error:function(error){
+                    error: function(error) {
                         console.log(error);
                     }
                 });
             });
 
             // Suppression d'un client
-            $('body').on('click','#delet',function () {
-               var id = $(this).data("id");
-               $.ajax({
-                    url:'{{url("client",'')}}'+'/'+id+'/delete',
-                    method: 'DELETE',
+            $('body').on('click', '#delet', function() {
+                var id = $(this).data("id");
+                swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                url: '{{ url('client', '') }}' + '/' + id + '/delete',
+                                method: 'DELETE',
 
-                    success:function(response){
-                        table.ajax.reload();
-                        console.log(response);
-                    },
-                    error:function(error){
-                        console.log(error);
-                    }
-               });
+                                success: function(response) {
+                                    swal("Poof! Your imaginary file has been deleted!", {
+                                        icon: "success",
+                                    });
+                                    table.ajax.reload();
+                                    console.log(response);
+                                },
+                                error: function(error) {
+                                    console.log(error);
+                                }
+                            });
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
             });
 
             //  Detaile du client
-            $('body').on('click','#detail',function name(params) {
-               var id = $(this).data("id");
-               $.ajax({
-                    url:'{{url("client",'')}}'+'/'+id+'/toshow',
-                    method:'GET',
+            $('body').on('click', '#detail', function name(params) {
+                var id = $(this).data("id");
+                $.ajax({
+                    url: '{{ url('client', '') }}' + '/' + id + '/toshow',
+                    method: 'GET',
 
-                    success:function(response){
-                        window.location.href = "{{url('client')}}"+"/"+id+'/show';
+                    success: function(response) {
+                        window.location.href = "{{ url('client') }}" + "/" + id + '/show';
                     },
 
-                    error:function(error){
+                    error: function(error) {
                         console.log(error);
                     }
-               });
+                });
             });
         });
     </script>

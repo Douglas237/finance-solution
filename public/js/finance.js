@@ -13,27 +13,24 @@ $(".sidebar .grandul .transaction-btn").click(function () {
 $(".navbare .navbar .content .dropdown").click(function () {
     $(".navbare .navbar .content .elmts").toggleClass("show3");
     $(".navbare .navbar .content .toggle").toggleClass("rotate3");
-    // alert('bomjoure');
 });
 
 // gestion du menu
-// $('#menu_icon').click(function () {
-//     $('#sidebar').toggleClass('hide');
-//     $('#navbare').toggleClass('ajout');
-//     $('#centre').toggleClass('ajout1');
-//     console.log('oui');
-// });
-$("#sidebar").hover(function () {
+$('#menu_icon').click(function () {
+    $('#menu_icon').css('display', 'none');
+    $('#menu_icon1').css('display', 'block');
     $("#sidebar").addClass("augmenter");
+    $('.sidebar a').css('color', '#02501c');
     $("#navbare").addClass("ajout");
     $("#centre").addClass("ajout1");
-    console.log("oui");
+    console.log('oui');
 });
 
-$("#sidebar").mouseleave(function () {
+$("#menu_icon1").click(function () {
     $("#sidebar").removeClass("augmenter");
     $("#navbare").removeClass("ajout");
     $("#centre").removeClass("ajout1");
+    $('.sidebar a').css('color', '');
     $(".sidebar .grandul .souscli").removeClass("show");
     $(".sidebar .grandul .souscpt").removeClass("show2");
     $(".sidebar .grandul .soustrans").removeClass("show4");
@@ -42,5 +39,7 @@ $("#sidebar").mouseleave(function () {
     $(".sidebar .grandul .toggle2").removeClass("rotate2");
     $(".sidebar .grandul .toggle4").removeClass("rotate4");
     $(".navbare .navbar .content .toggle").removeClass("rotate3");
+    $('#menu_icon1').css('display','');
+    $('#menu_icon').css('display', 'block');
     console.log("oui");
 });

@@ -13,18 +13,23 @@
                     <form class="form-control" id="entrepriseforme" enctype="multipart/form-data">
                         @csrf
                         <div class="note">
-                          <p><strong>Informations entrprise</strong></p>
+                            <p><strong>Informations entrprise</strong></p>
                         </div>
                         <input type="hidden" name="entreprise_id" id="entreprise_id">
                         <div class="row tout">
                             <div class="col right">
-                              <input type="text" name="nom_entreprise" id="nom_entreprise" class="form-control first" placeholder="nom de l'entreprise" aria-label="nom de l'entreprise">
-                              <input type="text" name="type_entreprise" id="type_entreprise" class="form-control first" placeholder="type entreprise" aria-label="type entreprise">
-                              <input type="file" name="image" id="image" class="form-control first" aria-label="file example" required>
+                                <input type="text" name="nom_entreprise" id="nom_entreprise" class="form-control first"
+                                    placeholder="nom de l'entreprise" aria-label="nom de l'entreprise">
+                                <input type="text" name="type_entreprise" id="type_entreprise" class="form-control first"
+                                    placeholder="type entreprise" aria-label="type entreprise">
+                                <input type="file" name="image" id="image" class="form-control first"
+                                    aria-label="file example" required>
                             </div>
                             <div class="col gauche">
-                                <input type="text" name="nom_respon" id="nom_respon" class="form-control first" placeholder="nom du responssable" aria-label="nom du responssable">
-                                <input type="text" name="cni_respon" id="cni_respon" class="form-control first" placeholder="numero cni du responssable" aria-label="type entreprise">
+                                <input type="text" name="nom_respon" id="nom_respon" class="form-control first"
+                                    placeholder="nom du responssable" aria-label="nom du responssable">
+                                <input type="text" name="cni_respon" id="cni_respon" class="form-control first"
+                                    placeholder="numero cni du responssable" aria-label="type entreprise">
                             </div>
                         </div>
                     </form>
@@ -77,16 +82,23 @@
                 severSide: true,
                 processing: true,
                 ajax: "{{ route('entreprise.list') }}",
-                "bPaginate": true,  
-                "bInfo": true,  
+                "bPaginate": true,
+                "bInfo": true,
                 "bFilter": true,
                 "bAutoWidth": false,
-                "aoColumns" : [
-                    { sWidth: '50px' },
-                    { sWidth: '100px' },
-                    { sWidth: '120px' },
-                    { sWidth: '30px' }
-                ] ,
+                "aoColumns": [{
+                        sWidth: '50px'
+                    },
+                    {
+                        sWidth: '100px'
+                    },
+                    {
+                        sWidth: '120px'
+                    },
+                    {
+                        sWidth: '30px'
+                    }
+                ],
                 columns: [{
                         data: 'id',
                         name: 'id'
@@ -123,7 +135,7 @@
             $('body').on('click', '#edite', function() {
                 var id = $(this).data("id");
                 $.ajax({
-                    url: '{{ url("entreprise/toedit", '') }}' + '/' + id,
+                    url: '{{ url('entreprise/toedit', '') }}' + '/' + id,
                     method: 'GET',
 
                     success: function(response) {
@@ -142,57 +154,74 @@
                 });
             });
             var form = $('#entrepriseforme')[0];
-            $('body').on('click','#editer',function () {
+            $('body').on('click', '#editer', function() {
                 var formdata = new FormData(form);
                 $.ajax({
-                    url:'{{route("entreprise.edit")}}',
+                    url: '{{ route('entreprise.edit') }}',
                     method: 'POST',
-                    data:formdata,
-                    processData:false,
-                    contentType:false,
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
 
-                    success:function(response){
+                    success: function(response) {
                         table.ajax.reload();
                         $('#entrprise_modal').modal('hide');
                         console.log(response);
                     },
-                    error:function(error){
+                    error: function(error) {
                         console.log(error);
                     }
                 });
             });
             // delet entreprise
-            $('body').on('click','#delet',function () {
-               var id = $(this).data("id");
-               $.ajax({
-                    url:'{{url("entreprise/delet",'')}}'+'/'+id,
-                    method: 'DELETE',
+            $('body').on('click', '#delet', function() {
+                var id = $(this).data("id");
 
-                    success:function(response){
-                        table.ajax.reload();
-                        console.log(response);
-                    },
-                    error:function(error){
-                        console.log(error);
-                    }
-               });
+                swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                url: '{{ url('entreprise/delet', '') }}' + '/' + id,
+                                method: 'DELETE',
+            
+                                success: function(response) {
+                                    swal("Poof! Your imaginary file has been deleted!", {
+                                        icon: "success",
+                                    });
+                                    table.ajax.reload();
+                                    console.log(response);
+                                },
+                                error: function(error) {
+                                    console.log(error);
+                                }
+                            });
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
             });
 
             // show entreprise
-            $('body').on('click','#detail',function name(params) {
-               var id = $(this).data("id");
-               $.ajax({
-                    url:'{{url("entreprise/toshow",'')}}'+'/'+id,
-                    method:'GET',
+            $('body').on('click', '#detail', function name(params) {
+                var id = $(this).data("id");
+                $.ajax({
+                    url: '{{ url('entreprise/toshow', '') }}' + '/' + id,
+                    method: 'GET',
 
-                    success:function(response){
-                        window.location.href = "{{url('entreprise/show')}}"+"/"+id;
+                    success: function(response) {
+                        window.location.href = "{{ url('entreprise/show') }}" + "/" + id;
                     },
 
-                    error:function(error){
+                    error: function(error) {
                         console.log(error);
                     }
-               }); 
+                });
             });
         });
     </script>

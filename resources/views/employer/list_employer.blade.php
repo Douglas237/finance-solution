@@ -1,13 +1,12 @@
 @extends('layouts.dashboard')
 
 @section('content')
-
-<div class="modal fade" data-bs-backdrop="static" id="employer_modal" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" data-bs-backdrop="static" id="employer_modal" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Employé</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" id="close" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -19,38 +18,50 @@
                         </div>
                         <div class="row tout">
                             <div class="col right">
-                              <input type="text" name="nom" id="nom" class="form-control first" placeholder="nom" aria-label="nom" required>
-                              <input type="text" name="prenom" id="prenom" class="form-control first" placeholder="prenom" aria-label="prenom" required>
-                              <input type='date' name="date_naissance" id="date_naissance" class="form-control first" placeholder="Select Date" />
-                              <input type="text" name="email" id="email" class="form-control first" placeholder="email" aria-label="email" required>
-                              <div style="margin-top: -1.5rem">
-                                  <p style="padding: 0;margin: 0;">Sex</p>
-                                  <div class="form-check">
-                                    <input class="form-check-input sex" type="radio" value="male" name="sexe" id="male">
-                                    <label class="form-check-label" for="male">
-                                      Homme
-                                    </label>
-                                  </div>
-                                  <div class="form-check">
-                                    <input class="form-check-input sex" type="radio" value="femmel" name="sexe"  id="femelle" checked>
-                                    <label class="form-check-label" for="femelle">
-                                      Femme
-                                    </label>
-                                  </div>
-                              </div>
+                                <input type="text" name="nom" id="nom" class="form-control first"
+                                    placeholder="nom" aria-label="nom" required>
+                                <input type="text" name="prenom" id="prenom" class="form-control first"
+                                    placeholder="prenom" aria-label="prenom" required>
+                                <input type='date' name="date_naissance" id="date_naissance" class="form-control first"
+                                    placeholder="Select Date" />
+                                <input type="text" name="email" id="email" class="form-control first"
+                                    placeholder="email" aria-label="email" required>
+                                <div style="margin-top: -1.5rem">
+                                    <p style="padding: 0;margin: 0;">Sex</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input sex" type="radio" value="male" name="sexe"
+                                            id="male">
+                                        <label class="form-check-label" for="male">
+                                            Homme
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input sex" type="radio" value="femmel" name="sexe"
+                                            id="femelle" checked>
+                                        <label class="form-check-label" for="femelle">
+                                            Femme
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col gauche">
-                              <input type="text" name="poste" id="poste" class="form-control first" placeholder="poste" aria-label="poste" required>
-                              <input type="text" name="telephone" id="telephone" class="form-control first" placeholder="telephone" aria-label="telephone" required>
-                              <input type="text" name="cni" id="cni" class="form-control first" placeholder="num_cni" aria-label="num_cni" required>
-                              <input type="text" name="password" id="password" class="form-control first" placeholder="password" aria-label="password" required>
-                              <input type="file" name="image" id="image" class="form-control first" aria-label="file example" required>
+                                <input type="text" name="poste" id="poste" class="form-control first"
+                                    placeholder="poste" aria-label="poste" required>
+                                <input type="text" name="telephone" id="telephone" class="form-control first"
+                                    placeholder="telephone" aria-label="telephone" required>
+                                <input type="text" name="cni" id="cni" class="form-control first"
+                                    placeholder="num_cni" aria-label="num_cni" required>
+                                <input type="text" name="password" id="password" class="form-control first"
+                                    placeholder="password" aria-label="password" required>
+                                <input type="file" name="image" id="image" class="form-control first"
+                                    aria-label="file example" required>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="close" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="close" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button>
                     <button type="button" id="editer" class="btn btn-primary">Edite</button>
                 </div>
             </div>
@@ -60,7 +71,8 @@
     <div class="form-control">
         <div class="title" style="display: flex;flex-direction: row;justify-content: space-between">
             <p><strong>Nouveau employer</strong></p>
-            <button style="margin-right: 7rem;height: 3.5rem;" type="button" id="addemployer" class="btn btn-outline-success">Add employer</button>
+            <button style="margin-right: 7rem;height: 3.5rem;" type="button" id="addemployer"
+                class="btn btn-outline-success">Add employer</button>
         </div>
         <div class="formcompte">
             <div class="title">
@@ -118,11 +130,18 @@
                 "bInfo": true,
                 "bFilter": true,
                 "bAutoWidth": false,
-                "aoColumns" : [
-                    { sWidth: '50px' },
-                    { sWidth: '100px' },
-                    { sWidth: '120px' },
-                    { sWidth: '30px' }
+                "aoColumns": [{
+                        sWidth: '50px'
+                    },
+                    {
+                        sWidth: '100px'
+                    },
+                    {
+                        sWidth: '120px'
+                    },
+                    {
+                        sWidth: '30px'
+                    }
                 ],
                 columns: [{
                         data: 'id',
@@ -176,25 +195,25 @@
                 ]
             });
             // creation d'un employer
-            $('body').on('click','#addemployer', function() {
+            $('body').on('click', '#addemployer', function() {
                 $('#employer_modal').modal('show');
                 $('#modaltitle').html('new employer');
                 $('#editer').html('Create');
             });
-            $('body').on('click','#close', function() {
+            $('body').on('click', '#close', function() {
                 $("#employermodal").trigger("reset");
                 $('#employer_id').val('');
             });
 
             // edition d'un client
-            $('body').on('click','#edite', function () {
+            $('body').on('click', '#edite', function() {
                 var id = $(this).data('id');
                 $('#editer').html('edit');
                 $.ajax({
-                    url:'{{url("employer/toedite",'')}}'+'/'+id,
-                    method:'GET',
+                    url: '{{ url('employer/toedite', '') }}' + '/' + id,
+                    method: 'GET',
 
-                    success:function (response) {
+                    success: function(response) {
                         $('#modaltitle').html('Edite employer');
                         $('#employer_id').val(response.id);
                         $('#nom').val(response.nom);
@@ -209,67 +228,86 @@
                         $('#employer_modal').modal('show');
                         console.log(response.id);
                     },
-                    error:function(error){
+                    error: function(error) {
                         console.log(error);
                     }
                 });
             });
 
             $('body').on('click','#editer',function () {
+
+            $('body').on('click', '#editer', function() {
                 var formdata = new FormData(form);
                 $.ajax({
-                    url:'{{route("employer.edite")}}',
-                    method:'POST',
-                    data:formdata,
-                    processData:false,
-                    contentType:false,
+                    url: '{{ route('employer.edite') }}',
+                    method: 'POST',
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
 
-                    success:function(response){
+                    success: function(response) {
                         table.ajax.reload();
                         $('#employer_modal').modal('hide');
                         $("#employermodal").trigger("reset");
                         console.log(response);
 
                     },
-                    error:function(error){
+                    error: function(error) {
                         console.log(error);
                     }
                 });
             });
 
             // delete an employer
-            $('body').on('click','#delet',function () {
-               var id = $(this).data("id");
-               $.ajax({
-                    url:'{{url("employer/delete",'')}}'+'/'+id,
-                    method: 'DELETE',
+            $('body').on('click', '#delet', function() {
+                var id = $(this).data("id");
 
-                    success:function(response){
-                        table.ajax.reload();
-                        console.log(response);
-                    },
-                    error:function(error){
-                        console.log(error);
-                    }
-               });
+                swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                url: '{{ url('employer/delete', '') }}' + '/' + id,
+                                method: 'DELETE',
+
+                                success: function(response) {
+                                    swal("Poof! Your imaginary file has been deleted!", {
+                                        icon: "success",
+                                    });
+                                    table.ajax.reload();
+                                    console.log(response);
+                                },
+                                error: function(error) {
+                                    console.log(error);
+                                }
+                            });
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
             });
 
             // detail employer
 
-            $('body').on('click','#detail',function name(params) {
-               var id = $(this).data("id");
-               $.ajax({
-                    url:'{{url("employer/toshow",'')}}'+'/'+id,
-                    method:'GET',
+            $('body').on('click', '#detail', function name(params) {
+                var id = $(this).data("id");
+                $.ajax({
+                    url: '{{ url('employer/toshow', '') }}' + '/' + id,
+                    method: 'GET',
 
-                    success:function(response){
-                        window.location.href = "{{url('employer/show')}}"+"/"+id;
+                    success: function(response) {
+                        window.location.href = "{{ url('employer/show') }}" + "/" + id;
                     },
 
-                    error:function(error){
+                    error: function(error) {
                         console.log(error);
                     }
-               });
+                });
             });
         });
     </script>
