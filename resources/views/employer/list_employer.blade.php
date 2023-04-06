@@ -7,8 +7,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="close"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="close" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="employermodal" class="form-control" enctype="multipart/form-data">
@@ -235,6 +234,8 @@
                 });
             });
 
+            // $('body').on('click','#editer',function () {
+
             $('body').on('click', '#editer', function() {
                 var formdata = new FormData(form);
                 $.ajax({
@@ -273,7 +274,7 @@
                             $.ajax({
                                 url: '{{ url('employer/delete', '') }}' + '/' + id,
                                 method: 'DELETE',
-            
+
                                 success: function(response) {
                                     swal("Poof! Your imaginary file has been deleted!", {
                                         icon: "success",
