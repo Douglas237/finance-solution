@@ -896,10 +896,47 @@ form,
 .container1 h4 {
     color: #fff;
 }
+.container1 h1 {
+    color: #fff;
+}
 .card1 .centered {
     position: absolute;
-    top: 50%;
+    top: 5rem;
     left: 50%;
     bottom: 50%;
     transform: translate(-50%, -50%);
+}
+.puce {
+    position: absolute;
+    top: 3rem;
+    left: 2rem;
+}
+.puce img {
+    width: 90px;
+}
+.bottom-right {
+    bottom: 5rem;
+}
+.card1 .bottom-right {
+    position: absolute;
+    bottom: -13rem;
+    right: 16px;
+}
+.bottom-right img {
+    width: 90px;
+}
+.band {
+    margin: 0;
+    padding: 0;
+}
+.card1 .band p {
+    width: 28rem;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 10px;
+    height: 1.5rem;
+    background-color: #aaa;
+}
+.card1 .band span {
+    color: #aaa;
 }

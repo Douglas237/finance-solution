@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
+
     <!-- Modal -->
     <div class="modal fade" data-bs-backdrop="static" id="client_modal" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -288,7 +289,7 @@
                             $.ajax({
                                 url: '{{ url('client', '') }}' + '/' + id + '/delete',
                                 method: 'DELETE',
-            
+
                                 success: function(response) {
                                     swal("Poof! Your imaginary file has been deleted!", {
                                         icon: "success",

@@ -42,12 +42,12 @@ class VersementController extends Controller
             $request->validate([
                 'nom_versant' => 'required|string',
                 'prenom_versant' => 'required|string',
-                'num_cni' => 'required|string', 
+                'num_cni' => 'required|string',
                 'montant' => 'required|string',
                 'num_compte' => 'required|string',
             ]);
-    
-            
+
+
             // $idcompte = CompteBank::where('numero_compte',$request->num_compte)->get();
             // $id = $idcompte[0];
             $destinateur = CompteBank::find($request->num_compte);
@@ -58,7 +58,7 @@ class VersementController extends Controller
             }
             $idcompte = CompteBank::where('numero_compte',$request->num_compte)->get();
             DB::transaction(function () use ($request, $idcompte) {
-               
+
                 Versement::create([
                     'nom_versant'=> $request->nom_versant,
                     'prenom_versant'=> $request->prenom_versant,
@@ -70,10 +70,10 @@ class VersementController extends Controller
                 $idcompte[0]->update([
                     'solde' =>$idcompte[0]->solde+(int)request('montant'),
                 ]);
-                
+
             });
             return response()->json(['message' => 'mise a jour avec succes'], 200);
-    
+
         }
 
         $request->validate([
@@ -92,7 +92,7 @@ class VersementController extends Controller
         }
 
         $initsolde = CompteBank::where('numero_compte',$payment->num_compte)->get();
-        
+
         $newsolde = CompteBank::where('numero_compte',$request->num_compte)->get();
         DB::transaction(function () use ($payment, $request, $newsolde, $initsolde){
             $initsolde[0]-> update([
