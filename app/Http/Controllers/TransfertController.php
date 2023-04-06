@@ -16,8 +16,7 @@ class TransfertController extends Controller
     //
     public function index(Request $request)
     {
-        $compte_banks = Transfert::join('compte_banks', 'compte_banks.id', '=', 'transferts.comptebank_id')
-                                     ->get();
+        $compte_banks = Transfert::get();
         // dd($compte_banks);
         if ($request->ajax()) {
             $allData = DataTables::of($compte_banks)
@@ -79,67 +78,78 @@ class TransfertController extends Controller
         $transfert = Transfert::find($request->transfert_id);
         if (!$transfert) {
             # code...
-            $validatedData = Validator::make($request->all(), [
+            $request->validate([
                 'compte_destinatair' => 'required|string',
                 'montant_transfert' => 'required|string',
                 'compte_destinateur' => 'required|string',
             ]);
-
-            if ($validatedData->fails()) {
-                Toastr::error('The field not be empty.');
-                return redirect()
-                    ->back()
-                    ->withErrors($validatedData)
-                    ->withInput();
-            }
             // $idcompte = CompteBank::where('numero_compte',$request->num_compte)->get();
             // $id = $idcompte[0];
-            $destinatair = CompteBank::where('numero_compte', $request->compte_destinatair)->get();
-            $destinateur = CompteBank::where('numero_compte', $request->compte_destinateur)->get();
+            $destinatair = CompteBank::find($request->compte_destinatair);
+            $destinateur = CompteBank::find($request->compte_destinateur);
+            // dd($destinatair);
+            if (!$destinatair) {
+                # code...
+                abort(405);
+            }
+            elseif(!$destinateur){
+                abort(406);
+            }
             DB::transaction(function () use ($request, $destinatair, $destinateur) {
-
                 Transfert::create([
                     'compte_destinatair' => $request->compte_destinatair,
                     'montant_transfert' => $request->montant_transfert,
                     'compte_destinateur' => $request->compte_destinateur,
-                    'comptebank_id' => $destinateur[0]->id,
+                    'comptebank_id' => $destinateur->id,
                 ]);
-                $destinatair[0]->update([
-                    'solde' => $destinatair[0]->solde - (int)request('montant_transfert'),
+                if ((int)$destinatair->solde < (int)request('montant_transfert')) {
+                    # code...
+                    abort(404);
+                }
+                $destinatair->update([
+                    'solde' => $destinatair->solde - (int)request('montant_transfert'),
                 ]);
-                $destinateur[0]->update([
-                    'solde' => $destinateur[0]->solde + (int)request('montant_transfert'),
+                $destinateur->update([
+                    'solde' => $destinateur->solde + (int)request('montant_transfert'),
                 ]);
             });
             return response()->json(['message' => 'mise a jour avec succes'], 200);
         }
 
-        $validatedData = Validator::make($request->all(), [
+        $request->validate([
             'compte_destinatair' => 'required|string',
             'montant_transfert' => 'required|string',
             'compte_destinateur' => 'required|string',
         ]);
 
-        if ($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-                ->back()
-                ->withErrors($validatedData)
-                ->withInput();
+        $destinatair = CompteBank::find($request->compte_destinatair);
+        $destinateur = CompteBank::find($request->compte_destinateur);
+        // dd($destinatair);
+        if (!$destinatair) {
+            # code...
+            abort(405);
+        }
+        elseif(!$destinateur){
+            abort(406);
         }
 
         $initdestinatair = CompteBank::where('numero_compte', $request->compte_destinatair)->get();
         $initdestinateur = CompteBank::where('numero_compte', $request->compte_destinateur)->get();
-        $newdestinatair = CompteBank::where('numero_compte', $request->compte_destinatair)->get();
-        $newdestinateur = CompteBank::where('numero_compte', $request->compte_destinateur)->get();
-        DB::transaction(function () use ($transfert, $request, $initdestinatair, $initdestinateur, $newdestinatair, $newdestinateur) {
+        DB::transaction(function () use ($transfert, $request, $initdestinatair, $initdestinateur) {
+
             $initdestinatair[0]->update([
                 'solde' => $initdestinatair[0]->solde + $transfert->montant_transfert,
             ]);
-
+            
             $initdestinateur[0]->update([
                 'solde' => $initdestinateur[0]->solde - $transfert->montant_transfert,
             ]);
+            $newdestinatair = CompteBank::where('numero_compte', $request->compte_destinatair)->get();
+            if ((int)$newdestinatair[0]->solde < (int)request('montant_transfert')) {
+                # code...
+                abort(404);
+            }
+            $newdestinateur = CompteBank::where('numero_compte', $request->compte_destinateur)->get();
             $transfert->update([
                 'compte_destinatair' => $request->compte_destinatair,
                 'montant_transfert' => $request->montant_transfert,
@@ -157,7 +167,7 @@ class TransfertController extends Controller
         return response()->json(['message' => 'mise a jour avec succes'], 200);
     }
 
-    public function toedit($id)
+    public function toedite($id)
     {
         $toedite = Transfert::find($id);
         if (!$toedite) {

@@ -87,13 +87,13 @@ Route::delete('/payment/delete/{id}', [VersementController::class, 'destroy'])->
 //  controller pour transfert
 Route::get('/transfert/list', [TransfertController::class, 'index'])->name('transfert');
 Route::post('/transfert/edit', [TransfertController::class, 'edit'])->name('transfert.edit');
-Route::get('/transfert/toedite/{id}', [TransfertController::class, 'toedit'])->name('transfert.toedite');
+Route::get('/transfert/toedite/{id}', [TransfertController::class, 'toedite'])->name('transfert.toedite');
 Route::delete('/transfert/delete/{id}', [TransfertController::class, 'destroy'])->name('transfert.destroy');
 
 // controller du retrait
 Route::get('/retrait/list', [RetraitController::class, 'index'])->name('retrait');
 Route::post('/retrait/edit', [RetraitController::class, 'edit'])->name('retrait.edit');
-Route::get('/retrait/delete/{id}', [RetraitController::class, 'destroy'])->name('retrait.destroy');
+Route::delete('/retrait/delete/{id}', [RetraitController::class, 'destroy'])->name('retrait.destroy');
 
 //manager carte modal
 Route::get('/carte-liste',[ModalCarteController::class, 'index'])->name('carte.list');

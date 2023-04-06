@@ -14,56 +14,64 @@
                         @csrf
                         <input type="hidden" name="compte_id" id="compte_id">
                         <div class="note">
-                          <p id="formtitle"><strong>Informations du client</strong></p>
+                            <p id="formtitle"><strong>Informations du client</strong></p>
                         </div>
                         <div class="row tout">
                             <div class="col right">
-                              <input type="text" name="num" id="num" class="form-control first" placeholder="numero du compte" aria-label="numero du compte">
-                              <select class="form-select first" name="nature" aria-label="Default select example">
-                                <option selected>Nature du compte</option>
-                                <option value="client">Client</option>
-                                <option value="entreprise">Entreprise</option>
-                              </select>
-                              <input type="text" name="solde" id="solde" class="form-control first" placeholder="solde" aria-label="solde">
-                              <input type='text' name="code" id="code" class="form-control first" placeholder="code" aria-label="code" />
+                                <input type="text" name="num" id="num" class="form-control first"
+                                    placeholder="numero du compte" aria-label="numero du compte">
+                                <select class="form-select first" name="nature" aria-label="Default select example">
+                                    <option selected>Nature du compte</option>
+                                    <option value="client">Client</option>
+                                    <option value="entreprise">Entreprise</option>
+                                </select>
+                                <input type="text" name="solde" id="solde" class="form-control first"
+                                    placeholder="solde" aria-label="solde">
+                                <input type='text' name="code" id="code" class="form-control first"
+                                    placeholder="code" aria-label="code" />
                             </div>
                             <div class="col gauche">
-                              <select class="form-select first" name="type" aria-label="Default select example">
-                                <option selected>Type de compte</option>
-                                <option value="Compte courant">Compte courant</option>
-                                <option value="Compte epagne">Compte epagne</option>
-                              </select>
-                              <input type='date' name="date_ouverture" id="date_ouverture" class="form-control first" placeholder="Select Date" />
-                              <div>
-                                <p style="padding: 0;margin: 0;">Status</p>
-                                  <div class="form-check">
-                                    <input class="form-check-input sex" type="radio" name="statut" id="actif" value="1" checked>
-                                    <label class="form-check-label" for="actif">
-                                      Actif
-                                    </label>
-                                  </div>
-                                  <div class="form-check">
-                                    <input class="form-check-input sex" type="radio" name="statut" id="inactif" value="0" >
-                                    <label class="form-check-label" for="inactif">
-                                      Inactif
-                                    </label>
-                                  </div>
-                              </div>
-                              <div>
-                                <p style="padding: 0;margin: 0;">Lier a une carte</p>
-                                  <div class="form-check">
-                                    <input class="form-check-input sex" type="radio" name="lier" id="oui" value="oui" checked>
-                                    <label class="form-check-label" for="oui">
-                                      oui
-                                    </label>
-                                  </div>
-                                  <div class="form-check">
-                                    <input class="form-check-input sex" type="radio" name="lier" id="non" value="non" >
-                                    <label class="form-check-label" for="non">
-                                      non
-                                    </label>
-                                  </div>
-                              </div>
+                                <select class="form-select first" name="type" aria-label="Default select example">
+                                    <option selected>Type de compte</option>
+                                    <option value="Compte courant">Compte courant</option>
+                                    <option value="Compte epagne">Compte epagne</option>
+                                </select>
+                                <input type='date' name="date_ouverture" id="date_ouverture" class="form-control first"
+                                    placeholder="Select Date" />
+                                <div>
+                                    <p style="padding: 0;margin: 0;">Status</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input sex" type="radio" name="statut" id="actif"
+                                            value="1" checked>
+                                        <label class="form-check-label" for="actif">
+                                            Actif
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input sex" type="radio" name="statut" id="inactif"
+                                            value="0">
+                                        <label class="form-check-label" for="inactif">
+                                            Inactif
+                                        </label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p style="padding: 0;margin: 0;">Lier a une carte</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input sex" type="radio" name="lier" id="oui"
+                                            value="oui" checked>
+                                        <label class="form-check-label" for="oui">
+                                            oui
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input sex" type="radio" name="lier" id="non"
+                                            value="non">
+                                        <label class="form-check-label" for="non">
+                                            non
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -117,15 +125,22 @@
                 severSide: true,
                 processing: true,
                 ajax: "{{ route('compte.list') }}",
-                "bPaginate": true,  
-                "bInfo": true,  
+                "bPaginate": true,
+                "bInfo": true,
                 "bFilter": true,
                 "bAutoWidth": false,
-                "aoColumns" : [
-                    { sWidth: '50px' },
-                    { sWidth: '100px' },
-                    { sWidth: '120px' },
-                    { sWidth: '30px' }
+                "aoColumns": [{
+                        sWidth: '50px'
+                    },
+                    {
+                        sWidth: '100px'
+                    },
+                    {
+                        sWidth: '120px'
+                    },
+                    {
+                        sWidth: '30px'
+                    }
                 ],
                 columns: [{
                         data: 'id',
@@ -194,8 +209,8 @@
             $('body').on('click', '#edition', function() {
                 var formdata = new FormData(form);
                 $.ajax({
-                    url:'{{route("charger")}}',
-                    method:'POST',
+                    url: '{{ route('charger') }}',
+                    method: 'POST',
                     data: formdata,
                     processData: false,
                     contentType: false,
@@ -212,32 +227,48 @@
             });
 
             // DELETE
-            $('body').on('click','#delete',function () {
-               var id = $(this).data('id');
-               $.ajax({
-                    url:'{{url("delcompte/delet")}}'+'/'+id,
-                    method:'DELETE',
-
-                    success:function (response) {
-                        table.ajax.reload();
-                        console.log(response);
-                    },
-                    error:function (error) {
-                        console.log(error);
-                    }
-                });
+            $('body').on('click', '#delete', function() {
+                var id = $(this).data('id');
+                swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                url: '{{ url('delcompte/delet') }}' + '/' + id,
+                                method: 'DELETE',
+            
+                                success: function(response) {
+                                    swal("Poof! Your imaginary file has been deleted!", {
+                                        icon: "success",
+                                    });
+                                    table.ajax.reload();
+                                    console.log(response);
+                                },
+                                error: function(error) {
+                                    console.log(error);
+                                }
+                            });
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
             });
             // show account
-            $('body').on('click','#detail',function() {
+            $('body').on('click', '#detail', function() {
                 var id = $(this).data('id');
                 $.ajax({
-                    url:'{{url("detcompte/toshow")}}'+'/'+id,
-                    method:'GET',
+                    url: '{{ url('detcompte/toshow') }}' + '/' + id,
+                    method: 'GET',
 
-                    success:function (response) {
-                        window.location.href = "{{url('detcompte/show')}}"+"/"+id;
+                    success: function(response) {
+                        window.location.href = "{{ url('detcompte/show') }}" + "/" + id;
                     },
-                    error:function(error) {
+                    error: function(error) {
                         console.log(error);
                     }
                 });
