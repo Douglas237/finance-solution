@@ -234,7 +234,7 @@
                 });
             });
 
-            $('body').on('click','#editer',function () {
+            // $('body').on('click','#editer',function () {
 
             $('body').on('click', '#editer', function() {
                 var formdata = new FormData(form);
