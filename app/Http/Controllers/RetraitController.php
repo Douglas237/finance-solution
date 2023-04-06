@@ -15,8 +15,7 @@ class RetraitController extends Controller
     //
     public function index(Request $request)
     {
-        $compte_banks = Retrai::join('compte_banks', 'compte_banks.id', '=', 'retrais.comptebank_id')
-                                     ->get();
+        $compte_banks = Retrai::get();
         // dd($compte_banks);
         if ($request->ajax()) {
             $allData = DataTables::of($compte_banks)
@@ -57,23 +56,26 @@ class RetraitController extends Controller
     {
         
         # code...
-        $validatedData = Validator::make($request->all(), [
+        $request->validate([
             'num_compte' => 'required|string',
             'montant_retrait' => 'required|string',
         ]);
 
-        if ($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-                ->back()
-                ->withErrors($validatedData)
-                ->withInput();
-        }
+        
         // $idcompte = CompteBank::where('numero_compte',$request->num_compte)->get();
         // $id = $idcompte[0];
+        $destinateur = CompteBank::find($request->num_compte);
+            // dd($destinateur);
+        if (!$destinateur) {
+            # code...
+            abort(405);
+        }
         $compte = CompteBank::where('numero_compte', $request->num_compte)->get();
         DB::transaction(function () use ($request, $compte) {
-
+            if ((int)$compte[0]->solde < (int)request('montant_retrait')) {
+                # code...
+                abort(404);
+            }
             Retrai::create([
                 'num_compte' => $request->num_compte,
                 'montant_retrait' => $request->montant_retrait,

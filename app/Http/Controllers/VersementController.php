@@ -39,23 +39,23 @@ class VersementController extends Controller
         $payment = Versement::find($request->payment_id);
         if (! $payment) {
             # code...
-            $validatedData = Validator::make($request->all(), [
+            $request->validate([
                 'nom_versant' => 'required|string',
                 'prenom_versant' => 'required|string',
-                'num_cni' => 'required|string',
+                'num_cni' => 'required|string', 
                 'montant' => 'required|string',
                 'num_compte' => 'required|string',
             ]);
     
-            if ($validatedData->fails()) {
-                Toastr::error('The field not be empty.');
-                return redirect()
-                    ->back()
-                    ->withErrors($validatedData)
-                    ->withInput();
-            }
+            
             // $idcompte = CompteBank::where('numero_compte',$request->num_compte)->get();
             // $id = $idcompte[0];
+            $destinateur = CompteBank::find($request->num_compte);
+            // dd($destinatair);
+            if (!$destinateur) {
+                # code...
+                abort(405);
+            }
             $idcompte = CompteBank::where('numero_compte',$request->num_compte)->get();
             DB::transaction(function () use ($request, $idcompte) {
                
@@ -76,7 +76,7 @@ class VersementController extends Controller
     
         }
 
-        $validatedData = Validator::make($request->all(), [
+        $request->validate([
             'nom_versant' => 'required|string',
             'prenom_versant' => 'required|string',
             'num_cni' => 'required|string',
@@ -84,13 +84,13 @@ class VersementController extends Controller
             'num_compte' => 'required|string',
         ]);
 
-        if ($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-                ->back()
-                ->withErrors($validatedData)
-                ->withInput();
+        $destinateur = CompteBank::find($request->num_compte);
+            // dd($destinatair);
+        if (!$destinateur) {
+            # code...
+            abort(405);
         }
+
         $initsolde = CompteBank::where('numero_compte',$payment->num_compte)->get();
         
         $newsolde = CompteBank::where('numero_compte',$request->num_compte)->get();

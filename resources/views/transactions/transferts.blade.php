@@ -1,13 +1,14 @@
 @extends('layouts.dashboard')
 
 @section('content')
-
-    <div class="modal fade" id="transfert_modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="transfert_modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="modaltitle">New message</h1>
-                    <button type="button" id="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" id="close" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="transfertmodal" class="transfertmodal">
@@ -15,15 +16,22 @@
                         <input type="hidden" id="transfert_id" name="transfert_id">
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Numero compte destinatair:</label>
-                            <input type="text" name="compte_destinatair" id="compte_destinatair" class="form-control" id="recipient-name">
+                            <input type="text" name="compte_destinatair" id="compte_destinatair" class="form-control"
+                                id="recipient-name">
+                                <span id="compte_destinatair_error" class="text-danger error_message"></span>
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Montan a transferer:</label>
-                            <input type="text" name="montant_transfert" id="montant_transfert" class="form-control" id="recipient-name">
+                            <input type="text" name="montant_transfert" id="montant_transfert" class="form-control"
+                                id="recipient-name">
+                                <span id="montant_transfert_error" class="text-danger error_message"></span>
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Numero compte destinateur:</label>
-                            <input type="text" name="compte_destinateur" id="compte_destinateur" class="form-control" id="recipient-name">
+                            <input type="text" name="compte_destinateur" id="compte_destinateur" class="form-control"
+                                id="recipient-name">
+                                <span id="compte_destinateur_error" class="text-danger error_message"></span>
+
                         </div>
                     </form>
                 </div>
@@ -37,7 +45,8 @@
     <div class="form-control">
         <div class="title" style="display: flex;flex-direction: row;justify-content: space-between">
             <p><strong>Nouveau transfert</strong></p>
-            <button style="margin-right: 7rem;height: 3.5rem;" type="button" id="addtransfert" class="btn btn-outline-success">Nouveau transfert</button>
+            <button style="margin-right: 7rem;height: 3.5rem;" type="button" id="addtransfert"
+                class="btn btn-outline-success">Nouveau transfert</button>
         </div>
         <div class="formcompte">
             <div class="title">
@@ -85,15 +94,22 @@
                 severSide: true,
                 processing: true,
                 ajax: "{{ route('transfert') }}",
-                "bPaginate": true,  
-                "bInfo": true,  
+                "bPaginate": true,
+                "bInfo": true,
                 "bFilter": true,
                 "bAutoWidth": false,
-                "aoColumns" : [
-                    { sWidth: '50px' },
-                    { sWidth: '100px' },
-                    { sWidth: '120px' },
-                    { sWidth: '30px' }
+                "aoColumns": [{
+                        sWidth: '50px'
+                    },
+                    {
+                        sWidth: '100px'
+                    },
+                    {
+                        sWidth: '120px'
+                    },
+                    {
+                        sWidth: '30px'
+                    }
                 ],
                 columns: [{
                         data: 'id',
@@ -127,50 +143,94 @@
                 ]
             });
 
-            
-            $('body').on('click','#addtransfert', function() {
+
+            $('body').on('click', '#addtransfert', function() {
+                $('#transfert_id').val('');
+                $('.error_message').html('');
                 $('#transfert_modal').modal('show');
                 $('#modaltitle').html('new transfert');
                 $('#editer').html('Create');
             });
-            $('body').on('click','#close', function() {
+            $('body').on('click', '#close', function() {
                 $("#transfertmodal").trigger("reset");
-                $('#transfer_id').val('');
+                $('#transfert_id').val('');
+                $('.error_message').html('');
             });
 
             // cree et update
             var form = $('#transfertmodal')[0];
-            $('body').on('click','#editer',function () {
+            $('body').on('click', '#editer', function() {
+                $('.error_message').html('');
                 var formdata = new FormData(form);
-                $.ajax({
-                    url:'{{route("transfert.edit")}}',
-                    method:'POST',
-                    data:formdata,
-                    processData:false,
-                    contentType:false,
+                swal({
+                        title: "Confirmez vous ce transfert ??",
+                        icon: "warning",
+                        buttons: true,
+                        // dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                url: '{{ route('transfert.edit') }}',
+                                method: 'POST',
+                                data: formdata,
+                                processData: false,
+                                contentType: false,
 
-                    success:function(response){
-                        table.ajax.reload();
-                        $('#transfert_modal').modal('hide');
-                        $("#transfertmodal").trigger("reset");
-                        console.log(response);
-                        
-                    },
-                    error:function(error){
-                        console.log(error);
-                    }
-                });
+                                success: function(response) {
+                                    table.ajax.reload();
+                                    $('#transfert_modal').modal('hide');
+                                    swal("Transfert realiser avec succes", {
+                                        icon: "success",
+                                    });
+                                    $("#transfertmodal").trigger("reset");
+                                    $('.error_message').html('');
+                                    console.log(response);
+
+                                },
+                                error: function(error) {
+                                    if (error.status == 404) {
+                                        swal({
+                                            title: "Le solde du destinatair est insuffisant",
+                                        });
+                                    }
+                                    if (error.status == 405)
+                                    {
+                                        swal({
+                                            title: "Le compte du destinatair n'existe pas",
+                                        });
+                                    }
+                                    if (error.status == 406)
+                                    {
+                                        swal({
+                                            title: "Le compte du destinateur n'existe pas",
+                                        });
+                                    }
+                                   
+                                    $('#compte_destinatair_error').html(error.responseJSON.errors.compte_destinatair);
+                                    $('#compte_destinateur_error').html(error.responseJSON.errors.compte_destinateur);
+                                    $('#montant_transfert_error').html(error.responseJSON.errors.montant_transfert);
+
+                                    console.log(error);
+                                }
+                            });
+                        } else {
+                            swal({
+                                title: "Transfert annuler",
+                            });
+                        }
+                    });
             });
 
             // edition d'un transfert
-            $('body').on('click','#edite', function () {
+            $('body').on('click', '#edite', function() {
                 var id = $(this).data('id');
                 $('#editer').html('edit');
                 $.ajax({
-                    url:'{{url("transfert/toedite",'')}}'+'/'+id,
-                    method:'GET',
+                    url: '{{ url('transfert/toedite', '') }}' + '/' + id,
+                    method: 'GET',
 
-                    success:function (response) {
+                    success: function(response) {
                         $('#modaltitle').html('Edite transfert');
                         $('#transfert_id').val(response.id);
                         $('#compte_destinatair').val(response.compte_destinatair);
@@ -179,30 +239,48 @@
                         $('#transfert_modal').modal('show');
                         console.log(response.id);
                     },
-                    error:function(error){
+                    error: function(error) {
                         console.log(error);
                     }
                 });
             });
 
             // delete transfert
-            $('body').on('click','#delet',function () {
-               var id = $(this).data("id");
-               $.ajax({
-                    url:'{{url("transfert/delete",'')}}'+'/'+id,
-                    method:'DELETE',
+            $('body').on('click', '#delet', function() {
+                var id = $(this).data("id");
+                swal({
+                        title: "Confirmez vous la suppression ?",
+                        text: "La donner sera perdu pour toujour!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                url: '{{ url('transfert/delete', '') }}' + '/' + id,
+                                method: 'DELETE',
 
-                    success:function(response){
-                        table.ajax.reload();
-                        console.log(response);
-                    },
-                    error:function(error){
-                        console.log(error);
-                    }
-               });
+                                success: function(response) {
+                                    swal("Donnee supprimer avec succes!", {
+                                        icon: "success",
+                                    });
+                                    table.ajax.reload();
+                                    console.log(response);
+                                },
+                                error: function(error) {
+                                    console.log(error);
+                                }
+                            });
+
+                        } else {
+                            swal({
+                                title: "Suppression annuler",
+                            });
+                        }
+                    });
             });
 
         });
-          
     </script>
 @endsection

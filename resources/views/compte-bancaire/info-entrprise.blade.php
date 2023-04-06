@@ -3,13 +3,13 @@
     <div class="formcompte">
         <div class="title" style="display: flex;flex-direction: row;justify-content: space-between">
             <p><strong>Nouveau Compte bancaire entreprise</strong></p>
-            <button style="margin-right: 7rem;height: 3.5rem;" type="button" class="btn btn-outline-success"><a href="{{ route('Client.create') }}">Client</a></button>
+            <a href="{{ route('Client.create') }}"><button style="margin-right: 7rem;height: 3.5rem;width: 10rem" type="button" class="btn btn-outline-success">Client</button></a>
+        </div>
+        <div class="note">
+          <p><strong>Informations entrprise</strong></p>
         </div>
         <form action="{{ route('entreprise') }}" id="oui"  class="form-control" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="note">
-              <p><strong>Informations entrprise</strong></p>
-            </div>
             <div class="row tout">
                 <div class="col right">
                   <input type="text" name="nom_entreprise" class="form-control first" placeholder="nom de l'entreprise" aria-label="nom de l'entreprise">

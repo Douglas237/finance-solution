@@ -4,11 +4,11 @@
         <div class="title">
             <p><strong>Nouveau Compte bancaire</strong></p>
         </div>
+        <div class="note">
+          <p><strong>Informations du client</strong></p>
+        </div>
         <form action="{{ route('compte', [$id]) }}" id="oui" class="form-control" method="POST">
             @csrf
-            <div class="note">
-              <p><strong>Informations du client</strong></p>
-            </div>
             <div class="row tout">
                 <div class="col right">
                   <input type="text" name="num" class="form-control first" placeholder="numero du compte" aria-label="numero du compte">

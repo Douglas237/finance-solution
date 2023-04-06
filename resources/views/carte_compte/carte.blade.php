@@ -4,11 +4,11 @@
         <div class="title">
             <p><strong>Nouvelle carte</strong></p>
         </div>
+        <div class="note">
+          <p><strong>Informations de la carte</strong></p>
+        </div>
         <form action="{{ route('carte',[$id]) }}"  class="form-control" method="POST">
             @csrf
-            <div class="note">
-              <p><strong>Informations de la carte</strong></p>
-            </div>
             <div class="row tout">
                 <div class="col right">
                   <input type="text" name="numero_carte" class="form-control first" placeholder="numero de la carte" aria-label="numero de la carte">
