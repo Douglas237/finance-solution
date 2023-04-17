@@ -83,17 +83,20 @@ Route::get('/versements/list', [VersementController::class, 'index'])->name('ver
 Route::post('/versement/edit', [VersementController::class, 'edit'])->name('versement.edit');
 Route::get('/versement/toedite/{id}', [VersementController::class, 'toedite'])->name('versement.toedite');
 Route::delete('/payment/delete/{id}', [VersementController::class, 'destroy'])->name('payment.destroy');
+Route::post('/versement/client', [VersementController::class, 'showclient'])->name('versement.client');
 
 //  controller pour transfert
 Route::get('/transfert/list', [TransfertController::class, 'index'])->name('transfert');
 Route::post('/transfert/edit', [TransfertController::class, 'edit'])->name('transfert.edit');
 Route::get('/transfert/toedite/{id}', [TransfertController::class, 'toedite'])->name('transfert.toedite');
 Route::delete('/transfert/delete/{id}', [TransfertController::class, 'destroy'])->name('transfert.destroy');
+Route::post('/transfert/client', [TransfertController::class, 'showtotransfert'])->name('transfert.client');
 
 // controller du retrait
 Route::get('/retrait/list', [RetraitController::class, 'index'])->name('retrait');
 Route::post('/retrait/edit', [RetraitController::class, 'edit'])->name('retrait.edit');
 Route::delete('/retrait/delete/{id}', [RetraitController::class, 'destroy'])->name('retrait.destroy');
+Route::post('retrai/client', [RetraitController::class, 'showtoredraw'])->name('retrait.client');
 
 //manager carte modal
 Route::get('/carte-liste',[ModalCarteController::class, 'index'])->name('carte.list');

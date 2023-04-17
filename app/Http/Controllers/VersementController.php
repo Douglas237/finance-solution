@@ -17,17 +17,17 @@ class VersementController extends Controller
     {
         $versement = Versement::all();
 
-        if($request->ajax()) {
+        if ($request->ajax()) {
             $allData = DataTables::of($versement)
-            ->addIndexColumn()
-            ->addColumn('action', function($row){
-                $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary  btn_sm editCompte" id="edite">Edite</a>';
-                $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delet">Del</a>';
-                $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Detail" class="edit btn btn-warning btn_sm deleteCompte" id="detail">Detail</a>';
-                return $btn;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    // $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary  btn_sm editCompte" id="edite">Edite</a>';
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delet">Del</a>';
+                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Detail" class="edit btn btn-warning btn_sm deleteCompte" id="detail">Detail</a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
             return $allData;
         }
         // return view("compte-bancaire.list-compt", compact('compte_banks'));
@@ -35,46 +35,8 @@ class VersementController extends Controller
         return view("transactions.versement");
     }
 
-    public function edit(Request $request) {
-        $payment = Versement::find($request->payment_id);
-        if (! $payment) {
-            # code...
-            $request->validate([
-                'nom_versant' => 'required|string',
-                'prenom_versant' => 'required|string',
-                'num_cni' => 'required|string',
-                'montant' => 'required|string',
-                'num_compte' => 'required|string',
-            ]);
-
-
-            // $idcompte = CompteBank::where('numero_compte',$request->num_compte)->get();
-            // $id = $idcompte[0];
-            $destinateur = CompteBank::find($request->num_compte);
-            // dd($destinatair);
-            if (!$destinateur) {
-                # code...
-                abort(405);
-            }
-            $idcompte = CompteBank::where('numero_compte',$request->num_compte)->get();
-            DB::transaction(function () use ($request, $idcompte) {
-
-                Versement::create([
-                    'nom_versant'=> $request->nom_versant,
-                    'prenom_versant'=> $request->prenom_versant,
-                    'num_cni'=>$request->num_cni,
-                    'montant'=> $request->montant,
-                    'num_compte'=>$request->num_compte,
-                    'comptebank_id'=>$idcompte[0]->id,
-                ]);
-                $idcompte[0]->update([
-                    'solde' =>$idcompte[0]->solde+(int)request('montant'),
-                ]);
-
-            });
-            return response()->json(['message' => 'mise a jour avec succes'], 200);
-
-        }
+    public function showclient(Request $request)
+    {
 
         $request->validate([
             'nom_versant' => 'required|string',
@@ -84,35 +46,69 @@ class VersementController extends Controller
             'num_compte' => 'required|string',
         ]);
 
-        $destinateur = CompteBank::find($request->num_compte);
-            // dd($destinatair);
-        if (!$destinateur) {
+        // $destinateur = CompteBank::find($request->num_compte);
+        $destinateur = CompteBank::where('numero_compte',$request->num_compte)->get();
+        // dd($destinatair);
+        if ($destinateur->isEmpty()) {
             # code...
             abort(405);
         }
 
-        $initsolde = CompteBank::where('numero_compte',$payment->num_compte)->get();
+        if ($destinateur[0]->comptebankable_type == 'App\Models\Client') {
+            # code...
+            $infodestinateur = CompteBank::join('clients', 'clients.id', '=', 'compte_banks.comptebankable_id')
+                ->where('compte_banks.comptebankable_type', '=', 'App\Models\Client')
+                ->get();
+        } elseif ($destinateur[0]->comptebankable_type == 'App\Models\Entreprise') {
+            $infodestinateur = CompteBank::join('entreprises', 'entreprises.id', '=', 'compte_banks.comptebankable_id')
+                ->where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')
+                ->get();
+        }
+        // dd($infodestinateur);
+        return $infodestinateur[0];
+    }
 
-        $newsolde = CompteBank::where('numero_compte',$request->num_compte)->get();
-        DB::transaction(function () use ($payment, $request, $newsolde, $initsolde){
-            $initsolde[0]-> update([
-                'solde' => $initsolde[0]->solde - $payment->montant,
+    public function edit(Request $request)
+    {
+        # code...
+        $request->validate([
+            'nom_versant' => 'required|string',
+            'prenom_versant' => 'required|string',
+            'num_cni' => 'required|string',
+            'montant' => 'required|string',
+            'num_compte' => 'required|string',
+        ]);
+
+
+        // $idcompte = CompteBank::where('numero_compte',$request->num_compte)->get();
+        // $id = $idcompte[0];
+        // $destinateur = CompteBank::find($request->num_compte);
+        $destinateur = CompteBank::where('numero_compte',$request->num_compte)->get();
+        // dd($destinatair);
+        if ($destinateur->isEmpty()) {
+            # code...
+            abort(405);
+        }
+        // $idcompte = CompteBank::find($request->num_compte);
+        DB::transaction(function () use ($request, $destinateur) {
+
+            Versement::create([
+                'nom_versant' => $request->nom_versant,
+                'prenom_versant' => $request->prenom_versant,
+                'num_cni' => $request->num_cni,
+                'montant' => $request->montant,
+                'num_compte' => $request->num_compte,
+                'comptebank_id' => $destinateur[0]->id,
             ]);
-            $payment->update([
-                'nom_versant'=> $request->nom_versant,
-                'prenom_versant'=> $request->prenom_versant,
-                'num_cni'=>$request->num_cni,
-                'montant'=> $request->montant,
-                'num_compte'=>$request->num_compte,
-            ]);
-            $newsolde[0]->update([
-                'solde' =>$newsolde[0]->solde+(int)request('montant'),
+            $destinateur[0]->update([
+                'solde' => $destinateur[0]->solde + (int)request('montant'),
             ]);
         });
         return response()->json(['message' => 'mise a jour avec succes'], 200);
     }
 
-    public function toedite($id){
+    public function toedite($id)
+    {
         $toedite = Versement::find($id);
         if (!$toedite) {
             # code...
@@ -121,9 +117,10 @@ class VersementController extends Controller
         return $toedite;
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $todelete = Versement::find($id);
-        if (! $todelete) {
+        if (!$todelete) {
             # code...
             abort(404);
         }
