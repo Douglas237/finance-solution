@@ -7,6 +7,7 @@ use App\Models\CompteBank;
 use App\Models\Entreprise;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\ClientController;
@@ -52,7 +53,7 @@ class CompteBankController extends Controller
                                     ->get();
         // dd($compte_banks);
         if ($request->ajax()) {
-            $allData = DataTables::of($compte_banks)
+            $allData = DataTables::of($compte_banks) 
                 ->addIndexColumn()
                 ->addColumn('proprietaire', function($compte_banks){
                     return $compte_banks->nom_respon;
@@ -77,23 +78,23 @@ class CompteBankController extends Controller
     }
     //
 
+        public function createclient()
+        {
+            $client = Client::all();
+            return view('compte-bancaire.infos-compt', compact('client'));
+        }
 
-    public function create($id)
+    public function storeclient(Request $request)
     {
-        return view('compte-bancaire.infos-compt', compact('id'));
-    }
 
-    public function store(Request $request, $id)
-    {
         $validatedData = Validator::make($request->all(), [
             'num' => 'required|string',
             'solde' => 'required|string',
             'code' => 'required|string',
             'type' => 'required|string',
-            'nature' => 'required|string',
             'date_ouverture' => 'required|date',
+            'client_id' => 'required|integer',
             'statut' => 'required|boolean',
-            'lier' => 'required|string',
         ]);
         if ($validatedData->fails()) {
             Toastr::error('The field not be empty.');
@@ -102,11 +103,8 @@ class CompteBankController extends Controller
                 ->withErrors($validatedData)
                 ->withInput();
         }
-        if (request('lier') == 'non') {
-            # code...
-            if (request('nature') == 'client') {
                 # code...
-                $client = Client::Find($id);
+                $client = Client::Find($request->client_id);
                 $client->comptebanks()->create(
                     [
                         'numero_compte' => request('num'),
@@ -114,57 +112,51 @@ class CompteBankController extends Controller
                         'type_compte' => request('type'),
                         'date_ouverture' => request('date_ouverture'),
                         'code' => (int) request('code'),
+                        'comptebankable_id' => (int)request('client_id'),
                         'statut' => request('statut'),
                     ]
                 );
-            } elseif (request('nature') == 'entreprise') {
-                $client = Entreprise::find($id);
-                $client->comptebanks()->create(
-                    [
-                        'numero_compte' => request('num'),
-                        'solde' => (int) request('solde'),
-                        'type_compte' => request('type'),
-                        'date_ouverture' => request('date_ouverture'),
-                        'code' => (int) request('code'),
-                        'statut' => request('statut'),
-                    ]
-                );
-            }
-
             // dd($client->comptebanks);
             return redirect()->route('compte.list');
-        }
-        elseif(request('lier') == 'oui')
-        {
-            if (request('nature') == 'client') {
-                # code...
-                $client = Client::Find($id);
-                $compte = $client->comptebanks()->create(
-                    [
-                        'numero_compte' => request('num'),
-                        'solde' => (int) request('solde'),
-                        'type_compte' => request('type'),
-                        'date_ouverture' => request('date_ouverture'),
-                        'code' => (int) request('code'),
-                        'statut' => request('statut'),
-                    ]
-                );
-            } elseif (request('nature') == 'entreprise') {
-                $client = Entreprise::find($id);
-                $compte = $client->comptebanks()->create(
-                    [
-                        'numero_compte' => request('num'),
-                        'solde' => (int) request('solde'),
-                        'type_compte' => request('type'),
-                        'date_ouverture' => request('date_ouverture'),
-                        'code' => (int) request('code'),
-                        'statut' => request('statut'),
-                    ]
-                );
-            }
 
-            // dd($client->comptebanks);
-            return redirect()->route('carte', [$compte]);
+    }
+
+    public function createentreprise()
+    {
+        $entreprise = Entreprise::all();
+        return view('entreprises.create', compact('entreprise'));
+    }
+    public function storeentreprise(Request $request){
+
+        $validatedData = Validator::make($request->all(), [
+            'num' => 'required|string',
+            'solde' => 'required|string',
+            'code' => 'required|string',
+            'type' => 'required|string',
+            'date_ouverture' => 'required|date',
+            'entreprise_id' => 'required|integer',
+            'statut' => 'required|boolean',
+        ]);
+        if ($validatedData->fails()) {
+            Toastr::error('The field not be empty.');
+            return redirect()
+                ->back()
+                ->withErrors($validatedData)
+                ->withInput();
         }
+
+        $entreprise = Entreprise::Find($request->entreprise_id);
+                $entreprise->comptebanks()->create(
+                    [
+                        'numero_compte' => request('num'),
+                        'solde' => (int) request('solde'),
+                        'type_compte' => request('type'),
+                        'date_ouverture' => request('date_ouverture'),
+                        'code' => (int) request('code'),
+                        'comptebankable_id' => (int)request('entreprise_id'),
+                        'statut' => request('statut'),
+                    ]
+                );
+                return redirect()->route('compte.entreprise');
     }
 }

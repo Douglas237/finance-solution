@@ -88,7 +88,7 @@ class ClientController extends Controller
             }
             $data->save();
             Toastr::success('Enregistrement du client réussit : ' . $request->nom);
-            return redirect()->route('compte',[$data->id]);
+            return redirect()->route('Client.index',[$data->id]);
         } catch(Exception $e) {
 
             Toastr::error(

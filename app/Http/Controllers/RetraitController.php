@@ -27,14 +27,14 @@ class RetraitController extends Controller
                         # code...
                         $proprietair = CompteBank::join('clients', 'clients.id', '=', 'compte_banks.comptebankable_id')
                             ->where('numero_compte', $compte_banks->num_compte)
-                            ->where('compte_banks.comptebankable_type', '=', 'App\Models\Client')
-                            ->get();
+                            // ->where('compte_banks.comptebankable_type', '=', 'App\Models\Client')
+                            ->get('clients.nom');
                     }
                     elseif($proprietair[0]->comptebankable_type == 'App\Models\Entreprise'){
                         $proprietair = CompteBank::join('entreprises', 'entreprises.id', '=', 'compte_banks.comptebankable_id')
                             ->where('numero_compte', $compte_banks->num_compte)
-                            ->where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')
-                            ->get(array('entreprises.nom_respon as nom'));
+                            // ->where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')
+                            ->get('entreprises.nom_respon as nom');
                     }
                     return $proprietair[0]->nom;
                 })
@@ -52,6 +52,45 @@ class RetraitController extends Controller
         return view("transactions.retraits",compact('compte_banks'));
     }
 
+
+    public function showtoredraw(Request $request)
+    {
+
+        $request->validate([
+            'num_compte' => 'required|string',
+            'montant_retrait' => 'required|string',
+        ]);
+
+        // $destinateur = CompteBank::find($request->num_compte);
+        $compte = CompteBank::where('numero_compte',$request->num_compte)->get();
+        // $destinatair = CompteBank::where('numero_compte',$request->compte_destinatair)->get();
+        // $destinateur = CompteBank::where('numero_compte',request('num_compte'))->get();
+        // dd($destinateur);
+        if ($compte->isEmpty()) {
+            # code...
+            abort(405);
+        }
+        // if ($destinatair->isEmpty()) {
+        //     # code...
+        //     abort(406);
+        // }
+
+        if ($compte[0]->comptebankable_type == 'App\Models\Client') {
+            # code...
+            $infodestinateur = CompteBank::join('clients', 'clients.id', '=', 'compte_banks.comptebankable_id')
+                ->where('compte_banks.comptebankable_type', '=', 'App\Models\Client')
+                ->where('numero_compte',request('num_compte'))
+                ->get();
+        } elseif ($compte[0]->comptebankable_type =="App\\Models\\Entreprise") {
+            $infodestinateur = CompteBank::join('entreprises', 'entreprises.id', '=', 'compte_banks.comptebankable_id')
+                ->where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')
+                ->where('numero_compte',request('num_compte'))
+                ->get();
+        }
+        // dd($infodestinateur);
+        return $infodestinateur[0];
+    }
+
     public function edit(Request $request)
     {
         
@@ -62,15 +101,15 @@ class RetraitController extends Controller
         ]);
 
         
-        // $idcompte = CompteBank::where('numero_compte',$request->num_compte)->get();
+        $compte = CompteBank::where('numero_compte',$request->num_compte)->get();
         // $id = $idcompte[0];
-        $destinateur = CompteBank::find($request->num_compte);
+        // $destinateur = CompteBank::find($request->num_compte);
             // dd($destinateur);
-        if (!$destinateur) {
+        if ($compte->isEmpty()) {
             # code...
             abort(405);
         }
-        $compte = CompteBank::where('numero_compte', $request->num_compte)->get();
+        // $compte = CompteBank::where('numero_compte', $request->num_compte)->get();
         DB::transaction(function () use ($request, $compte) {
             if ((int)$compte[0]->solde < (int)request('montant_retrait')) {
                 # code...

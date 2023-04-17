@@ -3,8 +3,6 @@
   <div class="formcompte">
     <div class="title" style="display: flex;flex-direction: row;justify-content: space-between">
       <p><strong>Nouveau Client</strong></p>
-      <a
-      href="{{ route('entreprise') }}"><button style="margin-right: 7rem;height: 3.5rem;width: 10rem" type="button" class="btn btn-outline-success">Entreprise</button></a>
     </div>
     <div class="note">
       <p><strong>Informations du client</strong></p>
@@ -16,7 +14,7 @@
         <div class="col right">
           <input type="text" name="nom" class="form-control first" placeholder="nom" aria-label="nom"
             required>
-          <input type="text" name="email" class="form-control first" placeholder="email" aria-label="email"
+          <input type="email" name="email" class="form-control first" placeholder="Ex: Non@mail.com" aria-label="email"
             required>
           <input type="text" name="ville" class="form-control first" placeholder="ville" aria-label="ville"
             required>
@@ -41,7 +39,7 @@
         <div class="col gauche">
           <input type="text" name="prenom" class="form-control first" placeholder="prenom" aria-label="prenom"
             required>
-          <input type="text" name="telephone" class="form-control first" placeholder="telephone"
+          <input type="number" name="telephone" class="form-control first" placeholder="telephone"
             aria-label="telephone" required>
           <input type="text" name="cni" class="form-control first" placeholder="num_cni"
             aria-label="num_cni" required>

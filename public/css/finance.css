@@ -216,8 +216,10 @@ ul ul {
     transition: all 0.5s ease;
 }
 .navbare .navbar {
-    background-color: #f2f3f5;
+    background-color: white;
     height: 4rem;
+    border-bottom: 1px solid #02501c;
+    border-top: 1px solid #02501c;
 }
 .toutimgs .img {
     border: 1px solid #02501c;
@@ -274,7 +276,7 @@ ul ul {
 .centre {
     position: absolute;
     left: 5%;
-    top: 5rem;
+    top: 4rem;
     width: 95%;
     height: 100%;
     transition: all 0.5s ease;
@@ -333,12 +335,12 @@ ul ul {
 .formcompte .tout .envoi button {
     width: 9rem;
     background-color: #ffffff;
-    border:1px solid #02501c;
+    border: 1px solid #02501c;
     color: #02501c;
 }
 .formcompte .tout .envoi button:hover {
     background-color: #02501c;
-    border:#02501c;
+    border: #02501c;
     color: #ffffff;
 }
 .formcompte .tout .first {
@@ -592,7 +594,7 @@ form,
     .toutleft .icons {
         margin-left: 0;
         margin-right: 0;
-        width: 55rem;
+        width: 50%;
     }
     .toutleft .icons .oir {
         font-size: 3.2rem !important;
@@ -658,17 +660,26 @@ form,
     .toutimgs {
         width: 45%;
     }
+    .toutimgs .elmts {
+        top: 110%;
+    }
+
     .toutimgs .img {
-        height: 6.5rem;
-        width: 6.5rem;
+        height: 5rem;
+        margin-top: -3%;
+        width: 5rem;
+    }
+    .toutimgs .img img {
+        border-radius: 50% !important;
+        width: 78px !important;
     }
     .navbare {
         /* border: 1px solid rgb(20, 3, 82); */
         position: fixed;
         z-index: 100;
         right: 0;
-        width: 93%;
-        height: 8rem;
+        width: 94.45%;
+        height: 5.5rem;
         transition: all 0.5s ease;
     }
     .navbare .navbar {
@@ -677,42 +688,42 @@ form,
     .dropdown .toggle {
         position: relative;
         /* right: 2.5rem; */
-        top: 2.4rem;
+        top: 30%;
         height: 2rem;
         width: 3rem;
         /* border: 1px solid white; */
         color: #02501c;
     }
     .sidebar .logo {
-        height: 15rem;
+        height: 23%;
         width: 30rem;
         overflow: hidden;
     }
     .sidebar .logo .logoimg img {
-        top: -2.2rem;
-        left: -5rem;
+        top: -2.5rem;
+        left: -4rem;
         margin-top: 0;
-        height: 20rem;
-        width: 20rem;
+        height: 13rem;
+        width: 13rem;
     }
     .sidebar .logo .logoimg {
         overflow: hidden;
         position: relative;
         left: 0.2rem;
         top: 1rem;
-        height: 7rem;
-        width: 7rem;
+        height: 5rem;
+        width: 5rem;
     }
     .sidebar .logo .logotext {
         /* position: absolute; */
-        margin-right: 1rem;
-        margin-top: 2rem;
+        /* width: %; */
+        margin-right: 45%;
+        margin-top: 5%;
         right: 10rem;
         height: 8rem;
-        /* width: %; */
     }
     .sidebar .logo .logotext p {
-        font-size: 2.3rem;
+        font-size: 1.5em;
     }
     .content {
         height: 100%;
@@ -720,53 +731,66 @@ form,
     .toutleft .icons {
         margin-left: 0;
         margin-right: 0;
-        width: 55rem;
+        width: 50%;
     }
+    /* .toutleft {
+        right: -54% !important;
+    } */
     .toutleft .icons .oir {
-        font-size: 3.2rem !important;
-        margin-top: 0.5rem;
+        font-size: 1.8rem !important;
+        margin-top: 0.3rem;
         color: #02501c;
     }
     .sidebar {
-        width: 6%;
+        width: 5.6%;
+        margin-left: 0;
     }
     .sidebar .grandul li {
         /* list-style: none;
         line-height: 3rem; */
-        margin-top: 3rem;
-        margin-left: 3rem;
+        margin-top: 1.5rem;
+        margin-left: 0;
     }
     .dash {
         margin-left: 1.4rem;
     }
     .centre {
-        width: 95%;
+        width: 94.34%;
         /* border: 3px solid black; */
-        margin-top: 4rem;
-        left: 15%;
+        margin-top: 0.58%;
+        left: 5.66%;
     }
     /* .navbare {
         width: 70.5%;
     } */
     .sidebar .grandul li a {
-        text-decoration: none;
+        /* text-decoration: none;
         padding-left: 1.5rem;
         font-size: 3.8em;
         display: block;
         width: 27rem;
         color: rgb(255, 255, 255);
         height: 7rem;
-        padding-top: 1.5rem;
+        padding-top: 1.5rem; */
+
+        text-decoration: none;
+        padding-left: 1.5rem;
+        font-size: 2em;
+        display: block;
+        width: 24rem;
+        color: rgb(255, 255, 255);
+        height: 4rem;
+        padding-top: 0.5rem;
     }
     .ajout {
-        width: 81%;
+        width: 80.8%;
         transition: width 0.2s linear;
     }
     .ajout1 {
         /* position: absolute; */
-        left: 19%;
-        top: 4rem;
-        width: 81%;
+        left: 19.2% !important;
+        top: 10% !important;
+        width: 80.8% !important;
         transition: width 0.2s linear;
         /* height: 100%; */
         /* border: 3px solid black; */
@@ -776,10 +800,14 @@ form,
         transition: width 0.2s linear;
     }
     .clitogle {
-        margin-left: 2.5rem;
+        margin-left: 1.2rem;
     }
     .sidebar .grandul li ul li a {
         width: 23rem;
+    }
+    .menu_icon1, .menu_icon {
+        height: 4rem !important;
+        width: 4rem !important;
     }
 }
 .img {
@@ -912,3 +940,13 @@ form,
 .card1 .band span {
     color: #aaa;
 }
+.max {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    /* align-content: space-evenly; */
+}
+.max button {
+    margin-left: 10px;
+}
+

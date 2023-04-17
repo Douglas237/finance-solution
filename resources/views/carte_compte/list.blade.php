@@ -66,6 +66,8 @@
         <div class="formcompte">
             <div class="title">
                 <p><strong>Liste des cartes</strong></p>
+                <a
+                href="{{ route('carte.create') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem; floating: right;" type="button" class="btn btn-success"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter Carte</button></a>
             </div>
             <div class="alltabs">
                 <div class="tabs_1">
@@ -74,7 +76,7 @@
                             <tr>
                                 <th scope="col">N° </th>
                                 <th scope="col">N° Carte</th>
-                                <th scope="col">code secret</th>
+                                {{-- <th scope="col">Numero compte</th> --}}
                                 <th scope="col">Type de carte</th>
                                 <th scope="col">Date creation</th>
                                 <th scope="col">Date expiration</th>
@@ -128,10 +130,10 @@
                         data: 'numero_carte',
                         name: 'numero_carte'
                     },
-                    {
-                        data: 'codesecret',
-                        name: 'codesecret'
-                    },
+                    // {
+                    //     data: 'comptebank_id',
+                    //     name: 'numero_compte'
+                    // },
                     {
                         data: 'type',
                         name: 'type'
@@ -215,7 +217,7 @@
                             $.ajax({
                                 url: '{{ url('carte-delete') }}' + '/' + id,
                                 method: 'DELETE',
-            
+
                                 success: function(response) {
                                     swal("Poof! Your imaginary file has been deleted!", {
                                         icon: "success",
