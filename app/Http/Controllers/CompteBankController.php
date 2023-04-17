@@ -39,7 +39,7 @@ class CompteBankController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
             return $allData;
-        }
+        } 
         return view("compte-bancaire.list-compt", compact('compte_banks'));
     }
 
