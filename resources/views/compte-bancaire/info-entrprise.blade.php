@@ -3,7 +3,7 @@
     <div class="formcompte">
         <div class="title" style="display: flex;flex-direction: row;justify-content: space-between">
             <p><strong>Nouveau Compte bancaire entreprise</strong></p>
-            <a href="{{ route('Client.create') }}"><button style="margin-right: 7rem;height: 3.5rem;width: 10rem" type="button" class="btn btn-outline-success">Client</button></a>
+            {{-- <a href="{{ route('Client.create') }}"><button style="margin-right: 7rem;height: 3.5rem;width: 10rem" type="button" class="btn btn-outline-success">Client</button></a> --}}
         </div>
         <div class="note">
           <p><strong>Informations entrprise</strong></p>

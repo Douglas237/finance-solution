@@ -46,6 +46,8 @@
         <div class="formcompte">
             <div class="title">
                 <p><strong>Liste des entreprises</strong></p>
+                <a
+                href="{{ route('entreprise') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem; floating: right;" type="button" class="btn btn-success"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter Entreprise</button></a>
             </div>
             <div class="alltabs">
                 <div class="tabs_1">
@@ -189,7 +191,7 @@
                             $.ajax({
                                 url: '{{ url('entreprise/delet', '') }}' + '/' + id,
                                 method: 'DELETE',
-            
+
                                 success: function(response) {
                                     swal("Poof! Your imaginary file has been deleted!", {
                                         icon: "success",

@@ -6,7 +6,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modaltitle">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="modaltitle">Edition Compte</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -20,11 +20,6 @@
                             <div class="col right">
                                 <input type="text" name="num" id="num" class="form-control first"
                                     placeholder="numero du compte" aria-label="numero du compte">
-                                <select class="form-select first" name="nature" aria-label="Default select example">
-                                    <option selected>Nature du compte</option>
-                                    <option value="client">Client</option>
-                                    <option value="entreprise">Entreprise</option>
-                                </select>
                                 <input type="text" name="solde" id="solde" class="form-control first"
                                     placeholder="solde" aria-label="solde">
                                 <input type='text' name="code" id="code" class="form-control first"
@@ -55,7 +50,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div>
+                                {{-- <div>
                                     <p style="padding: 0;margin: 0;">Lier a une carte</p>
                                     <div class="form-check">
                                         <input class="form-check-input sex" type="radio" name="lier" id="oui"
@@ -71,7 +66,7 @@
                                             non
                                         </label>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </form>
@@ -87,6 +82,8 @@
         <div class="formcompte">
             <div class="title">
                 <p><strong>Liste des comptes</strong></p>
+                <a
+                href="{{ route('compte_client') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem;" type="button" class="btn btn-success"> <i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter compte</button></a>
             </div>
             <div class="alltabs">
                 <div class="tabs_1">
@@ -241,7 +238,7 @@
                             $.ajax({
                                 url: '{{ url('delcompte/delet') }}' + '/' + id,
                                 method: 'DELETE',
-            
+
                                 success: function(response) {
                                     swal("Poof! Your imaginary file has been deleted!", {
                                         icon: "success",

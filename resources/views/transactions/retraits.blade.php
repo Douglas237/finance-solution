@@ -237,6 +237,15 @@
                                         $('#confirm_modal').modal('hide');
                                         $('#confirm_modal_entreprise').modal('hide');
                                     }
+                                    if (error.status == 405)
+                                    {
+                                        swal({
+                                            title: "Ce compte n'existe pas",
+                                        });
+                                    }
+
+                                    $('#num_compte_error').html(error.responseJSON.errors.num_compte);
+                                    $('#montant_retrait_error').html(error.responseJSON.errors.montant_retrait);
                                     // if (error.status == 405) {
                                     //     swal({
                                     //         title: "Ce compte n'existe pas",
