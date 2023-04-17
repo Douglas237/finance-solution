@@ -10,52 +10,51 @@ use Illuminate\Support\Facades\DB;
 use Yoeunes\Toastr\Facades\Toastr;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Client;
 
 class TransfertController extends Controller
 {
     //
     public function index(Request $request)
     {
-        $compte_banks = Transfert::get();
-        // dd($compte_banks);
+        $transfert = Transfert::all();
+        // $destinatair = CompteBank::where('numero_compte', $transfert[0]->compte_destinatair)->get();
+        // dd($transfert);
         if ($request->ajax()) {
-            $allData = DataTables::of($compte_banks)
+            $allData = DataTables::of($transfert)
                 ->addIndexColumn()
-                ->addColumn('nom_destinatair', function($compte_banks){
-                    $destinatair = CompteBank::where('numero_compte', $compte_banks->compte_destinatair)->get();
+                ->addColumn('nom_destinatair', function($transfert){
+                    $destinatair = CompteBank::where('numero_compte', $transfert->compte_destinatair)->get();
 
-                    if ($destinatair[0]->comptebankable_type == 'App\Models\Client') {
+                    if ($destinatair[0]->comptebankable_type =='App\Models\Client') {
                         # code...
-                        $destinatair = CompteBank::join('clients', 'clients.id', '=', 'compte_banks.comptebankable_id')
-                            ->where('numero_compte', $compte_banks->compte_destinatair)
-                            ->where('compte_banks.comptebankable_type', '=', 'App\Models\Client')
-                            ->get();
+                        $ndestinatair = CompteBank::join('clients', 'clients.id', '=', 'compte_banks.comptebankable_id')
+                            ->where('numero_compte', $transfert->compte_destinatair)
+                            ->get('clients.nom');
                     }
-                    elseif($destinatair[0]->comptebankable_type == 'App\Models\Entreprise'){
-                        $destinatair = CompteBank::join('entreprises', 'entreprises.id', '=', 'compte_banks.comptebankable_id')
-                            ->where('numero_compte', $compte_banks->compte_destinatair)
-                            ->where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')
-                            ->get(array('entreprises.nom_respon as nom'));
+                    elseif($destinatair[0]->comptebankable_type =='App\Models\Entreprise'){
+
+                        $ndestinatair = CompteBank::join('entreprises', 'entreprises.id', '=', 'compte_banks.comptebankable_id')
+                            ->where('numero_compte', '=',$transfert->compte_destinatair)
+                            ->get('entreprises.nom_respon as nom');
                     }
-                    return $destinatair[0]->nom;
+                    return $ndestinatair[0]->nom;
                 })
-                ->addColumn('nom_destinateur', function($compte_banks){
-                    $destinateur = CompteBank::where('numero_compte', $compte_banks->compte_destinateur)->get();
+                ->addColumn('nom_destinateur', function($transfert){
+                    $destinateur = CompteBank::where('numero_compte', $transfert->compte_destinateur)->get();
         
-                    if ($destinateur[0]->comptebankable_type == 'App\Models\Client') {
+                    if ($destinateur[0]->comptebankable_type =='App\Models\Client') {
                         # code...
-                        $destinateur = CompteBank::join('clients', 'clients.id', '=', 'compte_banks.comptebankable_id')
-                            ->where('numero_compte', $compte_banks->compte_destinateur)
-                            ->where('compte_banks.comptebankable_type', '=', 'App\Models\Client')
-                            ->get(array('clients.nom as nom'));
+                        $ndestinateur = CompteBank::join('clients', 'clients.id', '=', 'compte_banks.comptebankable_id')
+                            ->where('numero_compte','=', $transfert->compte_destinateur)
+                            ->get(array('clients.nom'));
                     }
-                    elseif($destinateur[0]->comptebankable_type == 'App\Models\Entreprise'){
-                        $destinateur = CompteBank::join('entreprises', 'entreprises.id', '=', 'compte_banks.comptebankable_id')
-                            ->where('numero_compte', $compte_banks->compte_destinateur)
-                            ->where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')
-                            ->get(array('entreprises.nom_respon as nom'));
+                    elseif($destinateur[0]->comptebankable_type =='App\Models\Entreprise'){
+                        $ndestinateur = CompteBank::join('entreprises', 'entreprises.id', '=', 'compte_banks.comptebankable_id')
+                            ->where('numero_compte', '=',$transfert->compte_destinateur)
+                            ->get('entreprises.nom_respon as nom');
                     }
-                    return $destinateur[0]->nom;
+                    return $ndestinateur[0]->nom;
                 })
                 ->addColumn('action', function ($row) {
                     $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
@@ -66,55 +65,16 @@ class TransfertController extends Controller
                 ' . $row->id . '" data-original-title="Detail" class="edit btn btn-warning btn_sm detailcompt" id="detail">Detail</a>';
                     return $btn;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action','nom_destinatair','nom_destinateur'])
                 ->make(true);
             return $allData;
         }
-        return view("transactions.transferts",compact('compte_banks'));
+        return view("transactions.transferts",compact('transfert'));
     }
 
-    public function edit(Request $request)
+
+    public function showtotransfert(Request $request)
     {
-        $transfert = Transfert::find($request->transfert_id);
-        if (!$transfert) {
-            # code...
-            $request->validate([
-                'compte_destinatair' => 'required|string',
-                'montant_transfert' => 'required|string',
-                'compte_destinateur' => 'required|string',
-            ]);
-            // $idcompte = CompteBank::where('numero_compte',$request->num_compte)->get();
-            // $id = $idcompte[0];
-            $destinatair = CompteBank::find($request->compte_destinatair);
-            $destinateur = CompteBank::find($request->compte_destinateur);
-            // dd($destinatair);
-            if (!$destinatair) {
-                # code...
-                abort(405);
-            }
-            elseif(!$destinateur){
-                abort(406);
-            }
-            DB::transaction(function () use ($request, $destinatair, $destinateur) {
-                Transfert::create([
-                    'compte_destinatair' => $request->compte_destinatair,
-                    'montant_transfert' => $request->montant_transfert,
-                    'compte_destinateur' => $request->compte_destinateur,
-                    'comptebank_id' => $destinateur->id,
-                ]);
-                if ((int)$destinatair->solde < (int)request('montant_transfert')) {
-                    # code...
-                    abort(404);
-                }
-                $destinatair->update([
-                    'solde' => $destinatair->solde - (int)request('montant_transfert'),
-                ]);
-                $destinateur->update([
-                    'solde' => $destinateur->solde + (int)request('montant_transfert'),
-                ]);
-            });
-            return response()->json(['message' => 'mise a jour avec succes'], 200);
-        }
 
         $request->validate([
             'compte_destinatair' => 'required|string',
@@ -122,14 +82,96 @@ class TransfertController extends Controller
             'compte_destinateur' => 'required|string',
         ]);
 
-        $destinatair = CompteBank::find($request->compte_destinatair);
-        $destinateur = CompteBank::find($request->compte_destinateur);
-        // dd($destinatair);
-        if (!$destinatair) {
+        // $destinateur = CompteBank::find($request->num_compte);
+        $destinatair = CompteBank::where('numero_compte',$request->compte_destinatair)->get();
+        $destinateur = CompteBank::where('numero_compte',request('compte_destinateur'))->get();
+        // dd($destinateur);
+        if ($destinateur->isEmpty()) {
             # code...
             abort(405);
         }
-        elseif(!$destinateur){
+        if ($destinatair->isEmpty()) {
+            # code...
+            abort(406);
+        }
+
+        if ($destinateur[0]->comptebankable_type == 'App\Models\Client') {
+            # code...
+            $infodestinateur = CompteBank::join('clients', 'clients.id', '=', 'compte_banks.comptebankable_id')
+                ->where('compte_banks.comptebankable_type', '=', 'App\Models\Client')
+                ->where('numero_compte',request('compte_destinateur'))
+                ->get();
+        } elseif ($destinateur[0]->comptebankable_type =="App\\Models\\Entreprise") {
+            $infodestinateur = CompteBank::join('entreprises', 'entreprises.id', '=', 'compte_banks.comptebankable_id')
+                ->where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')
+                ->where('numero_compte',request('compte_destinateur'))
+                ->get();
+        }
+        // dd($infodestinateur);
+        return $infodestinateur[0];
+    }
+
+
+
+
+
+    public function edit(Request $request)
+    {
+        $transfert = Transfert::find($request->transfert_id);
+        if (!$transfert) {
+            # code...
+            // $request->validate([
+            //     'compte_destinatair' => 'required|string',
+            //     'montant_transfert' => 'required|string',
+            //     'compte_destinateur' => 'required|string',
+            // ]);
+            // $idcompte = CompteBank::where('numero_compte',$request->num_compte)->get();
+            // $id = $idcompte[0];
+            $destinatair = CompteBank::where('numero_compte',$request->compte_destinatair)->get();
+            $destinateur = CompteBank::where('numero_compte',$request->compte_destinateur)->get();
+            // dd($destinatair);
+            if ($destinatair->isEmpty()) {
+                # code...
+                abort(406);
+            }
+            elseif($destinateur->isEmpty()) {
+                abort(405);
+            }
+            DB::transaction(function () use ($request, $destinatair, $destinateur) {
+                Transfert::create([
+                    'compte_destinatair' => $request->compte_destinatair,
+                    'montant_transfert' => $request->montant_transfert,
+                    'compte_destinateur' => $request->compte_destinateur,
+                    'comptebank_id' => $destinateur[0]->id,
+                ]);
+                if ((int)$destinatair[0]->solde < (int)request('montant_transfert')) {
+                    # code...
+                    abort(404);
+                }
+                $destinatair[0]->update([
+                    'solde' => $destinatair[0]->solde - (int)request('montant_transfert'),
+                ]);
+                $destinateur[0]->update([
+                    'solde' => $destinateur[0]->solde + (int)request('montant_transfert'),
+                ]);
+            });
+            return response()->json(['message' => 'mise a jour avec succes'], 200);
+        }
+
+        // $request->validate([
+        //     'compte_destinatair' => 'required|string',
+        //     'montant_transfert' => 'required|string',
+        //     'compte_destinateur' => 'required|string',
+        // ]);
+
+        $destinatair = CompteBank::where('numero_compte',$request->compte_destinatair)->get();
+        $destinateur = CompteBank::where('numero_compte',$request->compte_destinateur)->get();
+        // dd($destinatair);
+        if ($destinatair->isEmpty()) {
+            # code...
+            abort(408);
+        }
+        elseif($destinateur->isEmpty()){
             abort(406);
         }
 

@@ -52,7 +52,7 @@ class CompteBankController extends Controller
                                     ->get();
         // dd($compte_banks);
         if ($request->ajax()) {
-            $allData = DataTables::of($compte_banks)
+            $allData = DataTables::of($compte_banks) 
                 ->addIndexColumn()
                 ->addColumn('proprietaire', function($compte_banks){
                     return $compte_banks->nom_respon;
