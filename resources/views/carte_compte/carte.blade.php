@@ -7,7 +7,7 @@
         <div class="note">
           <p><strong>Informations de la carte</strong></p>
         </div>
-        <form action="{{ route('carte',[$id]) }}"  class="form-control" method="POST">
+        <form action="{{ route('carte') }}"  class="form-control" method="POST">
             @csrf
             <div class="row tout">
                 <div class="col right">
@@ -18,6 +18,13 @@
                     <option value="carte electron">Carte electron</option>
                     <option value="carte visa">Carte visa</option>
                     <option value="master carte">Master carte</option>
+                  </select>
+                  {{-- <p>{{$count}}</p> --}}
+                  <select class="select 2" name="comptebank_id" aria-label="Default select example">
+                    <option selected>Select Numero compte</option>
+                    @foreach ( $count as $rest )
+                    <option value="{{$rest->id}}">{{$rest->numero_compte}}</option>
+                    @endforeach
                   </select>
                 </div>
                 <div class="col gauche">
@@ -41,7 +48,7 @@
                   <div class="col-12 envoi">
                     <button class="btn btn-primary" value="submit" name="envoi" type="submit">Submit form</button>
                   </div>
-                  <p>{{$id}}</p>
+                  {{-- <p>{{$id}}</p> --}}
                 </div>
             </div>
         </form>

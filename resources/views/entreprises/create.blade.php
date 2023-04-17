@@ -5,9 +5,9 @@
             <p><strong>Nouveau Compte bancaire</strong></p>
         </div>
         <div class="note">
-          <p><strong>Informations du client</strong></p>
+          <p><strong>Informations de l'entreprise</strong></p>
         </div>
-        <form action="{{ route('compte.client') }}" id="" class="form-control" method="POST">
+        <form action="{{ route('creation.entreprise') }}" id="" class="form-control" method="POST">
             @csrf
             <div class="row tout">
                 <div class="col right">
@@ -17,17 +17,14 @@
                     <option value="App\Models\client">Client</option>
                     <option value="App\Models\entreprise">Entreprise</option>
                   </select> --}}
-                  <div class="col-8 max">
-                    <select class="form-select first" name="client_id" aria-label="Default select example" style="width: 90%;">
-                        <option selected>select client</option>
-                        @foreach ( $client as $item )
-                        <option value="{{$item->id}}">{{$item->nom}}</option>
-                        @endforeach
-                      </select>
-                      <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#exampleModal" style="border-radius: 25%; background-color:#02501c">
-                        <i class="fa fa-plus" style="background-color: #fff"></i>
-                      </button>
-                  </div>
+
+                  <select class="form-select first" name="entreprise_id" aria-label="Default select example">
+                    <option selected>select entreprise</option>
+                    @foreach ( $entreprise as $item )
+                    <option value="{{$item->id}}">{{$item->nom_entreprise}}</option>
+                    @endforeach
+                  </select>
+
                   <input type="text" name="solde" class="form-control first" placeholder="solde" aria-label="solde">
                   <input type='text' name="code" class="form-control first" placeholder="code" aria-label="code" />
                 </div>
@@ -83,25 +80,4 @@
             </div>
         </form>
     </div>
-
-    <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header" style="background-color: #02501c">
-          <h5 class="modal-title" id="exampleModalLabel" style="color: #fff">Ajout Client</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-          <button  class="btn btn-success" value="submit" name="envoi" type="submit">Enregistrer</button>
-        </div>
-      </div>
-    </div>
-  </div>
 @endsection
-
-

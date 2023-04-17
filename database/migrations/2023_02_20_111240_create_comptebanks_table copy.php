@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('type_compte', ["Compte courant", "Compte epagne"]);
             $table->date('date_ouverture');
             $table->integer('code');
-            $table->boolean('statut'); 
+            $table->boolean('statut');
             $table->morphs('comptebankable');
             $table->timestamps();
         });

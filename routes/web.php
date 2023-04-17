@@ -37,15 +37,17 @@ Route::get('/', function () {
 Route::get('/dasboard',[DashboardController::class, 'index'])->name('dashboard');
 Route::get('/dasboard',[DashboardController::class, 'cal'])->name('dashboard');
 
-Route::get('/compte/{id}',[CompteBankController::class, 'create'])->name('compte');
-Route::post('/compte/{id}',[CompteBankController::class, 'store'])->name('compte');
+Route::get('/compte-client',[CompteBankController::class, 'createclient'])->name('compte_client');
+Route::post('/compte',[CompteBankController::class, 'storeclient'])->name('compte.client');
+Route::get('/compte',[CompteBankController::class, 'createentreprise'])->name('compte_entreprise');
+Route::post('/compte-entreprise',[CompteBankController::class, 'storeentreprise'])->name('creation.entreprise');
 Route::get('/list-compte', [CompteBankController::class, 'index'])->name('compte.list');
 Route::get('/compte-entreprise', [CompteBankController::class, 'entreprise'])->name('compte.entreprise');
 Route::resource('Client', ClientController::class);
 Route::get('/entreprise', [EntrepriseController::class, 'create'])->name('entreprise');
 Route::post('/entreprise', [EntrepriseController::class, 'store'])->name('entreprise');
-Route::get('/carte/{id}', [CarteController::class, 'create'])->name('carte');
-Route::post('/carte/{id}', [CarteController::class, 'store'])->name('carte');
+Route::get('/carte', [CarteController::class, 'create'])->name('carte.create');
+Route::post('/carte', [CarteController::class, 'store'])->name('carte');
 
 // controller Modals client
 Route::get('/client/{id}/edit', [ModalClientController::class, 'edit'])->name('edite');
@@ -71,7 +73,7 @@ Route::get('/entreprise/toshow/{id}',[ModalEntreprisController::class, 'toshow']
 Route::get('/entreprise/show/{id}',[ModalEntreprisController::class, 'show'])->name('entreprise.show');
 
 // controller pour employer
-Route::get('/employer/liste',[ModalEmployerController::class, 'index'])->name('employer');
+Route::get('/employer/liste',[ModalEmployerController::class, 'index'])->name('employer.list');
 Route::get('/employer/toedite/{id}',[ModalEmployerController::class, 'toedite'])->name('employer.toedite');
 Route::post('/employer/edite',[ModalEmployerController::class, 'edite'])->name('employer.edite');
 Route::delete('/employer/delete/{id}',[ModalEmployerController::class, 'destroy'])->name('employer.destroy');
@@ -108,8 +110,9 @@ Route::get('/carte-show/{id}', [ModalCarteController::class, 'show']);
 
 //  manager beneficiaire
 Route::get('/list-beneficiaire', [BeneficiaireController::class, 'index'])->name('beneficiaire.list');
-Route::get('/create-beneficiaire/{id}', [BeneficiaireController::class, 'create'])->name('beneficiaire.create');
-Route::post('/beneficiaire/{id}', [BeneficiaireController::class, 'store'])->name('beneficiaire.store');
+Route::get('/create-beneficiaire', [BeneficiaireController::class, 'create'])->name('beneficiaire.create');
+Route::post('/beneficiaire-store', [BeneficiaireController::class, 'store'])->name('beneficiaire.store');
+// Route::post('/beneficiaire', [BeneficiaireController::class, 'storebenentre'])->name('beneficiaire.storeentre');
 
 Auth::routes();
 
