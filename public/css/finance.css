@@ -663,7 +663,7 @@ form,
     .toutimgs .elmts {
         top: 110%;
     }
-    
+
     .toutimgs .img {
         height: 5rem;
         margin-top: -3%;
@@ -940,3 +940,13 @@ form,
 .card1 .band span {
     color: #aaa;
 }
+.max {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    /* align-content: space-evenly; */
+}
+.max button {
+    margin-left: 10px;
+}
+

@@ -8,7 +8,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Edition Client</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -72,6 +72,8 @@
         <div class="formcompte">
             <div class="title">
                 <p><strong>Liste des Clients</strong></p>
+                <a
+                href="{{ route('Client.create') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem;" type="button" class="btn btn-success"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter client</button></a>
             </div>
             <div class="alltabs">
                 <div class="tabs_1">
@@ -163,7 +165,7 @@
                 "bPaginate": true,
                 "bInfo": true,
                 "bFilter": true,
-                "bAutoWidth": false,
+                "bAutoWidth": true,
                 "aoColumns": [{
                         sWidth: '50px'
                     },
@@ -196,6 +198,7 @@
                     {
                         data: 'sexe',
                         name: 'sexe'
+
                     },
                     {
                         data: 'email',

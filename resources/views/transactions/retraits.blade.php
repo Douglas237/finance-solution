@@ -182,7 +182,7 @@
                                             title: "Ce compte n'existe pas",
                                         });
                                     }
-                                    
+
                                     $('#num_compte_error').html(error.responseJSON.errors.num_compte);
                                     $('#montant_retrait_error').html(error.responseJSON.errors.montant_retrait);
                                 }
@@ -221,7 +221,7 @@
                                     console.log(response);
                                 },
                                 error: function(error) {
-                                    
+
                                     console.log(error);
                                 }
                             });

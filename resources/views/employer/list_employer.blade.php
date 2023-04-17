@@ -77,6 +77,8 @@
         <div class="formcompte">
             <div class="title">
                 <p><strong>Liste des employer</strong></p>
+                <a
+                href="{{ route('') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem; floating: right;" type="button" class="btn btn-success"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter employés</button></a>
             </div>
             <div class="alltabs">
                 <div class="tabs_1">
