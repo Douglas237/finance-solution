@@ -172,7 +172,7 @@
                     },
                     {
                         data: 'statut',
-                        name: 'statut'
+                        name: 'statut' 
                     },
                     {
                         data: 'action',
