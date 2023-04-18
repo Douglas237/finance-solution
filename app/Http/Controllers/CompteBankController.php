@@ -40,7 +40,7 @@ class CompteBankController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
             return $allData;
-        }
+        } 
         return view("compte-bancaire.list-compt", compact('compte_banks'));
     }
 
@@ -78,11 +78,11 @@ class CompteBankController extends Controller
     }
     //
 
-        public function createclient()
-        {
-            $client = Client::all();
-            return view('compte-bancaire.infos-compt', compact('client'));
-        }
+    public function createclient()
+    {
+        $client = Client::all();
+        return view('compte-bancaire.infos-compt', compact('client'));
+    }
 
     public function storeclient(Request $request)
     {
@@ -103,21 +103,21 @@ class CompteBankController extends Controller
                 ->withErrors($validatedData)
                 ->withInput();
         }
-                # code...
-                $client = Client::Find($request->client_id);
-                $client->comptebanks()->create(
-                    [
-                        'numero_compte' => request('num'),
-                        'solde' => (int) request('solde'),
-                        'type_compte' => request('type'),
-                        'date_ouverture' => request('date_ouverture'),
-                        'code' => (int) request('code'),
-                        'comptebankable_id' => (int)request('client_id'),
-                        'statut' => request('statut'),
-                    ]
-                );
-            // dd($client->comptebanks);
-            return redirect()->route('compte.list');
+        
+        $client = Client::Find($request->client_id);
+        $client->comptebanks()->create(
+            [
+                'numero_compte' =>(string) request('num'),
+                'solde' => (int) request('solde'),
+                'type_compte' => request('type'),
+                'date_ouverture' => request('date_ouverture'),
+                'code' => (int) request('code'),
+                'comptebankable_id' => (int)request('client_id'),
+                'statut' => request('statut'),
+            ]
+        );
+        // dd($client->comptebanks);
+        return redirect()->route('compte.list');
 
     }
 

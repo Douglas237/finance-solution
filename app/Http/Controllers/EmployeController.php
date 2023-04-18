@@ -14,7 +14,7 @@ class EmployeController extends Controller
     public function index()
     {
         $employe = Employe::all();
-        return view('employer.list_employer', compact('employe'));
+        return view('employe.index', compact('employ'));
     }
 
     public function create()
@@ -111,7 +111,7 @@ class EmployeController extends Controller
 
         try {
 
-            $data = Employe::FindOrFail($id);
+            $data = new Employe();
             $data->nom = ucfirst($request->nom);
             $data->prenom = $request->prenom;
             $data->date_naissance = $request->date_naissance;
