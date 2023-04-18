@@ -11,7 +11,7 @@
             @csrf
             <div class="row tout">
                 <div class="col right">
-                  <input type="text" name="num" class="form-control first" placeholder="numero du compte" aria-label="numero du compte">
+                  <input type="text" name="num" id="num" class="form-control first" placeholder="numero du compte" aria-label="numero du compte" >
                   {{-- <select class="form-select first" name="comptebankable_type" aria-label="Default select example">
                     <option selected>Nature du compte</option>
                     <option value="App\Models\client">Client</option>
@@ -21,7 +21,7 @@
                     <select class="form-select first" name="client_id" aria-label="Default select example" style="width: 90%;">
                         <option selected>select client</option>
                         @foreach ( $client as $item )
-                        <option value="{{$item->id}}">{{$item->nom}}</option>
+                         <option value="{{$item->id}}">{{$item->nom}}</option>
                         @endforeach
                       </select>
                       <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#exampleModal" style="border-radius: 25%; background-color:#02501c">
@@ -102,6 +102,20 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("select.first").change(function(){
+        var langage = $(this).children("option:selected").val();
+        if (langage == "Compte courant") {
+          $('#num').val({{'1001'.random_int(1000, 9999).random_int(1000, 9999);}})
+        }
+        if (langage == "Compte epagne") {
+          $('#num').val({{'1111'.random_int(1000, 9999).random_int(1000, 9999);}})
+        }
+        // alert("Vous avez sélectionné le langage : " + langage);
+      });
+    });
+    </script>
 @endsection
 
 

@@ -89,7 +89,7 @@
                         <li><a href="{{ route('beneficiaire.entreprise') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Entreprises</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('employer.list') }}"><i class="fa fa-users left" aria-hidden="true" style="margin-right: 0.7rem;font-size: 0.8em;"></i>
+                <li><a href="{{ route('employer') }}"><i class="fa fa-users left" aria-hidden="true" style="margin-right: 0.7rem;font-size: 0.8em;"></i>
                     <span class="dash">Employer</span></a></li>
                 <li><a href="{{ route('entreprise.list') }}"><i class="fa fa-building" aria-hidden="true" style="margin-right: 1.3rem;font-size: 0.8em;"></i>
                     <span class="dash">Entreprise</span></a></li>

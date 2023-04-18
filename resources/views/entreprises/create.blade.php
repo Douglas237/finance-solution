@@ -11,7 +11,7 @@
             @csrf
             <div class="row tout">
                 <div class="col right">
-                  <input type="text" name="num" class="form-control first" placeholder="numero du compte" aria-label="numero du compte">
+                  <input type="text" name="num" id="num" class="form-control first" placeholder="numero du compte" aria-label="numero du compte">
                   {{-- <select class="form-select first" name="comptebankable_type" aria-label="Default select example">
                     <option selected>Nature du compte</option>
                     <option value="App\Models\client">Client</option>
@@ -80,4 +80,18 @@
             </div>
         </form>
     </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("select.first").change(function(){
+          var langage = $(this).children("option:selected").val();
+          if (langage == "Compte courant") {
+            $('#num').val({{'1001'.random_int(1000, 9999).random_int(1000, 9999);}})
+          }
+          if (langage == "Compte epagne") {
+            $('#num').val({{'1111'.random_int(1000, 9999).random_int(1000, 9999);}})
+          }
+          // alert("Vous avez sélectionné le langage : " + langage);
+        });
+      });
+      </script>
 @endsection

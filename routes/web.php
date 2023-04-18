@@ -73,12 +73,12 @@ Route::get('/entreprise/toshow/{id}',[ModalEntreprisController::class, 'toshow']
 Route::get('/entreprise/show/{id}',[ModalEntreprisController::class, 'show'])->name('entreprise.show');
 
 // controller pour employer
-Route::get('/employer/liste',[ModalEmployerController::class, 'index'])->name('employer.list');
+Route::get('/employer/liste',[ModalEmployerController::class, 'index'])->name('employer');
 Route::get('/employer/toedite/{id}',[ModalEmployerController::class, 'toedite'])->name('employer.toedite');
 Route::post('/employer/edite',[ModalEmployerController::class, 'edite'])->name('employer.edite');
 Route::delete('/employer/delete/{id}',[ModalEmployerController::class, 'destroy'])->name('employer.destroy');
 Route::get('/employer/toshow/{id}', [ModalEmployerController::class, 'toshow']);
-Route::get('/employer/show/{id}', [ModalEmployerController::class, 'show']);
+Route::get('/employer/show/{id}', [ModalEmployerController::class, 'show']); 
 
 // controller pour versements
 Route::get('/versements/list', [VersementController::class, 'index'])->name('versements');
