@@ -109,9 +109,12 @@ Route::get('/carte-toshow/{id}', [ModalCarteController::class, 'toshow']);
 Route::get('/carte-show/{id}', [ModalCarteController::class, 'show']);
 
 //  manager beneficiaire
-Route::get('/list-beneficiaire', [BeneficiaireController::class, 'index'])->name('beneficiaire.list');
+Route::get('/list-beneficiaire', [BeneficiaireController::class, 'index'])->name('beneficiaire.entreprise');
+Route::get('/client-beneficiaire', [BeneficiaireController::class, 'list'])->name('beneficiaire.client');
 Route::get('/create-beneficiaire', [BeneficiaireController::class, 'create'])->name('beneficiaire.create');
 Route::post('/beneficiaire-store', [BeneficiaireController::class, 'store'])->name('beneficiaire.store');
+Route::get('/create-clientben', [BeneficiaireController::class, 'tocreate'])->name('clientben.tocreate');
+Route::post('store-clientbene', [BeneficiaireController::class,'storebeneclient'])->name('clientben.storebeneclient');
 // Route::post('/beneficiaire', [BeneficiaireController::class, 'storebenentre'])->name('beneficiaire.storeentre');
 
 Auth::routes();

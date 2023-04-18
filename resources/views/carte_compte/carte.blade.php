@@ -28,7 +28,7 @@
                   </select>
                 </div>
                 <div class="col gauche">
-                  <input type="text" name="codesecret" class="form-control first" placeholder="code secret" aria-label="code secret">
+                  <input type="password" name="codesecret" class="form-control first" placeholder="code secret" aria-label="code secret">
                   <input type='date' name="date_expiration" class="form-control first" placeholder="Select Date" />
                   <div>
                     <p style="padding: 0;margin: 0;">Status</p>

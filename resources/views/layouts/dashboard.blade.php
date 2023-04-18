@@ -71,7 +71,6 @@
                     <ul class="souscli">
                         {{-- <li><a href="{{route('Client.create')}}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem;font-size: 0.5em;"></i>Nouveau client</a></li> --}}
                         <li><a href="{{ route('Client.index') }}"> <i class="fa-regular fa-circle" style="margin-right: 0.8rem;font-size: 0.5em;"></i>Liste de client</a></li>
-                        <li><a href="{{ route('beneficiaire.list') }}"> <i class="fa-regular fa-circle" style="margin-right: 0.8rem;font-size: 0.5em;"></i>Liste de beneficiaire</a></li>
                     </ul>
                 </li>
                 <li>
@@ -81,6 +80,13 @@
                         <li><a href="{{ route('carte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Liste des cartes</a></li>
                         <li><a href="{{ route('compte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Compte clients</a></li>
                         <li><a href="{{ route('compte.entreprise') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Compte entreprise</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="beneficiaire-btn"><i class="fa fa-user-plus" aria-hidden="true" style="margin-right: 1rem; font-size: 0.8em;"></i><span class="dash">Beneficiaires</span><i class="fa fa-caret-down toggle5" style="font-size: 0.8em;" aria-hidden="true"></i></a>
+                    <ul class="sousul">
+                        <li><a href="{{ route('beneficiaire.client') }}"> <i class="fa-regular fa-circle" style="margin-right: 0.8rem;font-size: 0.5em;"></i>Clients</a></li>
+                        <li><a href="{{ route('beneficiaire.entreprise') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Entreprises</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('employer.list') }}"><i class="fa fa-users left" aria-hidden="true" style="margin-right: 0.7rem;font-size: 0.8em;"></i>

@@ -162,6 +162,11 @@ ul ul {
     left: 2.3rem;
     top: -0.025rem;
 }
+.sidebar .grandul li a .toggle5 {
+    position: relative;
+    left: 2.3rem;
+    top: -0.025rem;
+}
 .sidebar .grandul li ul li {
     padding-left: 3.5rem;
     font-size: 0.7em;
@@ -194,11 +199,19 @@ ul ul {
     width: 12rem;
     display: block;
 }
+.sidebar .grandul .sousul.show5 {
+    width: 12rem;
+    display: block;
+}
 .sidebar .grandul .toggle2.rotate2 {
     transform: rotate(-180deg);
     transition: all 0.5s ease;
 }
 .sidebar .grandul .toggle4.rotate4 {
+    transform: rotate(-180deg);
+    transition: all 0.5s ease;
+}
+.sidebar .grandul .toggle5.rotate5 {
     transform: rotate(-180deg);
     transition: all 0.5s ease;
 }

@@ -22,6 +22,7 @@ class CompteBankController extends Controller
                                     ->where('compte_banks.comptebankable_type', '=', 'App\Models\Client')
                                     ->get();
         // dd($compte_banks);
+        // $compte_banks = CompteBank::all();
         if ($request->ajax()) {
             $allData = DataTables::of($compte_banks)
                 ->addIndexColumn()
@@ -53,7 +54,7 @@ class CompteBankController extends Controller
                                     ->get();
         // dd($compte_banks);
         if ($request->ajax()) {
-            $allData = DataTables::of($compte_banks) 
+            $allData = DataTables::of($compte_banks)
                 ->addIndexColumn()
                 ->addColumn('proprietaire', function($compte_banks){
                     return $compte_banks->nom_respon;

@@ -13,17 +13,15 @@ class ModalCarteController extends Controller
 {
    public function index(Request $request)
    {
-    $carte =Carte::all();
-
-    // $carte = Carte::join('compte_banks', 'compte_banks.id', '=', 'compte_banks.comptebankable_id')
-    //                                 ->where('compte_banks.comptebankable_type', '=', 'App\Models\client')
-    //                                 ->get();
+    $carte = Carte::join('compte_banks', 'compte_banks.id', '=', 'compte_banks.comptebankable_id')
+                                    ->where('compte_banks.comptebankable_type', '=', 'App\Models\client')
+                                    ->get();
     if($request->ajax()) {
         $allData = DataTables::of($carte)
         ->addIndexColumn()
-        // ->addColumn('numero_compte', function($carte){
-        //     return $carte->id->numero_compte;
-        // })
+        ->addColumn('compte', function($carte){
+            return $carte->numero_compte;
+        })
         ->addColumn('action', function($row){
             $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary  btn_sm editCompte" id="edite">Edite</a>';
             $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delet">Del</a>';
