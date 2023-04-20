@@ -42,7 +42,7 @@ class ModalCompteController extends Controller
             ->back()
             ->withErrors($validatedData)
             ->withInput();
-        }
+        } 
 
         $compte->update([
             'solde' => (int) request('solde'),

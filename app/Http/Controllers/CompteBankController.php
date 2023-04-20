@@ -20,13 +20,15 @@ class CompteBankController extends Controller
     {
         $compte_banks = CompteBank::join('clients', 'clients.id', '=', 'compte_banks.comptebankable_id')
                                     ->where('compte_banks.comptebankable_type', '=', 'App\Models\Client')
-                                    ->get();
+                                    ->get('compte_banks.*','clients.*');
         // dd($compte_banks);
         if ($request->ajax()) {
             $allData = DataTables::of($compte_banks)
                 ->addIndexColumn()
                 ->addColumn('proprietaire', function($compte_banks){
-                    return $compte_banks->nom;
+                    $nom_proprio = Client::where('id',$compte_banks->comptebankable_id)->get();
+                    return $nom_proprio[0]->nom;
+                    // return $compte_banks->nom;
                 })
                 ->addColumn('action', function ($row) {
                     $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
@@ -50,16 +52,27 @@ class CompteBankController extends Controller
     {
         $compte_banks = CompteBank::join('entreprises', 'entreprises.id', '=', 'compte_banks.comptebankable_id')
                                     ->where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')
-                                    ->get();
+                                    ->get('compte_banks.*','entreprises.*');
+        // $ncompte_banks = CompteBank::join('entreprises', 'entreprises.id', '=', 'compte_banks.comptebankable_id')
+        //                             ->where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')
+        //                             ->get();
+        // $ncompte_banks = CompteBank::where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')->get();
         // dd($compte_banks);
         if ($request->ajax()) {
             $allData = DataTables::of($compte_banks) 
                 ->addIndexColumn()
                 ->addColumn('proprietaire', function($compte_banks){
-                    return $compte_banks->nom_respon;
+                    $nom_resp = Entreprise::where('id',$compte_banks->comptebankable_id)->get();
+                    return $nom_resp[0]->nom_respon;
                 })
+                // ->addColumn('id_compte', function($compte_banks){
+                //     // $ncompte_banks = CompteBank::where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')->get();
+
+                //     return $compte_banks->id;
+                // })
                 ->addColumn('non_entreprise', function($compte_banks){
-                    return $compte_banks->nom_entreprise;
+                    $nom_resp = Entreprise::where('id',$compte_banks->comptebankable_id)->get();
+                    return $nom_resp[0]->nom_entreprise;
                 })
                 ->addColumn('action', function ($row) {
                     $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
@@ -68,7 +81,7 @@ class CompteBankController extends Controller
                 ' . $row->id . '" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delete">Del</a>';
                     $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
                 ' . $row->id . '" data-original-title="Detail" class="edit btn btn-warning btn_sm detailcompt" id="detail">Detail</a>';
-                    return $btn;
+                    return $btn; 
                 })
                 ->rawColumns(['action'])
                 ->make(true);
