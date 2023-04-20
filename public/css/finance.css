@@ -276,7 +276,7 @@ ul ul {
 .centre {
     position: absolute;
     left: 5%;
-    top: 4rem;
+    top: 4rem; 
     width: 95%;
     height: 100%;
     transition: all 0.5s ease;
@@ -502,6 +502,195 @@ form,
     margin: 10px;
 }
 /* --------------- Media query ---------------- */
+@media screen and (min-width: 1000px) and (max-width: 1144px){
+    .sidebar {
+        width: 6.5%;
+        margin-left: 0;
+    }
+    .navbare {
+        border: 1px solid rgb(20, 3, 82);
+        width: 93.5%;
+    }
+    .centre {
+        width: 93.5%;
+        border: 3px solid black;
+        /* margin-top: 4rem; */
+        left: 6.5%;
+    }
+    .augmenter {
+        width: 22.2%;
+        transition: width 0.2s linear;
+    }
+    .ajout {
+        width: 77.8%;
+        transition: width 0.2s linear;
+    }
+    .ajout1 {
+        /* position: absolute; */
+        left: 22.2%;
+        /* top: 4rem; */
+        width: 77.8%;
+        transition: width 0.2s linear;
+        /* height: 100%; */
+        /* border: 3px solid black; */
+    }
+    .sidebar .logo .logotext {
+        /* position: absolute; */
+        margin-right: 1.2rem;
+        /* margin-top: 2rem; */
+        right: 10rem;
+        height: 8rem;
+        /* width: %; */
+    }
+    .toutleft{
+        right: -61%;
+    }
+    .sidebar .grandul li a{
+            padding-left: 2rem;
+    }
+}
+@media screen and (min-width: 1145px) and (max-width: 1180px){
+    .sidebar {
+        width: 6.5%;
+        margin-left: 0;
+    }
+    .navbare {
+        border: 1px solid rgb(20, 3, 82);
+        width: 93.5%;
+    }
+    .centre {
+        width: 93.5%;
+        border: 3px solid black;
+        /* margin-top: 4rem; */
+        left: 6.5%;
+    }
+    .augmenter {
+        width: 20.2%;
+        transition: width 0.2s linear;
+    }
+    .ajout {
+        width: 79.8%;
+        transition: width 0.2s linear;
+    }
+    .ajout1 {
+        /* position: absolute; */
+        left: 20.2%;
+        /* top: 4rem; */
+        width: 79.8%;
+        transition: width 0.2s linear;
+        /* height: 100%; */
+        /* border: 3px solid black; */
+    }
+    .sidebar .logo .logotext {
+        /* position: absolute; */
+        margin-right: 1.2rem;
+        /* margin-top: 2rem; */
+        right: 10rem;
+        height: 8rem;
+        /* width: %; */
+    }
+    .toutleft{
+        right: -61%;
+    }
+    .sidebar .grandul li a{
+            padding-left: 2.2rem;
+    }
+}
+@media screen and (min-width: 1181px) and (max-width: 1248px){
+    .sidebar {
+        width: 6.2%;
+        margin-left: 0;
+    }
+    .centre {
+        width: 93.8%;
+        border: 3px solid black;
+        /* margin-top: 4rem; */
+        left: 6.2%;
+    }
+    .navbare {
+        border: 1px solid rgb(20, 3, 82);
+        width: 93.8%;
+    }
+    .augmenter {
+        width: 20.2%;
+        transition: width 0.2s linear;
+    }
+    .ajout {
+        width: 79.8%;
+        transition: width 0.2s linear;
+    }
+    .ajout1 {
+        /* position: absolute; */
+        left: 20.2%;
+        /* top: 4rem; */
+        width: 79.8%;
+        transition: width 0.2s linear;
+        /* height: 100%; */
+        /* border: 3px solid black; */
+    }
+    .sidebar .logo .logotext {
+        /* position: absolute; */
+        margin-right: 1.2rem;
+        /* margin-top: 2rem; */
+        right: 10rem;
+        height: 8rem;
+        /* width: %; */
+    }
+    .toutleft{
+        right: -61%;
+    }
+    .sidebar .grandul li a{
+            padding-left: 2.2rem;
+    }
+}
+@media screen and (min-width: 1249px) and (max-width: 1326px){
+    .sidebar {
+        width: 5.8%;
+        margin-left: 0;
+    }
+    .centre {
+        width: 94.2%;
+        border: 3px solid black;
+        /* margin-top: 4rem; */
+        left: 5.8%;
+    }
+    .navbare {
+        border: 1px solid rgb(20, 3, 82);
+        width: 94.2%;
+    }
+    .augmenter {
+        width: 17.8%;
+        transition: width 0.2s linear;
+    }
+    .ajout {
+        width: 82.2%;
+        transition: width 0.2s linear;
+    }
+    .ajout1 {
+        /* position: absolute; */
+        left: 17.8%;
+        /* top: 4rem; */
+        width: 82.2%;
+        transition: width 0.2s linear;
+        /* height: 100%; */
+        /* border: 3px solid black; */
+    }
+    .sidebar .logo .logotext {
+        /* position: absolute; */
+        margin-right: 1.2rem;
+        /* margin-top: 2rem; */
+        right: 10rem;
+        height: 8rem;
+        /* width: %; */
+    }
+    .toutleft{
+        right: -61%;
+    }
+    .sidebar .grandul li a{
+        padding-left: 2.2rem;
+    }
+}
+
 @media screen and (max-width: 720px) {
     .toutleft {
         width: 60%;
@@ -515,19 +704,7 @@ form,
         width: 55%;
     }
 }
-@media screen and (max-width: 1386px) {
-    /* .toutleft {
-        width: 60%;
-    }
-    .toutimgs {
-        width: 45%;
-    } */
-    .toutleft .icons {
-        margin-left: 0;
-        margin-right: 0;
-        width: 55%;
-    }
-}
+
 @media screen and (min-width: 1386px) {
     .toutimgs {
         width: 45%;
@@ -656,10 +833,13 @@ form,
         width: 23rem;
     }
 }
-@media screen and (min-width: 1386px) and (max-width: 1440px) {
+@media screen and (min-width: 1386px) and (max-width: 1473px) {
     .toutimgs {
         width: 45%;
     }
+    /* .sidebar .grandul li a{
+        padding-left: 5rem;
+    } */
     .toutimgs .elmts {
         top: 110%;
     }
@@ -678,7 +858,7 @@ form,
         position: fixed;
         z-index: 100;
         right: 0;
-        width: 94.45%;
+        width: 94.1%;
         height: 5.5rem;
         transition: all 0.5s ease;
     }
@@ -695,7 +875,7 @@ form,
         color: #02501c;
     }
     .sidebar .logo {
-        height: 23%;
+        height: 28%;
         width: 30rem;
         overflow: hidden;
     }
@@ -742,7 +922,7 @@ form,
         color: #02501c;
     }
     .sidebar {
-        width: 5.6%;
+        width: 5.9%;
         margin-left: 0;
     }
     .sidebar .grandul li {
@@ -755,7 +935,7 @@ form,
         margin-left: 1.4rem;
     }
     .centre {
-        width: 94.34%;
+        width: 94.1%;
         /* border: 3px solid black; */
         margin-top: 0.58%;
         left: 5.66%;
@@ -774,7 +954,7 @@ form,
         padding-top: 1.5rem; */
 
         text-decoration: none;
-        padding-left: 1.5rem;
+        padding-left: 2.2rem;
         font-size: 2em;
         display: block;
         width: 24rem;
