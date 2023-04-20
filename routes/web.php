@@ -15,6 +15,7 @@ use App\Http\Controllers\ModalCarteController;
 use App\Http\Controllers\ModalClientController;
 use App\Http\Controllers\ModalCompteController;
 use App\Http\Controllers\BeneficiaireController;
+use App\Http\Controllers\ModalBeneficiaireController;
 use App\Http\Controllers\ModalEmployerController;
 use App\Http\Controllers\ModalEntreprisController;
 
@@ -78,7 +79,7 @@ Route::get('/employer/toedite/{id}',[ModalEmployerController::class, 'toedite'])
 Route::post('/employer/edite',[ModalEmployerController::class, 'edite'])->name('employer.edite');
 Route::delete('/employer/delete/{id}',[ModalEmployerController::class, 'destroy'])->name('employer.destroy');
 Route::get('/employer/toshow/{id}', [ModalEmployerController::class, 'toshow']);
-Route::get('/employer/show/{id}', [ModalEmployerController::class, 'show']); 
+Route::get('/employer/show/{id}', [ModalEmployerController::class, 'show']);
 
 // controller pour versements
 Route::get('/versements/list', [VersementController::class, 'index'])->name('versements');
@@ -116,6 +117,14 @@ Route::post('/beneficiaire-store', [BeneficiaireController::class, 'store'])->na
 Route::get('/create-clientben', [BeneficiaireController::class, 'tocreate'])->name('clientben.tocreate');
 Route::post('store-clientbene', [BeneficiaireController::class,'storebeneclient'])->name('clientben.storebeneclient');
 // Route::post('/beneficiaire', [BeneficiaireController::class, 'storebenentre'])->name('beneficiaire.storeentre');
+
+//manager beneficiaire modal
+Route::get('/beneficiaire/edit/{id}', [ModalBeneficiaireController::class, 'edit'])->name('beneficiaire.edit');
+Route::post('/beneficiaire/edition', [ModalBeneficiaireController::class, 'editer'])->name('beneficiaire.edition');
+Route::post('/beneficiaire/edition/{id}', [ModalBeneficiaireController::class, 'update'])->name('beneficiaire.update');
+Route::delete('/beneficiaire/delet/{id}', [ModalBeneficiaireController::class, 'destroy'])->name('beneficiaire.delete');
+Route::get('/beneficiaire/toshow/{id}', [ModalBeneficiaireController::class, 'toshow'])->name('beneficiaire.toshow');
+Route::get('/beneficiaire/show/{id}', [ModalBeneficiaireController::class, 'show'])->name('beneficiaire.show');
 
 Auth::routes();
 
