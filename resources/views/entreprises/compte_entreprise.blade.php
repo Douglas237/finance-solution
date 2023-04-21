@@ -133,7 +133,7 @@
                 "bFilter": true,
                 "bAutoWidth": false,
                 "aoColumns": [{
-                        sWidth: '50px'
+                        sWidth: '50px' 
                     },
                     {
                         sWidth: '100px'

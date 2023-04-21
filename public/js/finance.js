@@ -28,7 +28,7 @@ $('#menu_icon').click(function () {
     $("#navbare").addClass("ajout");
     $("#centre").addClass("ajout1");
     console.log('oui');
-});
+}); 
 
 $("#menu_icon1").click(function () {
     $("#sidebar").removeClass("augmenter");
