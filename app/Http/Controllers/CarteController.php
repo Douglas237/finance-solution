@@ -27,7 +27,7 @@ class CarteController extends Controller
             'type'=>'required|string',
             'date_creation'=>'required|date',
             'date_expiration'=>'required|date',
-            'comptebank_id'=>'required|integer',
+            'comptebank_id'=>'required',
             'statut'=>'required|boolean',
         ]);
         if($validatedData->fails()) {
@@ -40,19 +40,20 @@ class CarteController extends Controller
         $comptebank = CompteBank::Find($request->comptebank_id);
         try {
         DB::beginTransaction();
-        $carte = Carte::create(
+        $comptebank = Carte::create(
             [
                 'numero_carte' => request('numero_carte'),
                 'codesecret' => request('codesecret'),
                 'type' => request('type'),
                 'date_creation' => request('date_creation'),
                 'date_expiration' => request('date_expiration'),
+                'comptebankable_id' => request('comptebank_id'),
                 'statut' => request('statut'),
             ]
         );
 
 
-        $comptebank->cartes()->attach($carte->id);
+        $comptebank->cartes()->attach($comptebank->id);
         DB::Commit();
         return redirect()->route('carte.list');
     } catch(Exception $e) {

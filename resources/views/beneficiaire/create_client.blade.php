@@ -4,7 +4,7 @@
         <div class="title">
             <p><strong>Nouveau beneficiaire</strong></p>
         </div>
-        <form action="{{ route('beneficiaire.store') }}"  class="form-control" method="POST">
+        <form action="{{ route('clientben.storebeneclient') }}"  class="form-control" method="POST">
             @csrf
             <div class="note">
               <p><strong>Informations du beneficiaire</strong></p>
@@ -12,10 +12,10 @@
             <div class="row tout">
                 <div class="col right">
                   <input type="text" name="nom_beneficiaire" class="form-control first" placeholder="Nom beneficiaire" aria-label="Nom beneficiaire">
-                  <select class="form-select first" name="entreprise_id" aria-label="Default select example">
-                    <option selected>Select entreprise</option>
-                    @foreach ($entreprise as $item)
-                    <option value="{{$item->id}}">{{$item->nom_entreprise}}</option>
+                  <select class="form-select first" name="client_id" aria-label="Default select example">
+                    <option selected>Select client</option>
+                    @foreach ($client as $item)
+                    <option value="{{$item->id}}">{{$item->nom}}</option>
                     @endforeach
                   </select>
                   <input type="text" name="prenom" class="form-control first" placeholder="Prenom" aria-label="Prenom">

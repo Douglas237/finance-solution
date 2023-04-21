@@ -68,17 +68,17 @@
                         <input type="hidden" id="transfert_id" name="transfert_id">
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Numero compte destinatair:</label>
-                            <input type="text" name="compte_destinatair" id="compte_destinatair" class="form-control">
+                            <input type="number" name="compte_destinatair" id="compte_destinatair" class="form-control">
                             <span id="compte_destinatair_error" class="text-danger error_message"></span>
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Montan a transferer:</label>
-                            <input type="text" name="montant_transfert" id="montant_transfert" class="form-control">
+                            <input type="number" name="montant_transfert" id="montant_transfert" class="form-control">
                             <span id="montant_transfert_error" class="text-danger error_message"></span>
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Numero compte destinateur:</label>
-                            <input type="text" name="compte_destinateur" id="compte_destinateur" class="form-control">
+                            <input type="number" name="compte_destinateur" id="compte_destinateur" class="form-control">
                             <span id="compte_destinateur_error" class="text-danger error_message"></span>
                         </div>
                     </form>
@@ -258,9 +258,9 @@
                                         swal({
                                             title: "Le compte du destinatair n'existe pas",
                                         });
-                                        
+
                                     }
-                                   
+
                                     // $('#compte_destinatair_error').html(error.responseJSON.errors.compte_destinatair);
                                     // $('#compte_destinateur_error').html(error.responseJSON.errors.compte_destinateur);
                                     // $('#montant_transfert_error').html(error.responseJSON.errors.montant_transfert);

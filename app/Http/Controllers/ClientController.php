@@ -53,7 +53,7 @@ class ClientController extends Controller
             'cni'=>'required|string',
             'ville'=>'required|string',
             'adress'=>'required|string',
-            'image'=>'nullable','image','mimes:jpeg,jpg,png,gif', 'max:10000',
+            'image'=>'nullable','image','mimes:jpeg,jpg,png,gif', 'max:1000',
         ]);
 
         if($validatedData->fails()) {
