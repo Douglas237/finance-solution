@@ -26,33 +26,13 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             placeholder="cni" aria-label="cni" />
                     </div>
                     <div class="col gauche">
-                        <select class="form-select first" name="sexe" aria-label="Default select example">
+                        <select class="form-select first" name="sexe" id="sexe" aria-label="Default select example">
                             <option selected>sexe</option>
                             <option value="male">Homme</option>
-                            <option value="female">Femme</option>
+                            <option value="femmel">Femme</option>
                         </select>
                         <input type='number' name="telephone" id="telephone" class="form-control first"
                             placeholder="telephone" />
-                        <div>
-
-                        </div>
-                        {{-- <div>
-                            <p style="padding: 0;margin: 0;">Lier a une carte</p>
-                            <div class="form-check">
-                                <input class="form-check-input sex" type="radio" name="lier" id="oui"
-                                    value="oui" checked>
-                                <label class="form-check-label" for="oui">
-                                    oui
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input sex" type="radio" name="lier" id="non"
-                                    value="non">
-                                <label class="form-check-label" for="non">
-                                    non
-                                </label>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
             </form>
@@ -211,7 +191,7 @@ var table = $(".data-table").DataTable
             });
 
             // DELETE
-            $('body').on('click', '#delete', function() {
+            $('body').on('click', '#delet', function() {
                 var id = $(this).data('id');
                 swal({
                         title: "Are you sure?",

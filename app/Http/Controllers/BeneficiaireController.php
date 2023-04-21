@@ -18,12 +18,14 @@ class BeneficiaireController extends Controller
 
         $beneficiaires = Beneficiaire::join('entreprises', 'entreprises.id', '=', 'beneficiaires.beneficiaireable_id')
                                     ->where('beneficiaires.beneficiaireable_type', '=', 'App\Models\Entreprise')
-                                    ->get();
+                                    ->get('beneficiaires.*','entreprises.*');
+
         if($request->ajax()) {
             $allData = DataTables::of($beneficiaires)
             ->addIndexColumn()
             ->addColumn('entreprise', function($beneficiaires){
-                return $beneficiaires->nom_entreprise;
+                $nam_entreprise = Entreprise::where('id', $beneficiaires->beneficiaireable_id)->get();
+                return $nam_entreprise[0]->nom_entreprise;
             })
             ->addColumn('action', function($row){
                 $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary  btn_sm editCompte" id="edite">Edite</a>';
@@ -43,12 +45,13 @@ class BeneficiaireController extends Controller
 
         $beneficiaires = Beneficiaire::join('clients', 'clients.id', '=', 'beneficiaires.beneficiaireable_id')
                                     ->where('beneficiaires.beneficiaireable_type', '=', 'App\Models\Client')
-                                    ->get();
+                                    ->get('beneficiaires.*','clients.*');
         if($request->ajax()) {
             $allData = DataTables::of($beneficiaires)
             ->addIndexColumn()
             ->addColumn('client', function($beneficiaires){
-                return $beneficiaires->nom;
+                $nam_client = Client::where('id', $beneficiaires->beneficiaireable_id)->get();
+                return $nam_client[0]->nom;
             })
             ->addColumn('action', function($row){
                 $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary  btn_sm editCompte" id="edite">Edite</a>';

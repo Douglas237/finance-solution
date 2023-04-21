@@ -15,12 +15,14 @@ class ModalCarteController extends Controller
    {
     $carte = Carte::join('compte_banks', 'compte_banks.id', '=', 'compte_banks.comptebankable_id')
                                     ->where('compte_banks.comptebankable_type', '=', 'App\Models\client')
-                                    ->get();
+                                    ->where('compte_banks.comptebankable_type','=','App\Models\Entreprise')
+                                    ->get('compte_banks.*','cartes.*');
     if($request->ajax()) {
         $allData = DataTables::of($carte)
         ->addIndexColumn()
         ->addColumn('compte', function($carte){
-            return $carte->numero_compte;
+            $nam_carte = CompteBank::where('id',$carte->comptebankable_id)->get();
+            return $nam_carte[0]->numero_compte;
         })
         ->addColumn('action', function($row){
             $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary  btn_sm editCompte" id="edite">Edite</a>';

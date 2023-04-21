@@ -47,6 +47,7 @@ class CarteController extends Controller
                 'type' => request('type'),
                 'date_creation' => request('date_creation'),
                 'date_expiration' => request('date_expiration'),
+                'comptebankable_id' => request('comptebank_id'),
                 'statut' => request('statut'),
             ]
         );

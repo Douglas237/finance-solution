@@ -27,10 +27,10 @@
                     <label for="">Telephone :</label>
                     <p> {{ $shows->telephone }}</p>
                 </div>
-                <div class="col-3">
+                {{-- <div class="col-3">
                     <label for="">Entreprise :</label>
-                    <p> {{ $shows->entreprise }}</p>
-                </div>
+                    <p> {{ $shows->nom_entreprise }}</p>
+                </div> --}}
             </div>
         </div>
     </div>

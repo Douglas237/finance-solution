@@ -28,7 +28,6 @@ class ModalBeneficiaireController extends Controller
             'prenom'=> 'required|string',
             'cni'=>'required|string',
             'telephone'=>'required|string',
-            'entreprise_id'=>'required',
             'sexe' => 'required|string',
         ]);
         if($validatedData->fails()) {
@@ -43,7 +42,6 @@ class ModalBeneficiaireController extends Controller
                     'prenom'=> request('prenom'),
                     'cni'=>request('cni'),
                     'telephone'=> request('telephone'),
-                    'beneficiaireable_id'=> (int)request('entreprise_id'),
                     'sexe' => request('sexe'),
         ]);
         return $beneficiaire;
@@ -54,6 +52,7 @@ class ModalBeneficiaireController extends Controller
             abort(404);
         }
         $todelet->delete();
+        return $todelet;
     }
     public function toshow($id) {
         $toshow = Beneficiaire::find($id);

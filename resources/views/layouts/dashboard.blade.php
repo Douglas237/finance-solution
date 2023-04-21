@@ -71,7 +71,7 @@
                     <ul class="souscli">
                         {{-- <li><a href="{{route('Client.create')}}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem;font-size: 0.5em;"></i>Nouveau client</a></li> --}}
                         <li><a href="{{ route('Client.index') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem;font-size: 0.5em;"></i>Liste de client</a></li>
-                        <li><a href="{{ route('beneficiaire.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem;font-size: 0.5em;"></i>beneficiaires</a></li>
+                        {{-- <li><a href="{{ route('beneficiaire.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem;font-size: 0.5em;"></i>beneficiaires</a></li> --}}
                     </ul>
                 </li>
                 <li>
