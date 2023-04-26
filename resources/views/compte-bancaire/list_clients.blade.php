@@ -7,38 +7,39 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header modalhead">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Edition Client</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="clientmodal" class="form-control" enctype="multipart/form-data">
+                    <form id="clientmodal" class="form-control modalform" enctype="multipart/form-data">
                         @csrf
-                        <div class="note">
-                            <p><strong id="modaltitle">Informations du client</strong></p>
-                        </div>
                         <div class="row tout">
                             <div class="col right">
                                 <input type="hidden" id="client_id" name="client_id">
-                                <input type="text" name="nom" id="nom" class="form-control first"
+                                <input type="text" name="nom" id="nom" class="form-control firstmodal"
                                     placeholder="nom" aria-label="nom" required>
-                                <input type="text" name="email" id="email" class="form-control first"
+                                <span style="margin-left: 1.5rem" id="nom_error" class="text-danger errors"></span>
+                                <input type="text" name="email" id="email" class="form-control firstmodal"
                                     placeholder="email" aria-label="email" required>
-                                <input type="text" name="ville" id="ville" class="form-control first"
+                                <span style="margin-left: 1.5rem" id="email_error" class="text-danger errors"></span>
+                                <input type="text" name="ville" id="ville" class="form-control firstmodal"
                                     placeholder="ville" aria-label="ville" required>
-                                <input type='date' name="date_naissance" id="date_naissance" class="form-control first"
-                                    placeholder="Select Date" />
-                                <div style="margin-top: -1.5rem">
-                                    <p style="padding: 0;margin: 0;">Sex</p>
+                                <span style="margin-left: 1.5rem" id="ville_error" class="text-danger errors"></span>
+                                <input type='date' name="date_naissance" id="date_naissance" class="form-control firstmodal"
+                                    placeholder="Select Date"/>
+                                <span style="margin-left: 1.5rem" id="date_naissance_error" class="text-danger errors"></span>
+                                <div class="modalsex" style="margin-top: -1.5rem">
+                                    <p style="padding: 0;margin: 0;">Sex :</p>
                                     <div class="form-check">
-                                        <input class="form-check-input sex" type="radio" value="male" name="sexe"
+                                        <input class="form-check-input sexM" type="radio" value="male" name="sexe"
                                             id="male">
                                         <label class="form-check-label" for="male">
                                             Homme
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input sex" type="radio" value="femelle" name="sexe"
+                                        <input class="form-check-input sexM" type="radio" value="femelle" name="sexe"
                                             id="femelle" checked>
                                         <label class="form-check-label" for="femelle">
                                             Femme
@@ -47,16 +48,21 @@
                                 </div>
                             </div>
                             <div class="col gauche">
-                                <input type="text" name="prenom" id="prenom" class="form-control first"
+                                <input type="text" name="prenom" id="prenom" class="form-control firstmodal"
                                     placeholder="prenom" aria-label="prenom" required>
-                                <input type="text" name="telephone" id="telephone" class="form-control first"
+                                <span style="margin-left: 1.5rem" id="prenom_error" class="text-danger errors"></span>
+                                <input type="text" name="telephone" id="telephone" class="form-control firstmodal"
                                     placeholder="telephone" aria-label="telephone" required>
-                                <input type="text" name="cni" id="cni" class="form-control first"
+                                <span style="margin-left: 1.5rem" id="telephone_error" class="text-danger errors"></span>
+                                <input type="text" name="cni" id="cni" class="form-control firstmodal"
                                     placeholder="num_cni" aria-label="num_cni" required>
-                                <input type="text" name="adress" id="adress" class="form-control first"
+                                <span style="margin-left: 1.5rem" id="cni_error" class="text-danger errors"></span>
+                                <input type="text" name="adress" id="adress" class="form-control firstmodal"
                                     placeholder="adress" aria-label="adress" required>
-                                <input type="file" name="image" id="image" class="form-control first"
+                                <span style="margin-left: 1.5rem" id="adress_error" class="text-danger errors"></span>
+                                <input type="file" name="image" id="image" class="form-control firstmodal"
                                     aria-label="file example" required>
+                                <span style="margin-left: 1.5rem" id="image_error" class="text-danger errors"></span>
                             </div>
                         </div>
                     </form>
@@ -151,8 +157,15 @@
     </script>
 
     <script type="text/javascript">
+        document.forms[0].addEventListener("submit", e => {
+            // e.preventDefault();
+            const phone = e.target.elements["telephone"];
+            phone.value = phone.value.replaceAll(" ", "");
+            console.log(phone.value);
+            //e.submit();
+        });
         $(function() {
-
+            var form = $('#clientmodal')[0];
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -256,8 +269,8 @@
                     }
                 });
             });
-            var form = $('#clientmodal')[0];
-            $('body').on('click', '#editer', function() {
+           
+            $('body').on('click', '#editer', function(e) {
                 var formdata = new FormData(form);
                 $.ajax({
                     url: '{{ route('modif') }}',
@@ -272,6 +285,16 @@
                         console.log(response);
                     },
                     error: function(error) {
+
+                        $('#nom_error').html(error.responseJSON.errors.nom);
+                        $('#email_error').html(error.responseJSON.errors.email);
+                        $('#ville_error').html(error.responseJSON.errors.ville);
+                        $('#date_naissance_error').html(error.responseJSON.errors.date_naissance);
+                        $('#prenom_error').html(error.responseJSON.errors.prenom);
+                        $('#telephone_error').html(error.responseJSON.errors.telephone);
+                        $('#cni_error').html(error.responseJSON.errors.cni);
+                        $('#adress_error').html(error.responseJSON.errors.adress);
+                        $('#image_error').html(error.responseJSON.errors.image);
                         console.log(error);
                     }
                 });
