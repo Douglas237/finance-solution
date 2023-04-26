@@ -55,7 +55,9 @@ class EntrepriseController extends Controller
                 'image' => $image,
             ]
         );
-        return redirect()->route('entreprise.list', ['id' => $entreprise->id]);
+        Toastr::success("Enregistrement réussit de l'entreprise : " . $request->nom_entreprise);
+        return redirect()->route('entreprise.list');
+        // , ['id' => $entreprise->id]
     }
 }
 

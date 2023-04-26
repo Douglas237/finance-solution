@@ -14,5 +14,9 @@ class Carte extends Model
     {
         return $this->belongsToMany(CompteBank::class,'carte__comptebanks','carte_id','comptebank_id')->withTimestamps();
     }
+    public function carte_comptebanks()
+    {
+        return $this->belongsToMany(Carte_Comptebank::class,'carte_id','comptebank_id');
+    }
 
 }

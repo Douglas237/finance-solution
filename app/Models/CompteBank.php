@@ -10,11 +10,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class CompteBank extends Model
 {
     use HasFactory;
-    
+
     protected $guarded = [];
 
     public function comptebankable()
-    { 
+    {
         return $this->morphTo();
     }
 
@@ -37,5 +37,9 @@ class CompteBank extends Model
     }
     public function retraits(){
         return $this->hasMany(Retrai::class, 'comptebank_id', 'id');
+    }
+    public function carte_comptebanks()
+    {
+        return $this->belongsToMany(Carte_Comptebank::class,'carte_id','comptebank_id');
     }
 }

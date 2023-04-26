@@ -131,6 +131,7 @@ class CompteBankController extends Controller
             ]
         );
         // dd($client->comptebanks);
+        Toastr::success("Creation du compte client effectuée avec succès");
         return redirect()->route('compte.list');
 
     }
@@ -171,6 +172,7 @@ class CompteBankController extends Controller
                         'statut' => request('statut'),
                     ]
                 );
+                Toastr::success("Creation du compte entreprise effectuée avec succès");
                 return redirect()->route('compte.entreprise');
     }
 }
