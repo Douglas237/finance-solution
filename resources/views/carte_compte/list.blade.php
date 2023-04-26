@@ -203,7 +203,7 @@
             });
 
             // DELETE
-            $('body').on('click', '#delete', function() {
+            $('body').on('click', '#delet', function() {
                 var id = $(this).data('id');
                 swal({
                         title: "Are you sure?",

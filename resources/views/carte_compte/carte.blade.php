@@ -20,7 +20,7 @@
                     <option value="master carte">Master carte</option>
                   </select>
                   {{-- <p>{{$count}}</p> --}}
-                  <select class="select 2" name="comptebank_id" aria-label="Default select example">
+                  <select class="select 2" name ="comptebank_id" aria-label="Default select example">
                     <option selected>Select Numero compte</option>
                     @foreach ( $count as $rest )
                     <option value="{{$rest->id}}">{{$rest->numero_compte}}</option>
