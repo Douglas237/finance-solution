@@ -22,6 +22,7 @@ class CompteBankController extends Controller
                                     ->where('compte_banks.comptebankable_type', '=', 'App\Models\Client')
                                     ->get('compte_banks.*','clients.*');
         // dd($compte_banks);
+        // $compte_banks = CompteBank::all();
         if ($request->ajax()) {
             $allData = DataTables::of($compte_banks)
                 ->addIndexColumn()
@@ -42,7 +43,7 @@ class CompteBankController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
             return $allData;
-        } 
+        }
         return view("compte-bancaire.list-compt", compact('compte_banks'));
     }
 
@@ -59,7 +60,7 @@ class CompteBankController extends Controller
         // $ncompte_banks = CompteBank::where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')->get();
         // dd($compte_banks);
         if ($request->ajax()) {
-            $allData = DataTables::of($compte_banks) 
+            $allData = DataTables::of($compte_banks)
                 ->addIndexColumn()
                 ->addColumn('proprietaire', function($compte_banks){
                     $nom_resp = Entreprise::where('id',$compte_banks->comptebankable_id)->get();
@@ -81,7 +82,7 @@ class CompteBankController extends Controller
                 ' . $row->id . '" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delete">Del</a>';
                     $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
                 ' . $row->id . '" data-original-title="Detail" class="edit btn btn-warning btn_sm detailcompt" id="detail">Detail</a>';
-                    return $btn; 
+                    return $btn;
                 })
                 ->rawColumns(['action'])
                 ->make(true);

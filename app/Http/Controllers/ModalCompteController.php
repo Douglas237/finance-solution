@@ -26,7 +26,7 @@ class ModalCompteController extends Controller
         if (! $compte) {
             # code...
             abort(404);
-        }      
+        }
         $validatedData = Validator::make($request->all(),[
             'num'=> 'required|string',
             'solde'=> 'required|string',
@@ -42,7 +42,7 @@ class ModalCompteController extends Controller
             ->back()
             ->withErrors($validatedData)
             ->withInput();
-        } 
+        }
 
         $compte->update([
             'solde' => (int) request('solde'),

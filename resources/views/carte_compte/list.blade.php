@@ -76,7 +76,7 @@
                             <tr>
                                 <th scope="col">N° </th>
                                 <th scope="col">N° Carte</th>
-                                {{-- <th scope="col">Numero compte</th> --}}
+                                <th scope="col">Numero compte</th>
                                 <th scope="col">Type de carte</th>
                                 <th scope="col">Date creation</th>
                                 <th scope="col">Date expiration</th>
@@ -130,10 +130,10 @@
                         data: 'numero_carte',
                         name: 'numero_carte'
                     },
-                    // {
-                    //     data: 'comptebank_id',
-                    //     name: 'numero_compte'
-                    // },
+                    {
+                        data: 'compte',
+                        name: 'compte'
+                    },
                     {
                         data: 'type',
                         name: 'type'

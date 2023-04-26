@@ -49,7 +49,7 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="title">
             <p><strong>Liste des Beneficiaires</strong></p>
             <a
-                href="{{ route('beneficiaire.create') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem; floating: right;" type="button" class="btn btn-success"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter beneficiaire</button></a>
+                href="{{ route('clientben.tocreate') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem; floating: right;" type="button" class="btn btn-success"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter beneficiaire</button></a>
         </div>
         <div class="alltabs">
             <div class="tabs_1">
@@ -61,7 +61,7 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <th scope="col">Prenom</th>
                             <th scope="col">N° CNI</th>
                             <th scope="col">Telephone</th>
-                            <th scope="col">Entreprise</th>
+                            <th scope="col">Client</th>
                             <th scope="col">Sexe</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -90,7 +90,7 @@ var table = $(".data-table").DataTable
 ({
     severSide:true,
     processing:true,
-        ajax:"{{route('beneficiaire.entreprise')}}",
+        ajax:"{{route('beneficiaire.client')}}",
                 "bPaginate": true,
                 "bInfo": true,
                 "bFilter": true,
@@ -130,8 +130,8 @@ var table = $(".data-table").DataTable
                 name: 'telephone'
             },
             {
-                data: 'entreprise',
-                name: 'entreprise'
+                data: 'client',
+                name: 'client'
             },
             {
                 data: 'sexe',
@@ -145,8 +145,8 @@ var table = $(".data-table").DataTable
       ]
 });
 
-                // Edition d'un beneficiaire
-                $('body').on('click', '#edite', function() {
+    // Edition d'un beneficiaire
+    $('body').on('click', '#edite', function() {
                 var id = $(this).data("id");
                 $.ajax({
                     url: '{{ url('beneficiaire/edit', '') }}' + '/' + id,
@@ -237,7 +237,6 @@ var table = $(".data-table").DataTable
                     }
                 });
             });
-
 
 });
 </script>
