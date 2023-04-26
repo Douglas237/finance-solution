@@ -49,3 +49,43 @@ $("#menu_icon1").click(function () {
     $('#menu_icon').css('display', 'block');
     console.log("oui");
 });
+
+// document.getElementById("telephone").addEventListener("keydown", function(e) {
+// const txt = this.value;
+// // prevent more than 12 characters, ignore the spacebar, allow the backspace
+// if ((txt.length == 12 || e.which == 32) & e.which !== 8) e.preventDefault();
+// // add spaces after 3 & 7 characters, allow the backspace
+// if ((txt.length == 3 || txt.length == 7) && e.which !== 8)
+//     this.value = this.value + " ";
+// });
+// // when the form is submitted, remove the spaces
+// document.forms[0].addEventListener("submit", e => {
+// e.preventDefault();
+// const phone = e.target.elements["phone"];
+// phone.value = phone.value.replaceAll(" ", "");
+// console.log(phone.value);
+// //e.submit();
+// });
+
+const phone = document.getElementById("telephone");
+phone.addEventListener("keyup", function(e) {
+  let txt = this.value.replace(/\D/g, '');
+  let newtxt = '';
+  //now copy the number inserting a space where needed
+  for (let i = 0; i < Math.min(txt.length, 9); i++) {
+    newtxt += txt[i];
+    if ((i == 2) || (i == 5)) {
+      newtxt += ' ';
+    }
+  }
+  if (newtxt[newtxt.length - 1] == ' ') newtxt = newtxt.substring(0, newtxt.length - 1);
+  this.value = newtxt;
+});
+// when the form is submitted, remove the spaces
+document.forms[0].addEventListener("submit", e => {
+    // e.preventDefault();
+    const phone = e.target.elements["telephone"];
+    phone.value = phone.value.replaceAll(" ", "");
+    console.log(phone.value);
+    //e.submit();
+});

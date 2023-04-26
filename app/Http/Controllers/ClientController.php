@@ -43,26 +43,26 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = Validator::make($request->all(),[
+        $this->validate($request,[
             'nom'=> 'required|string',
             'prenom'=> 'required|string',
             'date_naissance'=>'required|date',
             'sexe'=>'required|string',
             'email'=>'required|string',
-            'telephone'=>'required|numeric',
+            'telephone'=> array('required','regex:/(^6[5-9]([0-9]{2}){3}[0-9]$)/u'),
             'cni'=>'required|string',
             'ville'=>'required|string',
             'adress'=>'required|string',
-            'image'=>'nullable','image','mimes:jpeg,jpg,png,gif', 'max:1000',
+            'image'=>'required|image|mimes:jpeg,jpg,png,gif|max:10000'
         ]);
 
-        if($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-            ->back()
-            ->withErrors($validatedData)
-            ->withInput();
-        }
+        // if($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //     ->back()
+        //     ->withErrors($validatedData)
+        //     ->withInput();
+        // }
 
         try {
 
@@ -103,26 +103,26 @@ class ClientController extends Controller
 
     }
     public function update(Request $request, $id) {
-        $validatedData = Validator::make($request->all(),[
-            'nom'=> 'required|string|unique:clients',
+        $this->validate($request,[
+            'nom'=> 'required|string',
             'prenom'=> 'required|string',
             'date_naissance'=>'required|date',
             'sexe'=>'required',
             'email'=>'required|string',
-            'telephone'=>'required|numeric',
+            'telephone'=> array('required','regex:/(^6[5-9]([0-9]{2}){3}[0-9]$)/u'),
             'cni'=>'required|string',
             'ville'=>'required|string',
             'adress'=>'required|string',
-            'image'=>'nullable','image','mimes:jpeg,jpg,png,gif', 'max:10000',
+            'image'=>'required|image|mimes:jpeg,jpg,png,gif|max:10000'
         ]);
 
-        if($validatedData->fails()) {
-            Toastr::error('The fiel not be empty.');
-            return redirect()
-            ->back()
-            ->withErrors($validatedData)
-            ->withInput();
-        }
+        // if($validatedData->fails()) {
+        //     Toastr::error('The fiel not be empty.');
+        //     return redirect()
+        //     ->back()
+        //     ->withErrors($validatedData)
+        //     ->withInput();
+        // }
 
         try {
 

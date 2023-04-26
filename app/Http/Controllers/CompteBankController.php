@@ -101,28 +101,28 @@ class CompteBankController extends Controller
     public function storeclient(Request $request)
     {
 
-        $validatedData = Validator::make($request->all(), [
+        $this->validate($request, [
             'num' => 'required|string',
-            'solde' => 'required|string',
+            'solde' => 'required',
             'code' => 'required|string',
             'type' => 'required|string',
             'date_ouverture' => 'required|date',
             'client_id' => 'required|integer',
             'statut' => 'required|boolean',
         ]);
-        if ($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-                ->back()
-                ->withErrors($validatedData)
-                ->withInput();
-        }
-
+        // if ($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //         ->back()
+        //         ->withErrors($validatedData)
+        //         ->withInput();
+        // }
+        
         $client = Client::Find($request->client_id);
         $client->comptebanks()->create(
             [
                 'numero_compte' =>(string) request('num'),
-                'solde' => (int) request('solde'),
+                'solde' => (float) request('solde'),
                 'type_compte' => request('type'),
                 'date_ouverture' => request('date_ouverture'),
                 'code' => (int) request('code'),
@@ -143,28 +143,28 @@ class CompteBankController extends Controller
     }
     public function storeentreprise(Request $request){
 
-        $validatedData = Validator::make($request->all(), [
+        $this->validate($request, [
             'num' => 'required|string',
-            'solde' => 'required|string',
+            'solde' => 'required',
             'code' => 'required|string',
-            'type' => 'required|string',
+            'type' => 'required|in:Compte courant,Compte epagne',
             'date_ouverture' => 'required|date',
             'entreprise_id' => 'required|integer',
             'statut' => 'required|boolean',
         ]);
-        if ($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-                ->back()
-                ->withErrors($validatedData)
-                ->withInput();
-        }
+        // if ($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //         ->back()
+        //         ->withErrors($validatedData)
+        //         ->withInput();
+        // }
 
         $entreprise = Entreprise::Find($request->entreprise_id);
                 $entreprise->comptebanks()->create(
                     [
                         'numero_compte' => request('num'),
-                        'solde' => (int) request('solde'),
+                        'solde' => (float) request('solde'),
                         'type_compte' => request('type'),
                         'date_ouverture' => request('date_ouverture'),
                         'code' => (int) request('code'),

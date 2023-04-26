@@ -13,6 +13,14 @@
     <link rel="stylesheet" href={{ asset('icons/css/all.css') }}>
     <link rel="stylesheet" href="{{ asset('css/finance.css') }}">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <style type="text/css">
+        .errors{
+          color: red;
+          font-style: italic;
+          font-weight: bold;
+          margin-top: -1.5rem;
+        }
+      </style>
     <title>Finance-solution</title>
 </head>
 

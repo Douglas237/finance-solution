@@ -25,26 +25,26 @@ class ModalClientController extends Controller
             # code...
             abort(404);
         }
-        $validatedData = Validator::make($request->all(),[
+        $this->validate($request,[
             'nom'=> 'required|string',
             'prenom'=> 'required|string',
             'date_naissance'=>'required|date',
-            'sexe'=>'required|string',
+            'sexe'=>'required',
             'email'=>'required|string',
-            'telephone'=>'required|numeric',
+            'telephone'=> array('required','regex:/(^6[5-9]([0-9]{2}){3}[0-9]$)/u'),
             'cni'=>'required|string',
             'ville'=>'required|string',
             'adress'=>'required|string',
-            'image'=>'nullable','image','mimes:jpeg,jpg,png,gif', 'max:10000',
+            'image'=>'required|image|mimes:jpeg,jpg,png,gif|max:10000',
         ]);
 
-        if($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-            ->back()
-            ->withErrors($validatedData)
-            ->withInput();
-        }
+        // if($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //     ->back()
+        //     ->withErrors($validatedData)
+        //     ->withInput();
+        // }
 
         if ($request->hasFile('image'))
         {

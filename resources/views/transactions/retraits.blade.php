@@ -70,14 +70,12 @@
                         {{-- <input type="hidden" id="transfert_id" name="transfert_id"> --}}
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Numero compte :</label>
-                            <input type="text" name="num_compte" id="num_compte" class="form-control"
-                                id="recipient-name">
+                            <input type="text" name="num_compte" id="num_compte" class="form-control">
                             <span id="num_compte_error" class="text-danger error_message"></span>
                         </div>
                         <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Montan a transferer:</label>
-                            <input type="text" name="montant_retrait" id="montant_retrait" class="form-control"
-                                id="recipient-name">
+                            <label for="message-text" class="col-form-label">Montan a retirer:</label>
+                            <input type="number" min="0" name="montant_retrait" id="montant_retrait" class="form-control">
                             <span id="montant_retrait_error" class="text-danger error_message"></span>
                         </div>
                     </form>
@@ -108,7 +106,7 @@
                                 <th scope="col">N° </th>
                                 <th scope="col">N° du compte</th>
                                 <th scope="col">Proprietaire</th>
-                                <th scope="col">Montant de retrait</th>
+                                <th scope="col">Montant retirer</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>

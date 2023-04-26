@@ -42,26 +42,39 @@ class VersementController extends Controller
             'nom_versant' => 'required|string',
             'prenom_versant' => 'required|string',
             'num_cni' => 'required|string',
-            'montant' => 'required|string',
+            'montant' => 'required',
             'num_compte' => 'required|string',
         ]);
 
         // $destinateur = CompteBank::find($request->num_compte);
-        $destinateur = CompteBank::where('numero_compte',$request->num_compte)->get();
+        $destinateur = CompteBank::where('numero_compte', $request->num_compte)->get();
         // dd($destinatair);
         if ($destinateur->isEmpty()) {
             # code...
-            abort(405);
+            abort(405); 
         }
 
-        if ($destinateur[0]->comptebankable_type == 'App\Models\Client') {
+        // if ($destinateur[0]->comptebankable_type == 'App\Models\Client') {
+        //     # code...
+        //     $infodestinateur = CompteBank::join('clients', 'clients.id', '=', 'compte_banks.comptebankable_id')
+        //         ->where('compte_banks.comptebankable_type', '=', 'App\Models\Client')
+        //         ->get();
+        // } elseif ($destinateur[0]->comptebankable_type == 'App\Models\Entreprise') {
+        //     $infodestinateur = CompteBank::join('entreprises', 'entreprises.id', '=', 'compte_banks.comptebankable_id')
+        //         ->where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')
+        //         ->get();
+        // }
+
+        if ($destinateur[0]->comptebankable_type == 'App\Models\Client') { 
             # code...
             $infodestinateur = CompteBank::join('clients', 'clients.id', '=', 'compte_banks.comptebankable_id')
                 ->where('compte_banks.comptebankable_type', '=', 'App\Models\Client')
+                ->where('numero_compte',request('num_compte'))
                 ->get();
-        } elseif ($destinateur[0]->comptebankable_type == 'App\Models\Entreprise') {
+        } elseif ($destinateur[0]->comptebankable_type =="App\\Models\\Entreprise") {
             $infodestinateur = CompteBank::join('entreprises', 'entreprises.id', '=', 'compte_banks.comptebankable_id')
                 ->where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')
+                ->where('numero_compte',request('num_compte'))
                 ->get();
         }
         // dd($infodestinateur);
@@ -71,13 +84,13 @@ class VersementController extends Controller
     public function edit(Request $request)
     {
         # code...
-        $request->validate([
-            'nom_versant' => 'required|string',
-            'prenom_versant' => 'required|string',
-            'num_cni' => 'required|string',
-            'montant' => 'required|string',
-            'num_compte' => 'required|string',
-        ]);
+        // $request->validate([
+        //     'nom_versant' => 'required|string',
+        //     'prenom_versant' => 'required|string',
+        //     'num_cni' => 'required|string',
+        //     'montant' => 'required',
+        //     'num_compte' => 'required|string', 
+        // ]);
 
 
         // $idcompte = CompteBank::where('numero_compte',$request->num_compte)->get();
@@ -96,12 +109,12 @@ class VersementController extends Controller
                 'nom_versant' => $request->nom_versant,
                 'prenom_versant' => $request->prenom_versant,
                 'num_cni' => $request->num_cni,
-                'montant' => $request->montant,
+                'montant' =>(float) $request->montant,
                 'num_compte' => $request->num_compte,
                 'comptebank_id' => $destinateur[0]->id,
             ]);
             $destinateur[0]->update([
-                'solde' => $destinateur[0]->solde + (int)request('montant'),
+                'solde' => $destinateur[0]->solde + (float)request('montant'),
             ]);
         });
         return response()->json(['message' => 'mise a jour avec succes'], 200);
