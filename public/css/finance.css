@@ -292,7 +292,7 @@ ul ul {
 }
 .formcompte form {
     width: 93%;
-    height: 70%;
+    height: 77%;
     margin-top: 0.2%;
     margin-left: 3.5%;
     background-color: #fff;
@@ -302,7 +302,7 @@ ul ul {
 .formcompte .title {
     position: relative;
     left: 3.4%;
-    top: 7%;
+    top: 3%;
 }
 .formcompte .title p {
     font-size: 2em;
@@ -317,7 +317,7 @@ ul ul {
     background-color: #02501c;
     left: 0;
     width: 92.9999%;
-    margin-top: 6%;
+    margin-top: 1%;
 }
 .note p {
     font-size: 2em;
@@ -328,7 +328,7 @@ ul ul {
 .formcompte .tout .envoi {
     display: flex;
     justify-content: center;
-    margin-top: -0.5rem;
+    /* margin-top: 1.5rem; */
     /* align-items: flex-end; */
     /* height: 1.3rem; */
 }
@@ -500,6 +500,48 @@ form,
     justify-content: center;
     align-items: center;
     margin: 10px;
+}
+/* --------- style sur les modales------------ */
+.modalhead{
+    background-color: #02501c !important;
+    color: white !important;
+}
+.modalform{
+    width: 100% !important;
+    height: 70%;
+    margin: 0 !important;
+    background-color: #ffffff !important;
+    border-radius: 10px;
+    box-shadow: 5px 5px 80px rgb(231, 228, 228) !important;
+}
+.modal-body{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.modal-content{
+    width: 55rem !important;
+}
+.right{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.gauche{
+    margin-right: 0.5rem !important;
+}
+.modal-dialog{
+    margin-left: 20% !important;
+}
+.firstmodal{
+    margin-top: 2rem !important;
+    background-color: white !important;
+}
+.modalsex{
+    margin-top: 2rem !important;
+    display: flex !important;
+    margin-left: 1rem !important;
+}
+.sexM{
+    margin-top: 0.2rem !important;
 }
 /* --------------- Media query ---------------- */
 @media screen and (min-width: 1000px) and (max-width: 1144px){

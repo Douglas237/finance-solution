@@ -5,45 +5,42 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header modalhead">
                     <h1 class="modal-title fs-5" id="modaltitle">Edition Compte</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="form-control" id="compte_forme">
+                    <form class="form-control modalform" id="compte_forme">
                         @csrf
                         <input type="hidden" name="compte_id" id="compte_id">
-                        <div class="note">
-                            <p id="formtitle"><strong>Informations du client</strong></p>
-                        </div>
                         <div class="row tout">
                             <div class="col right">
-                                <input type="text" name="num" id="num" class="form-control first"
+                                <input type="text" name="num" id="num" class="form-control firstmodal"
                                     placeholder="numero du compte" aria-label="numero du compte">
-                                <input type="text" name="solde" id="solde" class="form-control first"
+                                <input type="number" min="0" name="solde" id="solde" class="form-control firstmodal"
                                     placeholder="solde" aria-label="solde">
-                                <input type='text' name="code" id="code" class="form-control first"
+                                <input type='text' name="code" id="code" class="form-control firstmodal"
                                     placeholder="code" aria-label="code" />
                             </div>
                             <div class="col gauche">
-                                <select class="form-select first" name="type" aria-label="Default select example">
+                                <select style="margin-left: 0.5rem;" class="form-select firstmodal" name="type" aria-label="Default select example">
                                     <option selected>Type de compte</option>
                                     <option value="Compte courant">Compte courant</option>
                                     <option value="Compte epagne">Compte epagne</option>
                                 </select>
-                                <input type='date' name="date_ouverture" id="date_ouverture" class="form-control first"
+                                <input type='date' name="date_ouverture" id="date_ouverture" class="form-control firstmodal"
                                     placeholder="Select Date" />
-                                <div>
-                                    <p style="padding: 0;margin: 0;">Status</p>
+                                <div style="padding-top: 0.5rem;" class="modalsex">
+                                    <p style="padding: 0;margin: 0;">Status :</p>
                                     <div class="form-check">
-                                        <input class="form-check-input sex" type="radio" name="statut" id="actif"
+                                        <input class="form-check-input sexM" type="radio" name="statut" id="actif"
                                             value="1" checked>
                                         <label class="form-check-label" for="actif">
                                             Actif
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input sex" type="radio" name="statut" id="inactif"
+                                        <input class="form-check-input sexM" type="radio" name="statut" id="inactif"
                                             value="0">
                                         <label class="form-check-label" for="inactif">
                                             Inactif
@@ -153,7 +150,7 @@
                     },
                     {
                         data: 'solde',
-                        name: 'solde'
+                        name: 'solde' 
                     },
                     {
                         data: 'type_compte',

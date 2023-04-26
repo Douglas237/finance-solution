@@ -62,7 +62,7 @@
                     <button type="button" id="close" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body"> 
                     <form id="transfertmodal" class="transfertmodal">
                         @csrf
                         <input type="hidden" id="transfert_id" name="transfert_id">
@@ -73,7 +73,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Montan a transferer:</label>
-                            <input type="text" name="montant_transfert" id="montant_transfert" class="form-control">
+                            <input type="number" min="0" name="montant_transfert" id="montant_transfert" class="form-control">
                             <span id="montant_transfert_error" class="text-danger error_message"></span>
                         </div>
                         <div class="mb-3">

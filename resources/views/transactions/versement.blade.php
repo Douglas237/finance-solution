@@ -83,7 +83,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Montant:</label>
-                            <input type="text" name="montant" id="montant" class="form-control" id="recipient-name">
+                            <input type="number" min="0" name="montant" id="montant" class="form-control" id="recipient-name">
                             <span id="montant_error" class="text-danger error_message"></span>
                         </div>
                         <div class="mb-3">
@@ -106,11 +106,11 @@
         <div class="title" style="display: flex;flex-direction: row;justify-content: space-between">
             <p><strong>Nouveau versement</strong></p>
             <button style="margin-right: 7rem;height: 3.5rem;" type="button" id="addpayment"
-                class="btn btn-outline-success">new payment</button>
+                class="btn btn-outline-success">Nouveau versement</button>
         </div>
         <div class="formcompte">
             <div class="title">
-                <p><strong>Liste des employer</strong></p>
+                <p><strong>Liste des versements</strong></p>
             </div>
             <div class="alltabs">
                 <div class="tabs_1">
@@ -126,7 +126,7 @@
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody> 
                             {{-- <tr>
                             <th scope="row">1</th>
                             <td>Mark</td>
@@ -283,7 +283,7 @@
                             $('#ville').html(response.ville);
                             $('#adress').html(response.adress);
                             $('#payment_modal').modal('hide');
-                            $('#confirm_modal').modal('show');
+                            $('#confirm_modal').modal('show'); 
                             console.log(response);
                         }
                         else{

@@ -12,13 +12,17 @@
             @csrf
             <div class="row tout">
                 <div class="col right">
-                  <input type="text" name="nom_entreprise" class="form-control first" placeholder="nom de l'entreprise" aria-label="nom de l'entreprise">
-                  <input type="text" name="type_entreprise" class="form-control first" placeholder="type entreprise" aria-label="type entreprise">
+                  <input type="text" name="nom_entreprise" class="form-control first" placeholder="nom de l'entreprise" aria-label="nom de l'entreprise" value="{{old('nom_entreprise')}}">
+                  {!!$errors->first('nom_entreprise','<p class="errors">:message</p>')!!}
+                  <input type="text" name="type_entreprise" class="form-control first" placeholder="type entreprise" aria-label="type entreprise" value="{{old('type_entreprise')}}">
+                  {!!$errors->first('type_entreprise','<p class="errors">:message</p>')!!}
                   <input type="file" name="image" class="form-control first" aria-label="file example" required>
                 </div>
                 <div class="col gauche">
-                    <input type="text" name="nom_respon" class="form-control first" placeholder="nom du responssable" aria-label="nom du responssable">
-                    <input type="text" name="cni_respon" class="form-control first" placeholder="numero cni du responssable" aria-label="type entreprise">
+                    <input type="text" name="nom_respon" class="form-control first" placeholder="nom du responssable" aria-label="nom du responssable"  value="{{old('nom_respon')}}">
+                    {!!$errors->first('nom_respon','<p class="errors">:message</p>')!!}
+                    <input type="text" name="cni_respon" class="form-control first" placeholder="numero cni du responssable" aria-label="type entreprise" value="{{old('cni_respon')}}">
+                    {!!$errors->first('cni_respon','<p class="errors">:message</p>')!!}
                   <div class="col-12 envoi">
                     <button class="btn btn-primary" type="submit">Submit form</button>
                   </div>

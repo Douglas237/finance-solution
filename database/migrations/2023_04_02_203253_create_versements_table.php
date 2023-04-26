@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nom_versant');
             $table->string('prenom_versant');
             $table->string('num_cni');
-            $table->string('montant');
+            $table->float('montant', 13, 2);
             $table->string('num_compte');
             $table->timestamps();
         });

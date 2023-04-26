@@ -58,7 +58,7 @@ class RetraitController extends Controller
 
         $request->validate([
             'num_compte' => 'required|string',
-            'montant_retrait' => 'required|string',
+            'montant_retrait' => 'required'
         ]);
 
         // $destinateur = CompteBank::find($request->num_compte);
@@ -111,17 +111,17 @@ class RetraitController extends Controller
         }
         // $compte = CompteBank::where('numero_compte', $request->num_compte)->get();
         DB::transaction(function () use ($request, $compte) {
-            if ((int)$compte[0]->solde < (int)request('montant_retrait')) {
+            if ((float)$compte[0]->solde < (float)request('montant_retrait')) {
                 # code...
                 abort(404);
             }
             Retrai::create([
                 'num_compte' => $request->num_compte,
-                'montant_retrait' => $request->montant_retrait,
+                'montant_retrait' =>(float) $request->montant_retrait,
                 'comptebank_id' => $compte[0]->id,
             ]);
             $compte[0]->update([
-                'solde' => $compte[0]->solde - (int)request('montant_retrait'),
+                'solde' => $compte[0]->solde - (float)request('montant_retrait'),
             ]);
         });
 
