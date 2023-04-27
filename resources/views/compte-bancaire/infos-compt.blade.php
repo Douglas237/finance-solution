@@ -29,7 +29,7 @@
                          <option value="{{$item->id}}" {{ $item->id == old('client_id') ? 'selected' : '' }}>{{$item->nom}}</option>
                         @endforeach
                       </select>
-                      <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#exampleModal" style="border-radius: 25%; background-color:#02501c">
+                      <button type="button" class="btn btn-primary" id="newclient" style="border-radius: 25%; background-color:#02501c">
                         <i class="fa fa-plus" style="background-color: #fff"></i>
                       </button>
                     </div>
@@ -91,15 +91,15 @@
     </div>
 
     <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" data-bs-backdrop="static" id="newclientModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header modalhead">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Edition Client</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+          <h1 class="modal-title fs-5" id="newtitle">Nouveau client</h1>
+          <button type="button" id="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
       <div class="modal-body">
-          <form id="clientmodal" class="form-control modalform" enctype="multipart/form-data">
+          <form id="formnewclient" class="form-control modalform" enctype="multipart/form-data">
               @csrf
               <div class="row tout">
                   <div class="col right">
@@ -155,7 +155,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          <button type="button" id="close" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
           <button  class="btn btn-success" type="submit" id="editer" value="submit" name="envoi" type="submit">Enregistrer</button>
         </div>
       </div>
@@ -181,7 +181,58 @@
     if (val == "Compte epagne") {
       $('#num').val({{'1111'.random_int(1000, 9999).random_int(1000, 9999);}})
     }
-    </script>
+  </script>
+  <script type="text/javascript">
+    $(function () {
+      // $.ajaxSetup({
+      //   headers: {
+      //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      //   }
+      // });
+      var form = $('#formnewclient')[0];
+
+      $('body').on('click', '#newclient', function() {
+        $('.errors').html('');
+        $("#formnewclient").trigger("reset");
+        $('#newclientModal').modal('show');
+      });
+
+      $('body').on('click', '#close', function() {
+        $('.errors').html('');
+        $("#formnewclient").trigger("reset");
+        $('#client_id').val('');
+      });
+      $('body').on('click', '#editer', function(e) {
+                $('.errors').html('');
+                var formdata = new FormData(form);
+                $.ajax({
+                    url: '{{ route('modif') }}',
+                    method: 'POST',
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+
+                    success: function(response) {
+                        $('#newclientModal').modal('hide');
+                        console.log(response);
+                    },
+                    error: function(error) {
+
+                        $('#nom_error').html(error.responseJSON.errors.nom);
+                        $('#email_error').html(error.responseJSON.errors.email);
+                        $('#ville_error').html(error.responseJSON.errors.ville);
+                        $('#date_naissance_error').html(error.responseJSON.errors.date_naissance);
+                        $('#prenom_error').html(error.responseJSON.errors.prenom);
+                        $('#telephone_error').html(error.responseJSON.errors.telephone);
+                        $('#cni_error').html(error.responseJSON.errors.cni);
+                        $('#adress_error').html(error.responseJSON.errors.adress);
+                        $('#image_error').html(error.responseJSON.errors.image);
+                        console.log(error);
+                    }
+                });
+            });
+    });
+  </script>
 @endsection
 
 

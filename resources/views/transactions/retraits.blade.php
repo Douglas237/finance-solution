@@ -82,7 +82,7 @@
                             <input type="number" min="0" name="montant_retrait" id="montant_retrait" class="form-control">
                             <span id="montant_retrait_error" class="text-danger error_message"></span>
                         </div>
-                    </form>
+                    </form> 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" id="close"
@@ -96,7 +96,7 @@
         <div class="title" style="display: flex;flex-direction: row;justify-content: space-between">
             <p><strong>Nouveau retrait</strong></p>
             <button style="margin-right: 7rem;height: 3.5rem;" type="button" id="addretrait"
-                class="btn btn-outline-success">Nouveau retrait</button>
+                class="btn btn-outline-success">Nouveau retrait</button> 
         </div>
         <div class="formcompte">
             <div class="title">
