@@ -525,7 +525,7 @@ form,
     margin: 0 !important;
     background-color: #ffffff !important;
     border-radius: 10px;
-    box-shadow: 5px 5px 80px rgb(231, 228, 228) !important;
+    /* box-shadow: 5px 5px 80px rgb(231, 228, 228) !important; */
 }
 .modal-body{
     margin: 0 !important;
@@ -555,6 +555,10 @@ form,
 }
 .sexM{
     margin-top: 0.2rem !important;
+}
+.paymentmodal{
+    margin-left: 3rem;
+    margin-right: 3rem;
 }
 /* --------------- Media query ---------------- */
 @media screen and (min-width: 1000px) and (max-width: 1144px){

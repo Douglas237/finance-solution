@@ -94,16 +94,69 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header" style="background-color: #02501c">
-          <h5 class="modal-title" id="exampleModalLabel" style="color: #fff">Ajout Client</h5>
+        <div class="modal-header modalhead">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Edition Client</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            ...
+      </div>
+      <div class="modal-body">
+          <form id="clientmodal" class="form-control modalform" enctype="multipart/form-data">
+              @csrf
+              <div class="row tout">
+                  <div class="col right">
+                      <input type="hidden" id="client_id" name="client_id">
+                      <input type="text" name="nom" id="nom" class="form-control firstmodal"
+                          placeholder="nom" aria-label="nom" required>
+                      <span style="margin-left: 1.5rem" id="nom_error" class="text-danger errors"></span>
+                      <input type="text" name="email" id="email" class="form-control firstmodal"
+                          placeholder="email" aria-label="email" required>
+                      <span style="margin-left: 1.5rem" id="email_error" class="text-danger errors"></span>
+                      <input type="text" name="ville" id="ville" class="form-control firstmodal"
+                          placeholder="ville" aria-label="ville" required>
+                      <span style="margin-left: 1.5rem" id="ville_error" class="text-danger errors"></span>
+                      <input type='date' name="date_naissance" id="date_naissance" class="form-control firstmodal"
+                          placeholder="Select Date"/>
+                      <span style="margin-left: 1.5rem" id="date_naissance_error" class="text-danger errors"></span>
+                      <div class="modalsex" style="margin-top: -1.5rem">
+                          <p style="padding: 0;margin: 0;">Sex :</p>
+                          <div class="form-check">
+                              <input class="form-check-input sexM" type="radio" value="male" name="sexe"
+                                  id="male">
+                              <label class="form-check-label" for="male">
+                                  Homme
+                              </label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input sexM" type="radio" value="femelle" name="sexe"
+                                  id="femelle" checked>
+                              <label class="form-check-label" for="femelle">
+                                  Femme
+                              </label>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col gauche">
+                      <input type="text" name="prenom" id="prenom" class="form-control firstmodal"
+                          placeholder="prenom" aria-label="prenom" required>
+                      <span style="margin-left: 1.5rem" id="prenom_error" class="text-danger errors"></span>
+                      <input type="tel" name="telephone" id="telephone" class="form-control firstmodal"
+                          placeholder="telephone" aria-label="telephone" required>
+                      <span style="margin-left: 1.5rem" id="telephone_error" class="text-danger errors"></span>
+                      <input type="text" name="cni" id="cni" class="form-control firstmodal"
+                          placeholder="num_cni" aria-label="num_cni" required>
+                      <span style="margin-left: 1.5rem" id="cni_error" class="text-danger errors"></span>
+                      <input type="text" name="adress" id="adress" class="form-control firstmodal"
+                          placeholder="adress" aria-label="adress" required>
+                      <span style="margin-left: 1.5rem" id="adress_error" class="text-danger errors"></span>
+                      <input type="file" name="image" id="image" class="form-control firstmodal"
+                          aria-label="file example" required>
+                      <span style="margin-left: 1.5rem" id="image_error" class="text-danger errors"></span>
+                  </div>
+              </div>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-          <button  class="btn btn-success" value="submit" name="envoi" type="submit">Enregistrer</button>
+          <button  class="btn btn-success" type="submit" id="editer" value="submit" name="envoi" type="submit">Enregistrer</button>
         </div>
       </div>
     </div>

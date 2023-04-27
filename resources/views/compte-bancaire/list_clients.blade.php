@@ -51,7 +51,7 @@
                                 <input type="text" name="prenom" id="prenom" class="form-control firstmodal"
                                     placeholder="prenom" aria-label="prenom" required>
                                 <span style="margin-left: 1.5rem" id="prenom_error" class="text-danger errors"></span>
-                                <input type="text" name="telephone" id="telephone" class="form-control firstmodal"
+                                <input type="tel" name="telephone" id="telephone" class="form-control firstmodal"
                                     placeholder="telephone" aria-label="telephone" required>
                                 <span style="margin-left: 1.5rem" id="telephone_error" class="text-danger errors"></span>
                                 <input type="text" name="cni" id="cni" class="form-control firstmodal"
@@ -69,7 +69,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="editer" class="btn btn-primary">Edite</button>
+                    <button type="submit" id="editer" class="btn btn-primary">Edite</button>
                 </div>
             </div>
         </div>
@@ -92,7 +92,7 @@
                                 <th scope="col">date naissance</th>
                                 <th scope="col">sexe</th>
                                 <th scope="col">email</th>
-                                I<th scope="col">telephone</th>
+                                <th scope="col">telephone</th>
                                 <th scope="col">cni</th>
                                 <th scope="col">ville</th>
                                 <th scope="col">adress</th>
@@ -115,55 +115,8 @@
             </div>
         </div>
     </div>
-    {{-- export script --}}
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable({
-                pageLength: 25,
-                responsive: true,
-                dom: '<"html5buttons"B>lTfgitp',
-                buttons: [{
-                        extend: 'copy'
-                    },
-                    {
-                        extend: 'csv'
-                    },
-                    {
-                        extend: 'excel',
-                        title: 'ExampleFile'
-                    },
-                    {
-                        extend: 'pdf',
-                        title: 'ExampleFile'
-                    },
-
-                    {
-                        estend: 'print',
-
-                        customize: function(win) {
-                            $(win.document.body).addClass('white-bg');
-                            $(win.document.body).css('font-size', '10px');
-                            $(win.document.body).find('table')
-                                .addClass('compact')
-                                .css('font-size', 'inherit');
-                        }
-                    }
-                ]
-
-            });
-
-
-        });
-    </script>
-
     <script type="text/javascript">
-        document.forms[0].addEventListener("submit", e => {
-            // e.preventDefault();
-            const phone = e.target.elements["telephone"];
-            phone.value = phone.value.replaceAll(" ", "");
-            console.log(phone.value);
-            //e.submit();
-        });
+    
         $(function() {
             var form = $('#clientmodal')[0];
             $.ajaxSetup({
@@ -267,10 +220,11 @@
                     error: function(error) {
                         console.log(error);
                     }
-                });
+                }); 
             });
            
             $('body').on('click', '#editer', function(e) {
+                $('.errors').html('');
                 var formdata = new FormData(form);
                 $.ajax({
                     url: '{{ route('modif') }}',
