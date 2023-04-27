@@ -6,7 +6,7 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Validator;
-
+ 
 class ModalClientController extends Controller
 {
     //edit client
@@ -31,7 +31,7 @@ class ModalClientController extends Controller
             'date_naissance'=>'required|date',
             'sexe'=>'required',
             'email'=>'required|string',
-            'telephone'=> array('required','regex:/(^6[5-9]([0-9]{2}){3}[0-9]$)/u'),
+            'telephone'=> array('required','regex:/(^6[25-9][0-9]([ ]([0-9]){3}){2}$)/u'),
             'cni'=>'required|string',
             'ville'=>'required|string',
             'adress'=>'required|string',
