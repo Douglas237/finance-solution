@@ -5,7 +5,7 @@
         <h1>Detail</h1>
         <div class="imgclient" id="imgclient">
             <div class="circle">
-                <img src="{{ asset('uploads/images/client/'.$shows->image) }}" alt="">
+                <img src="{{ asset('uploads/images/client/' . $shows->image) }}" alt="">
             </div>
         </div>
         <div class="corpclient">

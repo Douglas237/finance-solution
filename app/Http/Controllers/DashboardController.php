@@ -17,7 +17,7 @@ class DashboardController extends Controller
         $clients = DB::table('clients')->count();
         $employes = DB::table('employes')->count();
         $entreprises = DB::table('entreprises')->count();
-        return view ('layouts.Accueil',compact('clients','employes','entreprises'));
-
+        $compte = DB::table('compte_banks')->count();
+        return view('layouts.Accueil', compact('clients', 'employes', 'entreprises', 'compte'));
     }
 }
