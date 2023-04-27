@@ -7,7 +7,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="close" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="close"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="employermodal" class="form-control" enctype="multipart/form-data">
@@ -24,7 +25,7 @@
                                     placeholder="prenom" aria-label="prenom" required>
                                 <input type='date' name="date_naissance" id="date_naissance" class="form-control first"
                                     placeholder="Select Date" />
-                                <input type="text" name="email" id="email" class="form-control first"
+                                <input type="email" name="email" id="email" class="form-control first"
                                     placeholder="email" aria-label="email" required>
                                 <div style="margin-top: -1.5rem">
                                     <p style="padding: 0;margin: 0;">Sex</p>
@@ -47,11 +48,11 @@
                             <div class="col gauche">
                                 <input type="text" name="poste" id="poste" class="form-control first"
                                     placeholder="poste" aria-label="poste" required>
-                                <input type="text" name="telephone" id="telephone" class="form-control first"
+                                <input type="number" name="telephone" id="telephone" class="form-control first"
                                     placeholder="telephone" aria-label="telephone" required>
                                 <input type="text" name="cni" id="cni" class="form-control first"
                                     placeholder="num_cni" aria-label="num_cni" required>
-                                <input type="text" name="password" id="password" class="form-control first"
+                                <input type="password" name="password" id="password" class="form-control first"
                                     placeholder="password" aria-label="password" required>
                                 <input type="file" name="image" id="image" class="form-control first"
                                     aria-label="file example" required>

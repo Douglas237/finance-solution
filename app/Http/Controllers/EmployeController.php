@@ -31,7 +31,7 @@ class EmployeController extends Controller
             'sexe' => 'required|enum',
             'cni' => 'required|string',
             'email' => 'required|string',
-            'telephone' => 'required|numeric',
+            'telephone' => 'required|number',
             'poste' => 'required|string',
             'password' => 'required|string',
             'image' => 'nullable', 'image', 'mimes:jpeg,jpg,png,gif', 'max:10000',
@@ -86,7 +86,7 @@ class EmployeController extends Controller
         return view('employe.create', compact('employes'));
     }
 
-    public function update(Request $request )
+    public function update(Request $request)
     {
         $validatedData = Validator::make($request->all(), [
             'nom' => 'required|string|unique:clients',
@@ -101,12 +101,12 @@ class EmployeController extends Controller
             'image' => 'nullable', 'image', 'mimes:jpeg,jpg,png,gif', 'max:10000',
         ]);
 
-        if($validatedData->fails()) {
+        if ($validatedData->fails()) {
             Toastr::error('The field not be empty.');
             return redirect()
-            ->back()
-            ->withErrors($validatedData)
-            ->withInput();
+                ->back()
+                ->withErrors($validatedData)
+                ->withInput();
         }
 
         try {
@@ -122,10 +122,10 @@ class EmployeController extends Controller
             $data->poste = $request->poste;
             $data->password = $request->password;
 
-            if($request->hasFile('image')) {
+            if ($request->hasFile('image')) {
                 $destination = 'uploads/images/employe/' . $data->image;
                 $destination_default = 'uploads/images/employe/default.png';
-                if($destination_default != $destination && File::exists($destination)) {
+                if ($destination_default != $destination && File::exists($destination)) {
                     File::delete($destination);
                 }
                 $file = $request->file('image');
@@ -138,7 +138,7 @@ class EmployeController extends Controller
             $data->update();
             Toastr::success("Employé enregistré avec success : " . $request->nom);
             return redirect()->route('employe.index');
-        }   catch(Exception $e) {
+        } catch (Exception $e) {
 
             Toastr::error(
                 "Echec d'enregistrement de l'employé : " . $request->nom
@@ -156,7 +156,7 @@ class EmployeController extends Controller
             $destination = 'uploads/images/employe/' . $data->image;
             $destination_default = 'uploads/images/employe/default.png';
 
-            if($destination_default !=  $destination && File::exists($destination)) {
+            if ($destination_default !=  $destination && File::exists($destination)) {
                 File::delete($destination);
             }
             $data->delete();

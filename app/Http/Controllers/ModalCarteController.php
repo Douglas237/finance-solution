@@ -14,9 +14,7 @@ class ModalCarteController extends Controller
 {
     public function index(Request $request)
     {
-        $cartes = Carte::with('comptebanks')
-            // ->where('comptebank_id','=','carte_id')
-            ->get();
+        $cartes = Carte::with('comptebanks')->get();
         // foreach ($cartes as $item) {
         //     dd($item['comptebanks']);
         // }
