@@ -138,25 +138,21 @@ class ClientController extends Controller
             $data->adress = $request->adress;
 
             if ($request->hasFile('image')) {
-                $destination = 'uploads/images/client/' . $data->image;
-                $destination_default = 'uploads/images/client/default.png';
-                if ($destination_default != $destination && File::exists($destination)) {
-                    File::delete($destination);
-                }
                 $file = $request->file('image');
                 $extension = $file->getClientOriginalExtension();
-                $filename = date('YmdHi') . ucfirst($request->nom);
-                $file->move('uploads/images/client/', $filename);
+                $filename = date('YmdHi') . ucfirst($request->nom) . '.' . $extension;
+                $file->move('uploads/images/client', $filename);
                 $data->image = $filename;
+            } else {
+                $data->image = 'default.png';
             }
-
-            $data->update();
+            $data->save();
             Toastr::success('Enregistrement du client réussit : ' . $request->nom);
-            return redirect()->route('client.index');
+            return redirect()->route('compte', [$data->id]);
         } catch (Exception $e) {
 
             Toastr::error(
-                "Echec d'entregistrement du client : " . $request->nom
+                "Echec d'enregistrement du client : " . $request->nom
             );
             return redirect()->back();
         }
