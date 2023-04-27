@@ -104,7 +104,7 @@
                                 <th scope="col">Date ouverture</th>
                                 <th scope="col">Code</th>
                                 <th scope="col">Statut</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Action</th> 
                             </tr>
                         </thead>
                         <tbody>

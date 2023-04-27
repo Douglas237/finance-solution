@@ -31,10 +31,10 @@ class EmployeController extends Controller
             'sexe' => 'required|enum',
             'cni' => 'required|string',
             'email' => 'required|string',
-            'telephone' => 'required|number',
+            'telephone' => array('required', 'regex:/(^6[25-9][0-9]([ ]([0-9]){3}){2}$)/u'),
             'poste' => 'required|string',
             'password' => 'required|string',
-            'image' => 'nullable', 'image', 'mimes:jpeg,jpg,png,gif', 'max:10000',
+            'image' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:10000',
         ]);
 
         if ($validatedData->fails()) {

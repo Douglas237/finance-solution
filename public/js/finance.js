@@ -81,11 +81,11 @@ phone.addEventListener("keyup", function(e) {
   if (newtxt[newtxt.length - 1] == ' ') newtxt = newtxt.substring(0, newtxt.length - 1);
   this.value = newtxt;
 });
-// when the form is submitted, remove the spaces
-document.forms[0].addEventListener("submit", e => {
-    // e.preventDefault();
-    const phone = e.target.elements["telephone"];
-    phone.value = phone.value.replaceAll(" ", "");
-    console.log(phone.value);
-    //e.submit();
-});
+// // when the form is submitted, remove the spaces
+// document.forms[0].addEventListener("submit", e => {
+//     // e.preventDefault();
+//     const phone = e.target.elements["telephone"];
+//     phone.value = phone.value.replaceAll(" ", "");
+//     console.log(phone.value);
+//     //e.submit();
+// });
