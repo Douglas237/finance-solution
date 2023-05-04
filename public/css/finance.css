@@ -162,6 +162,16 @@ ul ul {
     left: 2.3rem;
     top: -0.025rem;
 }
+.sidebar .grandul li a .toggle5 {
+    position: relative;
+    left: 2.3rem;
+    top: -0.025rem;
+}
+.sidebar .grandul li a .toggle6 {
+    position: relative;
+    left: 2.3rem;
+    top: -0.025rem;
+}
 .sidebar .grandul li ul li {
     padding-left: 3.5rem;
     font-size: 0.7em;
@@ -194,11 +204,27 @@ ul ul {
     width: 12rem;
     display: block;
 }
+.sidebar .grandul .sousul.show5 {
+    width: 12rem;
+    display: block;
+}
+.sidebar .grandul .paramt.show6 {
+    width: 12rem;
+    display: block;
+}
 .sidebar .grandul .toggle2.rotate2 {
     transform: rotate(-180deg);
     transition: all 0.5s ease;
 }
 .sidebar .grandul .toggle4.rotate4 {
+    transform: rotate(-180deg);
+    transition: all 0.5s ease;
+}
+.sidebar .grandul .toggle5.rotate5 {
+    transform: rotate(-180deg);
+    transition: all 0.5s ease;
+}
+.sidebar .grandul .toggle6.rotate6 {
     transform: rotate(-180deg);
     transition: all 0.5s ease;
 }
@@ -292,7 +318,7 @@ ul ul {
 }
 .formcompte form {
     width: 93%;
-    height: 70%;
+    height: 77%;
     margin-top: 0.2%;
     margin-left: 3.5%;
     background-color: #fff;
@@ -302,7 +328,7 @@ ul ul {
 .formcompte .title {
     position: relative;
     left: 3.4%;
-    top: 7%;
+    top: 3%;
 }
 .formcompte .title p {
     font-size: 2em;
@@ -317,7 +343,7 @@ ul ul {
     background-color: #02501c;
     left: 0;
     width: 92.9999%;
-    margin-top: 6%;
+    margin-top: 1%;
 }
 .note p {
     font-size: 2em;
@@ -328,7 +354,7 @@ ul ul {
 .formcompte .tout .envoi {
     display: flex;
     justify-content: center;
-    margin-top: -0.5rem;
+    /* margin-top: 1.5rem; */
     /* align-items: flex-end; */
     /* height: 1.3rem; */
 }
@@ -405,7 +431,7 @@ ul ul {
     justify-content: space-between;
     transition: 0.3s;
     border-radius: 15px;
-    background-color: #65b455;
+    background-color: #02501c;
 }
 .card:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -501,7 +527,242 @@ form,
     align-items: center;
     margin: 10px;
 }
+/* --------- style sur les modales------------ */
+.modalhead{
+    background-color: #02501c !important;
+    color: white !important;
+}
+.modalform{
+    width: 100% !important;
+    height: 70%;
+    margin: 0 !important;
+    background-color: #ffffff !important;
+    border-radius: 10px;
+    /* box-shadow: 5px 5px 80px rgb(231, 228, 228) !important; */
+}
+.modal-body{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.modal-content{
+    width: 55rem !important;
+}
+.right{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.gauche{
+    margin-right: 0.5rem !important;
+}
+.modal-dialog{
+    margin-left: 20% !important;
+}
+.firstmodal{
+    margin-top: 2rem !important;
+    background-color: white !important;
+}
+.modalsex{
+    margin-top: 2rem !important;
+    display: flex !important;
+    margin-left: 1rem !important;
+}
+.sexM{
+    margin-top: 0.2rem !important;
+}
+.paymentmodal{
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
 /* --------------- Media query ---------------- */
+@media screen and (min-width: 1000px) and (max-width: 1144px){
+    .sidebar {
+        width: 6.5%;
+        margin-left: 0;
+    }
+    .navbare {
+        border: 1px solid rgb(20, 3, 82);
+        width: 93.5%;
+    }
+    .centre {
+        width: 93.5%;
+        border: 3px solid black;
+        /* margin-top: 4rem; */
+        left: 6.5%;
+    }
+    .augmenter {
+        width: 22.2%;
+        transition: width 0.2s linear;
+    }
+    .ajout {
+        width: 77.8%;
+        transition: width 0.2s linear;
+    }
+    .ajout1 {
+        /* position: absolute; */
+        left: 22.2%;
+        /* top: 4rem; */
+        width: 77.8%;
+        transition: width 0.2s linear;
+        /* height: 100%; */
+        /* border: 3px solid black; */
+    }
+    .sidebar .logo .logotext {
+        /* position: absolute; */
+        margin-right: 1.2rem;
+        /* margin-top: 2rem; */
+        right: 10rem;
+        height: 8rem;
+        /* width: %; */
+    }
+    .toutleft{
+        right: -61%;
+    }
+    .sidebar .grandul li a{
+            padding-left: 2rem;
+    }
+}
+@media screen and (min-width: 1145px) and (max-width: 1180px){
+    .sidebar {
+        width: 6.5%;
+        margin-left: 0;
+    }
+    .navbare {
+        border: 1px solid rgb(20, 3, 82);
+        width: 93.5%;
+    }
+    .centre {
+        width: 93.5%;
+        border: 3px solid black;
+        /* margin-top: 4rem; */
+        left: 6.5%;
+    }
+    .augmenter {
+        width: 20.2%;
+        transition: width 0.2s linear;
+    }
+    .ajout {
+        width: 79.8%;
+        transition: width 0.2s linear;
+    }
+    .ajout1 {
+        /* position: absolute; */
+        left: 20.2%;
+        /* top: 4rem; */
+        width: 79.8%;
+        transition: width 0.2s linear;
+        /* height: 100%; */
+        /* border: 3px solid black; */
+    }
+    .sidebar .logo .logotext {
+        /* position: absolute; */
+        margin-right: 1.2rem;
+        /* margin-top: 2rem; */
+        right: 10rem;
+        height: 8rem;
+        /* width: %; */
+    }
+    .toutleft{
+        right: -61%;
+    }
+    .sidebar .grandul li a{
+            padding-left: 2.2rem;
+    }
+}
+@media screen and (min-width: 1181px) and (max-width: 1248px){
+    .sidebar {
+        width: 6.2%;
+        margin-left: 0;
+    }
+    .centre {
+        width: 93.8%;
+        border: 3px solid black;
+        /* margin-top: 4rem; */
+        left: 6.2%;
+    }
+    .navbare {
+        border: 1px solid rgb(20, 3, 82);
+        width: 93.8%;
+    }
+    .augmenter {
+        width: 20.2%;
+        transition: width 0.2s linear;
+    }
+    .ajout {
+        width: 79.8%;
+        transition: width 0.2s linear;
+    }
+    .ajout1 {
+        /* position: absolute; */
+        left: 20.2%;
+        /* top: 4rem; */
+        width: 79.8%;
+        transition: width 0.2s linear;
+        /* height: 100%; */
+        /* border: 3px solid black; */
+    }
+    .sidebar .logo .logotext {
+        /* position: absolute; */
+        margin-right: 1.2rem;
+        /* margin-top: 2rem; */
+        right: 10rem;
+        height: 8rem;
+        /* width: %; */
+    }
+    .toutleft{
+        right: -61%;
+    }
+    .sidebar .grandul li a{
+            padding-left: 2.2rem;
+    }
+}
+@media screen and (min-width: 1249px) and (max-width: 1326px){
+    .sidebar {
+        width: 5.8%;
+        margin-left: 0;
+    }
+    .centre {
+        width: 94.2%;
+        border: 3px solid black;
+        /* margin-top: 4rem; */
+        left: 5.8%;
+    }
+    .navbare {
+        border: 1px solid rgb(20, 3, 82);
+        width: 94.2%;
+    }
+    .augmenter {
+        width: 17.8%;
+        transition: width 0.2s linear;
+    }
+    .ajout {
+        width: 82.2%;
+        transition: width 0.2s linear;
+    }
+    .ajout1 {
+        /* position: absolute; */
+        left: 17.8%;
+        /* top: 4rem; */
+        width: 82.2%;
+        transition: width 0.2s linear;
+        /* height: 100%; */
+        /* border: 3px solid black; */
+    }
+    .sidebar .logo .logotext {
+        /* position: absolute; */
+        margin-right: 1.2rem;
+        /* margin-top: 2rem; */
+        right: 10rem;
+        height: 8rem;
+        /* width: %; */
+    }
+    .toutleft{
+        right: -61%;
+    }
+    .sidebar .grandul li a{
+        padding-left: 2.2rem;
+    }
+}
+
 @media screen and (max-width: 720px) {
     .toutleft {
         width: 60%;
@@ -515,19 +776,7 @@ form,
         width: 55%;
     }
 }
-@media screen and (max-width: 1386px) {
-    /* .toutleft {
-        width: 60%;
-    }
-    .toutimgs {
-        width: 45%;
-    } */
-    .toutleft .icons {
-        margin-left: 0;
-        margin-right: 0;
-        width: 55%;
-    }
-}
+
 @media screen and (min-width: 1386px) {
     .toutimgs {
         width: 45%;
@@ -656,10 +905,13 @@ form,
         width: 23rem;
     }
 }
-@media screen and (min-width: 1386px) and (max-width: 1440px) {
+@media screen and (min-width: 1386px) and (max-width: 1473px) {
     .toutimgs {
         width: 45%;
     }
+    /* .sidebar .grandul li a{
+        padding-left: 5rem;
+    } */
     .toutimgs .elmts {
         top: 110%;
     }
@@ -678,7 +930,7 @@ form,
         position: fixed;
         z-index: 100;
         right: 0;
-        width: 94.45%;
+        width: 94.1%;
         height: 5.5rem;
         transition: all 0.5s ease;
     }
@@ -695,7 +947,7 @@ form,
         color: #02501c;
     }
     .sidebar .logo {
-        height: 23%;
+        height: 28%;
         width: 30rem;
         overflow: hidden;
     }
@@ -742,7 +994,7 @@ form,
         color: #02501c;
     }
     .sidebar {
-        width: 5.6%;
+        width: 5.9%;
         margin-left: 0;
     }
     .sidebar .grandul li {
@@ -755,7 +1007,7 @@ form,
         margin-left: 1.4rem;
     }
     .centre {
-        width: 94.34%;
+        width: 94.1%;
         /* border: 3px solid black; */
         margin-top: 0.58%;
         left: 5.66%;
@@ -774,7 +1026,7 @@ form,
         padding-top: 1.5rem; */
 
         text-decoration: none;
-        padding-left: 1.5rem;
+        padding-left: 2.2rem;
         font-size: 2em;
         display: block;
         width: 24rem;
@@ -824,7 +1076,7 @@ form,
     justify-content: space-around;
     transition: 0.3s;
     border-radius: 15px;
-    background-color: #65b455;
+    background-color: #02501c;
 }
 .card:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

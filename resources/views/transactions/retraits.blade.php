@@ -6,18 +6,20 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header modalhead">
                     <h5 class="modal-title" id="confirmtitle">Modal title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p class="nom"> Nom : <span id="nom"></span></p>
-                    <p class="prenom">Prenom : <span id="prenom"></span></p>
-                    <p class="email">Email : <span id="email"></span></p>
-                    <p class="date_naissance"> Date de naissance : <span id="date_naissance"></span></p>
-                    <p class="telephone"> Telephone : <span id="telephone"></span></p>
-                    <p class="ville">Ville : <span id="ville"></span></p>
-                    <p class="adress">Adress : <span id="adress"></span></p>
+                    <p style="margin-left: 22rem;" class="nom">Nom : <span id="nom"></span></p>
+                    <div style="margin-left: 22rem;">
+                        <p class="prenom">Prenom : <span id="prenom"></span></p>
+                        <p class="email">Email : <span id="email"></span></p>
+                        <p class="date_naissance">Date de naissance : <span id="date_naissance"></span></p>
+                        <p class="telephone">Telephone : <span id="telephone"></span></p>
+                        <p class="ville">Ville : <span id="ville"></span></p>
+                        <p class="adress">Adress : <span id="adress"></span></p>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -32,15 +34,17 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header modalhead">
                     <h5 class="modal-title" id="confirmtitle">Modal title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" id="close"
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p class="nom_entreprise"> Nom de l'entreprise : <span id="nom_entreprise"></span></p>
-                    <p class="nom_respon">Nom du proprietaire : <span id="nom_respon"></span></p>
-                    <p class="type_entreprise">Type d'entreprise : <span id="type_entreprise"></span></p>
+                    <div style="margin-left: 22rem;">
+                        <p class="nom_entreprise"> Nom de l'entreprise : <span id="nom_entreprise"></span></p>
+                        <p class="nom_respon">Nom du proprietaire : <span id="nom_respon"></span></p>
+                        <p class="type_entreprise">Type d'entreprise : <span id="type_entreprise"></span></p>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
@@ -59,28 +63,26 @@
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header modalhead">
                     <h1 class="modal-title fs-5" id="modaltitle">New message</h1>
                     <button type="button" id="close" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="retraitmodal" class="retraitmodal">
+                    <form id="retraitmodal" class="paymentmodal">
                         @csrf
                         {{-- <input type="hidden" id="transfert_id" name="transfert_id"> --}}
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Numero compte :</label>
-                            <input type="text" name="num_compte" id="num_compte" class="form-control"
-                                id="recipient-name">
+                            <input type="text" name="num_compte" id="num_compte" class="form-control">
                             <span id="num_compte_error" class="text-danger error_message"></span>
                         </div>
                         <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Montan a transferer:</label>
-                            <input type="text" name="montant_retrait" id="montant_retrait" class="form-control"
-                                id="recipient-name">
+                            <label for="message-text" class="col-form-label">Montan a retirer:</label>
+                            <input type="number" min="0" name="montant_retrait" id="montant_retrait" class="form-control">
                             <span id="montant_retrait_error" class="text-danger error_message"></span>
                         </div>
-                    </form>
+                    </form> 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" id="close"
@@ -94,7 +96,7 @@
         <div class="title" style="display: flex;flex-direction: row;justify-content: space-between">
             <p><strong>Nouveau retrait</strong></p>
             <button style="margin-right: 7rem;height: 3.5rem;" type="button" id="addretrait"
-                class="btn btn-outline-success">Nouveau retrait</button>
+                class="btn btn-outline-success">Nouveau retrait</button> 
         </div>
         <div class="formcompte">
             <div class="title">
@@ -108,7 +110,7 @@
                                 <th scope="col">N° </th>
                                 <th scope="col">N° du compte</th>
                                 <th scope="col">Proprietaire</th>
-                                <th scope="col">Montant de retrait</th>
+                                <th scope="col">Montant retirer</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -164,7 +166,7 @@
                     {
                         data: 'num_compte',
                         name: 'num_compte'
-                    },
+                    }, 
                     {
                         data: 'Proprietaire',
                         name: 'Proprietaire'

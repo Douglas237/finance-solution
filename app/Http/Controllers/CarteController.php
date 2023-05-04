@@ -21,26 +21,25 @@ class CarteController extends Controller
     }
     public function store(Request $request) {
 
-        $validatedData = Validator::make($request->all(),[
+        $this->validate($request,[
             'numero_carte'=> 'required|string',
             'codesecret'=>'required|string',
             'type'=>'required|string',
             'date_creation'=>'required|date',
             'date_expiration'=>'required|date',
-            'comptebank_id'=>'required|integer',
             'statut'=>'required|boolean',
         ]);
-        if($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-            ->back()
-            ->withErrors($validatedData)
-            ->withInput();
-        }
+        // if($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //     ->back()
+        //     ->withErrors($validatedData)
+        //     ->withInput();
+        // }
         $comptebank = CompteBank::Find($request->comptebank_id);
         try {
         DB::beginTransaction();
-        $carte = Carte::create(
+        $Cartes = Carte::create(
             [
                 'numero_carte' => request('numero_carte'),
                 'codesecret' => request('codesecret'),
@@ -51,10 +50,11 @@ class CarteController extends Controller
             ]
         );
 
-
-        $comptebank->cartes()->attach($carte->id);
+        $comptebank->cartes()->attach($Cartes->id);
         DB::Commit();
+        Toastr::success('Enregistrement de la carte réussit');
         return redirect()->route('carte.list');
+
     } catch(Exception $e) {
         DB::Rollback();
         return redirect()->back();

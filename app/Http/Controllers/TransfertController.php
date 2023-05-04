@@ -16,7 +16,7 @@ class TransfertController extends Controller
 {
     //
     public function index(Request $request)
-    {
+    { 
         $transfert = Transfert::all();
         // $destinatair = CompteBank::where('numero_compte', $transfert[0]->compte_destinatair)->get();
         // dd($transfert);
@@ -30,7 +30,7 @@ class TransfertController extends Controller
                         # code...
                         $ndestinatair = CompteBank::join('clients', 'clients.id', '=', 'compte_banks.comptebankable_id')
                             ->where('numero_compte', $transfert->compte_destinatair)
-                            ->get('clients.nom');
+                            ->get('clients.nom'); 
                     }
                     elseif($destinatair[0]->comptebankable_type =='App\Models\Entreprise'){
 
@@ -78,7 +78,7 @@ class TransfertController extends Controller
 
         $request->validate([
             'compte_destinatair' => 'required|string',
-            'montant_transfert' => 'required|string',
+            'montant_transfert' => 'required',
             'compte_destinateur' => 'required|string',
         ]);
 
@@ -95,7 +95,7 @@ class TransfertController extends Controller
             abort(406);
         }
 
-        if ($destinateur[0]->comptebankable_type == 'App\Models\Client') {
+        if ($destinateur[0]->comptebankable_type == 'App\Models\Client') { 
             # code...
             $infodestinateur = CompteBank::join('clients', 'clients.id', '=', 'compte_banks.comptebankable_id')
                 ->where('compte_banks.comptebankable_type', '=', 'App\Models\Client')
@@ -118,7 +118,7 @@ class TransfertController extends Controller
     public function edit(Request $request)
     {
         $transfert = Transfert::find($request->transfert_id);
-        if (!$transfert) {
+        if (!$transfert) { 
             # code...
             // $request->validate([
             //     'compte_destinatair' => 'required|string',
@@ -138,21 +138,21 @@ class TransfertController extends Controller
                 abort(405);
             }
             DB::transaction(function () use ($request, $destinatair, $destinateur) {
-                Transfert::create([
-                    'compte_destinatair' => $request->compte_destinatair,
-                    'montant_transfert' => $request->montant_transfert,
-                    'compte_destinateur' => $request->compte_destinateur,
-                    'comptebank_id' => $destinateur[0]->id,
-                ]);
-                if ((int)$destinatair[0]->solde < (int)request('montant_transfert')) {
+                if ((float)$destinatair[0]->solde < (float)request('montant_transfert')) {
                     # code...
                     abort(404);
                 }
                 $destinatair[0]->update([
-                    'solde' => $destinatair[0]->solde - (int)request('montant_transfert'),
+                    'solde' =>(float) $destinatair[0]->solde - (float)request('montant_transfert'),
                 ]);
                 $destinateur[0]->update([
-                    'solde' => $destinateur[0]->solde + (int)request('montant_transfert'),
+                    'solde' =>(float) $destinateur[0]->solde + (float)request('montant_transfert'),
+                ]);
+                Transfert::create([
+                    'compte_destinatair' => $request->compte_destinatair,
+                    'montant_transfert' => (float) $request->montant_transfert,
+                    'compte_destinateur' => $request->compte_destinateur,
+                    'comptebank_id' => $destinateur[0]->id,
                 ]);
             });
             return response()->json(['message' => 'mise a jour avec succes'], 200);
@@ -187,23 +187,23 @@ class TransfertController extends Controller
                 'solde' => $initdestinateur[0]->solde - $transfert->montant_transfert,
             ]);
             $newdestinatair = CompteBank::where('numero_compte', $request->compte_destinatair)->get();
-            if ((int)$newdestinatair[0]->solde < (int)request('montant_transfert')) {
+            if ((float)$newdestinatair[0]->solde < (float)request('montant_transfert')) {
                 # code...
                 abort(404);
             }
             $newdestinateur = CompteBank::where('numero_compte', $request->compte_destinateur)->get();
             $transfert->update([
                 'compte_destinatair' => $request->compte_destinatair,
-                'montant_transfert' => $request->montant_transfert,
+                'montant_transfert' =>(float) $request->montant_transfert,
                 'compte_destinateur' => $request->compte_destinateur,
                 'comptebank_id' => $newdestinateur[0]->id,
             ]);
 
             $newdestinatair[0]->update([
-                'solde' => $newdestinatair[0]->solde - (int)request('montant_transfert'),
+                'solde' => $newdestinatair[0]->solde - (float)request('montant_transfert'),
             ]);
             $newdestinateur[0]->update([
-                'solde' => $newdestinateur[0]->solde + (int)request('montant_transfert'),
+                'solde' => $newdestinateur[0]->solde + (float)request('montant_transfert'),
             ]);
         });
         return response()->json(['message' => 'mise a jour avec succes'], 200);

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('montant');
+            $table->float('montant', 13, 2);
             $table->enum('type', ["tranfert","retrait","virement","versement"]);
             $table->morphs('transactionable');
             $table->timestamps();

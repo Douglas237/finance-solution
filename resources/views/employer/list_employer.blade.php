@@ -5,38 +5,39 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="close" aria-label="Close"></button>
+                <div class="modal-header modalhead">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1> 
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="close"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="employermodal" class="form-control" enctype="multipart/form-data">
+                    <form id="employermodal" class="form-control modalform" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" id="employer_id" name="employer_id">
-                        <div class="note">
-                            <p><strong id="modaltitle">Informations du client</strong></p>
-                        </div>
                         <div class="row tout">
                             <div class="col right">
-                                <input type="text" name="nom" id="nom" class="form-control first"
+                                <input type="text" name="nom" id="nom" class="form-control firstmodal"
                                     placeholder="nom" aria-label="nom" required>
-                                <input type="text" name="prenom" id="prenom" class="form-control first"
+                                <span style="margin-left: 1.5rem" id="nom_em_error" class="text-danger errors"></span>
+                                <input type="text" name="prenom" id="prenom" class="form-control firstmodal"
                                     placeholder="prenom" aria-label="prenom" required>
-                                <input type='date' name="date_naissance" id="date_naissance" class="form-control first"
-                                    placeholder="Select Date" />
-                                <input type="text" name="email" id="email" class="form-control first"
+                                <span style="margin-left: 1.5rem" id="prenom_em_error" class="text-danger errors"></span>
+                                <input type='date' name="date_naissance" id="date_naissance" class="form-control firstmodal" placeholder="Select Date" />
+                                <span style="margin-left: 1.5rem" id="date_naissance_em_error" class="text-danger errors"></span>
+                                <input type="email" name="email" id="email" class="form-control firstmodal"
                                     placeholder="email" aria-label="email" required>
-                                <div style="margin-top: -1.5rem">
-                                    <p style="padding: 0;margin: 0;">Sex</p>
+                                <span style="margin-left: 1.5rem" id="email_em_error" class="text-danger errors"></span>
+                                <div class="modalsex" style="margin-top: -1.5rem">
+                                    <p style="padding: 0;margin: 0;">Sex :</p>
                                     <div class="form-check">
-                                        <input class="form-check-input sex" type="radio" value="male" name="sexe"
+                                        <input class="form-check-input sexM" type="radio" value="male" name="sexe"
                                             id="male">
                                         <label class="form-check-label" for="male">
                                             Homme
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input sex" type="radio" value="femmel" name="sexe"
+                                        <input class="form-check-input sexM" type="radio" value="femmel" name="sexe"
                                             id="femelle" checked>
                                         <label class="form-check-label" for="femelle">
                                             Femme
@@ -45,16 +46,21 @@
                                 </div>
                             </div>
                             <div class="col gauche">
-                                <input type="text" name="poste" id="poste" class="form-control first"
+                                <input type="text" name="poste" id="poste" class="form-control firstmodal"
                                     placeholder="poste" aria-label="poste" required>
-                                <input type="text" name="telephone" id="telephone" class="form-control first"
+                                <span style="margin-left: 1.5rem" id="poste_em_error" class="text-danger errors"></span>
+                                <input type="text" name="telephone" id="telephone" class="form-control firstmodal"
                                     placeholder="telephone" aria-label="telephone" required>
-                                <input type="text" name="cni" id="cni" class="form-control first"
+                                <span style="margin-left: 1.5rem" id="telephone_em_error" class="text-danger errors"></span>
+                                <input type="text" name="cni" id="cni" class="form-control firstmodal"
                                     placeholder="num_cni" aria-label="num_cni" required>
-                                <input type="text" name="password" id="password" class="form-control first"
+                                <span style="margin-left: 1.5rem" id="cni_em_error" class="text-danger errors"></span>
+                                <input type="password" name="password" id="password" class="form-control firstmodal"
                                     placeholder="password" aria-label="password" required>
-                                <input type="file" name="image" id="image" class="form-control first"
-                                    aria-label="file example" required>
+                                <span style="margin-left: 1.5rem" id="password_em_error" class="text-danger errors"></span>
+                                <input type="file" name="image" id="image" class="form-control firstmodal"
+                                    aria-label="file example" >
+                                <span style="margin-left: 1.5rem" id="image_em_error" class="text-danger errors"></span>
                             </div>
                         </div>
                     </form>
@@ -77,8 +83,6 @@
         <div class="formcompte">
             <div class="title">
                 <p><strong>Liste des employer</strong></p>
-                <a
-                href="{{ route('') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem; floating: right;" type="button" class="btn btn-success"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter employés</button></a>
             </div>
             <div class="alltabs">
                 <div class="tabs_1">
@@ -198,11 +202,13 @@
             });
             // creation d'un employer
             $('body').on('click', '#addemployer', function() {
+                $('.errors').html('');
                 $('#employer_modal').modal('show');
                 $('#modaltitle').html('new employer');
                 $('#editer').html('Create');
             });
             $('body').on('click', '#close', function() {
+                $('.errors').html('');
                 $("#employermodal").trigger("reset");
                 $('#employer_id').val('');
             });
@@ -239,6 +245,7 @@
             // $('body').on('click','#editer',function () {
 
             $('body').on('click', '#editer', function() {
+                $('.errors').html('');
                 var formdata = new FormData(form);
                 $.ajax({
                     url: '{{ route('employer.edite') }}',
@@ -252,9 +259,21 @@
                         $('#employer_modal').modal('hide');
                         $("#employermodal").trigger("reset");
                         console.log(response);
+                        setTimeout(() => {
+                        toastr.success(response.message, response.title);
+                        },500);
 
                     },
                     error: function(error) {
+                        $('#nom_em_error').html(error.responseJSON.errors.nom);
+                        $('#email_em_error').html(error.responseJSON.errors.email);
+                        $('#poste_em_error').html(error.responseJSON.errors.poste);
+                        $('#date_naissance_em_error').html(error.responseJSON.errors.date_naissance);
+                        $('#prenom_em_error').html(error.responseJSON.errors.prenom);
+                        $('#telephone_em_error').html(error.responseJSON.errors.telephone);
+                        $('#cni_em_error').html(error.responseJSON.errors.cni);
+                        $('#password_em_error').html(error.responseJSON.errors.password);
+                        $('#image_em_error').html(error.responseJSON.errors.image);
                         console.log(error);
                     }
                 });

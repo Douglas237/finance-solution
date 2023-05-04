@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('compte_banks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('numero_compte');
-            $table->string('solde');
+            $table->string('numero_compte');
+            $table->float('solde', 13, 2);
             $table->enum('type_compte', ["Compte courant", "Compte epagne"]);
             $table->date('date_ouverture');
             $table->integer('code');

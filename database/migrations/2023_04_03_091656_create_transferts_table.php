@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('comptebank_id');
             $table->string('compte_destinatair');
-            $table->string('montant_transfert');
+            $table->float('montant_transfert', 13, 2);
             $table->string('compte_destinateur');
             $table->timestamps();
         });

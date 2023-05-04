@@ -46,21 +46,21 @@ class ModalEntreprisController extends Controller
             # code...
             abort(404);
         }
-        $validatedData = Validator::make($request->all(), [
+        $this->validate($request, [
             'nom_entreprise' => 'required|string',
             'nom_respon' => 'required|string',
             'type_entreprise' => 'required|string',
             'cni_respon' => 'required|string',
-            'image' => 'nullable', 'image', 'mimes:jpeg,jpg,png,gif', 'max:10000',
+            'image' => 'required|image|mimes:jpeg,jpg,png,gif|max:10000',
         ]);
 
-        if ($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-                ->back()
-                ->withErrors($validatedData)
-                ->withInput();
-        }
+        // if ($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //         ->back()
+        //         ->withErrors($validatedData)
+        //         ->withInput();
+        // }
 
         if ($request->hasFile('image'))
         {

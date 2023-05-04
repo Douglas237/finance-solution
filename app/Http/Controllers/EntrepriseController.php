@@ -18,21 +18,21 @@ class EntrepriseController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = Validator::make($request->all(), [
+        $this->validate($request, [
             'nom_entreprise' => 'required|string',
             'nom_respon' => 'required|string',
             'type_entreprise' => 'required|string',
             'cni_respon' => 'required|string',
-            'image' => 'nullable', 'image', 'mimes:jpeg,jpg,png,gif', 'max:10000',
+            'image'=>'required|image|mimes:jpeg,jpg,png,gif|max:10000',
         ]);
 
-        if ($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-                ->back()
-                ->withErrors($validatedData)
-                ->withInput();
-        }
+        // if ($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //         ->back()
+        //         ->withErrors($validatedData)
+        //         ->withInput();
+        // }
 
         if ($request->hasFile('image'))
         {
@@ -43,7 +43,7 @@ class EntrepriseController extends Controller
             $image = $filename;
         }
         else
-        {
+        { 
             $image = 'default.png';
         }
         $entreprise = Entreprise::create(
@@ -55,7 +55,13 @@ class EntrepriseController extends Controller
                 'image' => $image,
             ]
         );
-        return redirect()->route('entreprise.list', ['id' => $entreprise->id]);
+        // if ($entreprise) {
+        //     # code...
+        //     Toastr::success("Enregistrement réussit de l'entreprise : " . $request->nom_entreprise);
+        // }
+        // return redirect()->route('entreprise.list');
+        return redirect()->route('entreprise.list')->with("success","Enregistrement réussit de l'entreprise : ".$request->nom_entreprise);
+        // , ['id' => $entreprise->id]
     }
 }
 

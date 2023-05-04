@@ -26,23 +26,23 @@ class ModalCompteController extends Controller
         if (! $compte) {
             # code...
             abort(404);
-        }      
-        $validatedData = Validator::make($request->all(),[
+        }
+        $this->validate($request,[
             'num'=> 'required|string',
             'solde'=> 'required|string',
             'code'=>'required|string',
             'type'=>'required|string',
             'nature'=>'required|string',
-            'date_ouverture'=>'required|date',
+            'date_ouverture'=>'required|date', 
             'statut'=>'required|boolean',
         ]);
-        if($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-            ->back()
-            ->withErrors($validatedData)
-            ->withInput();
-        }
+        // if($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //     ->back()
+        //     ->withErrors($validatedData)
+        //     ->withInput();
+        // }
 
         $compte->update([
             'solde' => (int) request('solde'),

@@ -20,13 +20,16 @@ class CompteBankController extends Controller
     {
         $compte_banks = CompteBank::join('clients', 'clients.id', '=', 'compte_banks.comptebankable_id')
                                     ->where('compte_banks.comptebankable_type', '=', 'App\Models\Client')
-                                    ->get();
+                                    ->get('compte_banks.*','clients.*');
         // dd($compte_banks);
+        // $compte_banks = CompteBank::all();
         if ($request->ajax()) {
             $allData = DataTables::of($compte_banks)
                 ->addIndexColumn()
                 ->addColumn('proprietaire', function($compte_banks){
-                    return $compte_banks->nom;
+                    $nom_proprio = Client::where('id',$compte_banks->comptebankable_id)->get();
+                    return $nom_proprio[0]->nom;
+                    // return $compte_banks->nom;
                 })
                 ->addColumn('action', function ($row) {
                     $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
@@ -50,16 +53,27 @@ class CompteBankController extends Controller
     {
         $compte_banks = CompteBank::join('entreprises', 'entreprises.id', '=', 'compte_banks.comptebankable_id')
                                     ->where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')
-                                    ->get();
+                                    ->get('compte_banks.*','entreprises.*');
+        // $ncompte_banks = CompteBank::join('entreprises', 'entreprises.id', '=', 'compte_banks.comptebankable_id')
+        //                             ->where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')
+        //                             ->get();
+        // $ncompte_banks = CompteBank::where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')->get();
         // dd($compte_banks);
         if ($request->ajax()) {
-            $allData = DataTables::of($compte_banks) 
+            $allData = DataTables::of($compte_banks)
                 ->addIndexColumn()
                 ->addColumn('proprietaire', function($compte_banks){
-                    return $compte_banks->nom_respon;
+                    $nom_resp = Entreprise::where('id',$compte_banks->comptebankable_id)->get();
+                    return $nom_resp[0]->nom_respon;
                 })
+                // ->addColumn('id_compte', function($compte_banks){
+                //     // $ncompte_banks = CompteBank::where('compte_banks.comptebankable_type', '=', 'App\Models\Entreprise')->get();
+
+                //     return $compte_banks->id;
+                // })
                 ->addColumn('non_entreprise', function($compte_banks){
-                    return $compte_banks->nom_entreprise;
+                    $nom_resp = Entreprise::where('id',$compte_banks->comptebankable_id)->get();
+                    return $nom_resp[0]->nom_entreprise;
                 })
                 ->addColumn('action', function ($row) {
                     $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
@@ -78,46 +92,47 @@ class CompteBankController extends Controller
     }
     //
 
-        public function createclient()
-        {
-            $client = Client::all();
-            return view('compte-bancaire.infos-compt', compact('client'));
-        }
+    public function createclient()
+    {
+        $client = Client::all();
+        return view('compte-bancaire.infos-compt', compact('client'));
+    }
 
     public function storeclient(Request $request)
     {
 
-        $validatedData = Validator::make($request->all(), [
+        $this->validate($request, [
             'num' => 'required|string',
-            'solde' => 'required|string',
+            'solde' => 'required',
             'code' => 'required|string',
             'type' => 'required|string',
             'date_ouverture' => 'required|date',
             'client_id' => 'required|integer',
             'statut' => 'required|boolean',
         ]);
-        if ($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-                ->back()
-                ->withErrors($validatedData)
-                ->withInput();
-        }
-                # code...
-                $client = Client::Find($request->client_id);
-                $client->comptebanks()->create(
-                    [
-                        'numero_compte' => request('num'),
-                        'solde' => (int) request('solde'),
-                        'type_compte' => request('type'),
-                        'date_ouverture' => request('date_ouverture'),
-                        'code' => (int) request('code'),
-                        'comptebankable_id' => (int)request('client_id'),
-                        'statut' => request('statut'),
-                    ]
-                );
-            // dd($client->comptebanks);
-            return redirect()->route('compte.list');
+        // if ($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //         ->back()
+        //         ->withErrors($validatedData)
+        //         ->withInput();
+        // }
+        
+        $client = Client::Find($request->client_id);
+        $client->comptebanks()->create(
+            [
+                'numero_compte' =>(string) request('num'), 
+                'solde' => (float) request('solde'),
+                'type_compte' => request('type'),
+                'date_ouverture' => request('date_ouverture'),
+                'code' => (int) request('code'),
+                'comptebankable_id' => (int)request('client_id'),
+                'statut' => request('statut'),
+            ]
+        );
+        // dd($client->comptebanks);
+        // Toastr::success("Creation du compte client effectuée avec succès");
+        return redirect()->route('compte.list')->with("success","Enregistrement du compte réussit ");
 
     }
 
@@ -128,28 +143,28 @@ class CompteBankController extends Controller
     }
     public function storeentreprise(Request $request){
 
-        $validatedData = Validator::make($request->all(), [
+        $this->validate($request, [
             'num' => 'required|string',
-            'solde' => 'required|string',
+            'solde' => 'required',
             'code' => 'required|string',
-            'type' => 'required|string',
+            'type' => 'required|in:Compte courant,Compte epagne',
             'date_ouverture' => 'required|date',
             'entreprise_id' => 'required|integer',
             'statut' => 'required|boolean',
         ]);
-        if ($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-                ->back()
-                ->withErrors($validatedData)
-                ->withInput();
-        }
+        // if ($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //         ->back()
+        //         ->withErrors($validatedData)
+        //         ->withInput();
+        // }
 
         $entreprise = Entreprise::Find($request->entreprise_id);
                 $entreprise->comptebanks()->create(
                     [
                         'numero_compte' => request('num'),
-                        'solde' => (int) request('solde'),
+                        'solde' => (float) request('solde'),
                         'type_compte' => request('type'),
                         'date_ouverture' => request('date_ouverture'),
                         'code' => (int) request('code'),
@@ -157,6 +172,7 @@ class CompteBankController extends Controller
                         'statut' => request('statut'),
                     ]
                 );
-                return redirect()->route('compte.entreprise');
+                // Toastr::success("Creation du compte entreprise effectuée avec succès");
+                return redirect()->route('compte.entreprise')->with("success","Enregistrement du compte réussit ");
     }
 }
