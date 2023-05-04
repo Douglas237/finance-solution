@@ -18,17 +18,17 @@ class ClientController extends Controller
     {
         $clients = Client::all();
 
-        if($request->ajax()) {
+        if ($request->ajax()) {
             $allData = DataTables::of($clients)
-            ->addIndexColumn()
-            ->addColumn('action', function($row){
-                $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary  btn_sm editCompte" id="edite">Edite</a>';
-                $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delet">Del</a>';
-                $btn.= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Detail" class="edit btn btn-warning btn_sm deleteCompte" id="detail">Detail</a>';
-                return $btn;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary  btn_sm editCompte" id="edite">Edite</a>';
+                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delet">Del</a>';
+                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Detail" class="edit btn btn-warning btn_sm deleteCompte" id="detail">Detail</a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
             return $allData;
         }
         // return view("compte-bancaire.list-compt", compact('compte_banks'));
@@ -43,17 +43,17 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'nom'=> 'required|string',
-            'prenom'=> 'required|string',
-            'date_naissance'=>'required|date',
-            'sexe'=>'required|string',
-            'email'=>'required|string',
-            'telephone'=> array('required','regex:/(^6[25-9][0-9]([ ]([0-9]){3}){2}$)/u'),
-            'cni'=>'required|string',
-            'ville'=>'required|string',
-            'adress'=>'required|string',
-            'image'=>'required|image|mimes:jpeg,jpg,png,gif|max:10000'
+        $this->validate($request, [
+            'nom' => 'required|string',
+            'prenom' => 'required|string',
+            'date_naissance' => 'required|date',
+            'sexe' => 'required|string',
+            'email' => 'required|string',
+            'telephone' => array('required', 'regex:/(^6[25-9][0-9]([ ]([0-9]){3}){2}$)/u'),
+            'cni' => 'required|string',
+            'ville' => 'required|string',
+            'adress' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,jpg,png,gif|max:10000'
         ]);
 
         // if($validatedData->fails()) {
@@ -77,7 +77,7 @@ class ClientController extends Controller
             $data->ville = $request->ville;
             $data->adress = $request->adress;
 
-            if($request->hasFile('image')) {
+            if ($request->hasFile('image')) {
                 $file = $request->file('image');
                 $extension = $file->getClientOriginalExtension();
                 $filename = date('YmdHi') . ucfirst($request->nom) . '.' . $extension;
@@ -87,33 +87,33 @@ class ClientController extends Controller
                 $data->image = 'default.png';
             }
             $data->save();
-            // Toastr::success('Enregistrement du client réussit : ' . $request->nom);
-            return redirect()->route('Client.index',[$data->id])->with("success","Enregistrement réussit de l'entreprise : ".$request->nom);
-        } catch(Exception $e) {
+            Toastr::success('Enregistrement du client réussit : ' . $request->nom);
+            return redirect()->route('Client.index', [$data->id]);
+        } catch (Exception $e) {
 
             Toastr::error(
                 "Echec d'enregistrement du client : " . $request->nom
             );
             return redirect()->back();
         }
-
     }
 
-    public function edit($id) {
-
+    public function edit($id)
+    {
     }
-    public function update(Request $request, $id) {
-        $this->validate($request,[
-            'nom'=> 'required|string',
-            'prenom'=> 'required|string',
-            'date_naissance'=>'required|date',
-            'sexe'=>'required',
-            'email'=>'required|string',
-            'telephone'=> array('required','regex:/(^6[25-9][0-9]([ ]([0-9]){3}){2}$)/u'),
-            'cni'=>'required|string',
-            'ville'=>'required|string',
-            'adress'=>'required|string',
-            'image'=>'required|image|mimes:jpeg,jpg,png,gif|max:10000'
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'nom' => 'required|string',
+            'prenom' => 'required|string',
+            'date_naissance' => 'required|date',
+            'sexe' => 'required',
+            'email' => 'required|string',
+            'telephone' => array('required', 'regex:/(^6[25-9][0-9]([ ]([0-9]){3}){2}$)/u'),
+            'cni' => 'required|string',
+            'ville' => 'required|string',
+            'adress' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,jpg,png,gif|max:10000'
         ]);
 
         // if($validatedData->fails()) {
@@ -137,20 +137,23 @@ class ClientController extends Controller
             $data->ville = $request->ville;
             $data->adress = $request->adress;
 
-            if($request->hasFile('image')) {
+            if ($request->hasFile('image')) {
                 $file = $request->file('image');
                 $extension = $file->getClientOriginalExtension();
-                $filename = date('YmdHi').ucfirst($request->nom).'.'.$extension;
+                $filename = date('YmdHi') . ucfirst($request->nom) . '.' . $extension;
                 $file->move('uploads/images/client', $filename);
                 $data->image = $filename;
             } else {
                 $data->image = 'default.png';
             }
             $data->save();
+            Toastr::success('Enregistrement du client réussit : ' . $request->nom);
+            return redirect()->route('compte', [$data->id]);
+        } catch (Exception $e) {
             // Toastr::success('Enregistrement du client réussit : ' . $request->nom);
             // return redirect()->route('compte',[$data->id]);
-            return redirect()->route('compte',[$data->id])->with("success","Enregistrement réussit de l'entreprise : ".$request->nom);
-        } catch(Exception $e) {
+            return redirect()->route('compte', [$data->id])->with("success", "Enregistrement réussit de l'entreprise : " . $request->nom);
+        } catch (Exception $e) {
 
             Toastr::error(
                 "Echec d'enregistrement du client : " . $request->nom
@@ -159,19 +162,20 @@ class ClientController extends Controller
         }
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
 
         try {
             $data = Client::findOrFail($id);
             $destination = 'uploads/images/client/' . $data->image;
             $destination_default = 'uploads/images/client/default.png';
 
-            if($destination_default != $destination && File::exists($destination)) {
-              File::delete($destination);
+            if ($destination_default != $destination && File::exists($destination)) {
+                File::delete($destination);
             }
             $data->delete();
             Toastr::success('suppression du client effectuée avec succes');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             Toastr::error('Echec de la suppression du client');
         }
         return redirect()->back();
