@@ -5,47 +5,48 @@
 aria-labelledby="staticBackdropLabel" aria-hidden="true">
 <div class="modal-dialog">
     <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header modalhead">
             <h1 class="modal-title fs-5" id="modaltitle">Edition beneficiaire</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" id="close" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form class="form-control" id="beneficiaire_forme">
+            <form class="form-control modalform" id="beneficiaire_forme">
                 @csrf
-                <input type="hidden" name="beneficiaire_id" id="beneficiaire_id">
-                <div class="note">
-                    <p id="formtitle"><strong>Informations de l'entreprise</strong></p>
-                </div>
+                <input type="hidden" name="beneficiaire_id" id="beneficiaire_id"> 
                 <div class="row tout">
                     <div class="col right">
-                        <input type="text" name="nom_beneficiaire" id="nom_beneficiaire" class="form-control first"
+                        <input type="text" name="nom_beneficiaire" id="nom_beneficiaire" class="form-control firstmodal"
                             placeholder="nom du beneficiaire" aria-label="nom du beneficiaire">
-                        <input type="text" name="prenom" id="prenom" class="form-control first"
+                        <span style="margin-left: 1.5rem" id="nom_beneficiaire_error" class="text-danger errors"></span>
+                        <input type="text" name="prenom" id="prenom" class="form-control firstmodal"
                             placeholder="prenom" aria-label="prenom">
-                        <input type='text' name="cni" id="cni" class="form-control first"
+                        <span style="margin-left: 1.5rem" id="prenom_error" class="text-danger errors"></span>
+                        <input type='text' name="cni" id="cni" class="form-control firstmodal"
                             placeholder="cni" aria-label="cni" />
+                        <span style="margin-left: 1.5rem" id="cni_error" class="text-danger errors"></span>
                     </div>
                     <div class="col gauche">
-                        <select class="form-select first" name="sexe" id="sexe" aria-label="Default select example">
+                        <select style="margin-left: 0.5rem; margin-bottom: 2rem;" class="form-select firstmodal" name="sexe" id="sexe" aria-label="Default select example">
                             <option selected>sexe</option>
                             <option value="male">Homme</option>
                             <option value="femmel">Femme</option>
                         </select>
-                        <input type='number' name="telephone" id="telephone" class="form-control first"
+                        <input type='text' style="margin-top: 4.05rem !important;" name="telephone" id="telephone" class="form-control firstmodal"
                             placeholder="telephone" />
+                        <span style="margin-left: 1.5rem" id="telephone_error" class="text-danger errors"></span>
                     </div>
                 </div>
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="close" data-bs-dismiss="modal">Close</button>
             <button type="button" id="edition" class="btn btn-success">Edite</button>
         </div>
     </div>
 </div>
 </div>
 <div class="form-control">
-    <div class="formcompte">
+    <div class="formcompte"> 
         <div class="title">
             <p><strong>Liste des Beneficiaires</strong></p>
             <a
@@ -143,8 +144,14 @@ var table = $(".data-table").DataTable
             },
 
       ]
-});
+}); 
 
+
+            $('body').on('click', '#close', function() {
+                $('.errors').html('');
+                $("#paymentmodal").trigger("reset");
+                $('#payment_id').val('');
+            });
     // Edition d'un beneficiaire
     $('body').on('click', '#edite', function() {
                 var id = $(this).data("id");
@@ -171,6 +178,7 @@ var table = $(".data-table").DataTable
             });
             var form = $('#beneficiaire_forme')[0];
             $('body').on('click', '#edition', function() {
+                $('.errors').html('');
                 var formdata = new FormData(form);
                 $.ajax({
                     url: '{{ route('beneficiaire.edition') }}',
@@ -182,9 +190,15 @@ var table = $(".data-table").DataTable
                     success: function(response) {
                         table.ajax.reload();
                         $('#beneficiaire_modal').modal('hide');
+                        $('.errors').html('');
                         console.log(response);
                     },
                     error: function(error) {
+                        $('#nom_beneficiaire_error').html(error.responseJSON.errors
+                            .nom_beneficiaire);
+                        $('#prenom_error').html(error.responseJSON.errors.prenom);
+                        $('#cni_error').html(error.responseJSON.errors.cni);
+                        $('#telephone_error').html(error.responseJSON.errors.telephone);
                         console.log(error);
                     },
                 });

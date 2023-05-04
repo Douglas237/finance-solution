@@ -16,33 +16,33 @@ class ModalBeneficiaireController extends Controller
             abort(404);
         }
         return $beneficiaire;
-    }
+    } 
     public function editer(Request $request)
     {
         $beneficiaire = Beneficiaire::find($request->beneficiaire_id);
         if(!$beneficiaire){
             abort(404);
         }
-        $validatedData = Validator::make($request->all(),[
+        $this->validate($request,[
             'nom_beneficiaire'=> 'required|string',
             'prenom'=> 'required|string',
             'cni'=>'required|string',
-            'telephone'=>'required|string',
+            'telephone'=> array('required','regex:/(^6[25-9][0-9]([ ]([0-9]){3}){2}$)/u'),
             'sexe' => 'required|string',
         ]);
-        if($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-            ->back()
-            ->withErrors($validatedData)
-            ->withInput();
-        }
+        // if($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //     ->back()
+        //     ->withErrors($validatedData)
+        //     ->withInput();
+        // }
         $beneficiaire->update([
-                    'nom_beneficiaire'=> request('nom_beneficiaire'),
-                    'prenom'=> request('prenom'),
-                    'cni'=>request('cni'),
-                    'telephone'=> request('telephone'),
-                    'sexe' => request('sexe'),
+            'nom_beneficiaire'=> request('nom_beneficiaire'),
+            'prenom'=> request('prenom'),
+            'cni'=>request('cni'),
+            'telephone'=> request('telephone'),
+            'sexe' => request('sexe'),
         ]);
         return $beneficiaire;
     }

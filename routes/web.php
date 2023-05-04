@@ -7,7 +7,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\RetraitController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\TransfertController;
+use App\Http\Controllers\TransfertController; 
 use App\Http\Controllers\VersementController;
 use App\Http\Controllers\CompteBankController;
 use App\Http\Controllers\EntrepriseController;

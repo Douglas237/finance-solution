@@ -5,37 +5,39 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header modalhead">
                     <h1 class="modal-title fs-5" id="modaltitle">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="close" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="form-control" id="entrepriseforme" enctype="multipart/form-data">
+                    <form class="form-control modalform" id="entrepriseforme" enctype="multipart/form-data">
                         @csrf
-                        <div class="note">
-                            <p><strong>Informations entrprise</strong></p>
-                        </div>
-                        <input type="hidden" name="entreprise_id" id="entreprise_id">
+                        <input type="hidden" name="entreprise_id" id="entreprise_id"> 
                         <div class="row tout">
                             <div class="col right">
-                                <input type="text" name="nom_entreprise" id="nom_entreprise" class="form-control first"
+                                <input type="text" name="nom_entreprise" id="nom_entreprise" class="form-control firstmodal"
                                     placeholder="nom de l'entreprise" aria-label="nom de l'entreprise">
-                                <input type="text" name="type_entreprise" id="type_entreprise" class="form-control first"
+                                <span style="margin-left: 1.5rem" id="nom_entreprise_error" class="text-danger errors"></span>
+                                <input type="text" name="type_entreprise" id="type_entreprise" class="form-control firstmodal"
                                     placeholder="type entreprise" aria-label="type entreprise">
-                                <input type="file" name="image" id="image" class="form-control first"
+                                <span style="margin-left: 1.5rem" id="type_entreprise_error" class="text-danger errors"></span>
+                                <input type="file" name="image" id="image" class="form-control firstmodal"
                                     aria-label="file example" required>
+                                <span style="margin-left: 1.5rem" id="image_error" class="text-danger errors"></span>
                             </div>
                             <div class="col gauche">
-                                <input type="text" name="nom_respon" id="nom_respon" class="form-control first"
+                                <input type="text" name="nom_respon" id="nom_respon" class="form-control firstmodal"
                                     placeholder="nom du responssable" aria-label="nom du responssable">
-                                <input type="text" name="cni_respon" id="cni_respon" class="form-control first"
+                                <span style="margin-left: 1.5rem" id="nom_respon_error" class="text-danger errors"></span>
+                                <input type="text" name="cni_respon" id="cni_respon" class="form-control firstmodal"
                                     placeholder="numero cni du responssable" aria-label="type entreprise">
+                                <span style="margin-left: 1.5rem" id="cni_respon_error" class="text-danger errors"></span>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
                     <button type="button" id="editer" class="btn btn-primary">Edite</button>
                 </div>
             </div>
@@ -74,7 +76,7 @@
 
     <script type="text/javascript">
         $(function() {
-
+            var form = $('#entrepriseforme')[0];
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -132,7 +134,12 @@
 
                 ]
             });
-
+            
+            $('body').on('click', '#close', function() {
+                $('.errors').html('');
+                $("#paymentmodal").trigger("reset");
+                $('#payment_id').val('');
+            });  
             // edit entreprise
             $('body').on('click', '#edite', function() {
                 var id = $(this).data("id");
@@ -155,8 +162,8 @@
                     }
                 });
             });
-            var form = $('#entrepriseforme')[0];
             $('body').on('click', '#editer', function() {
+                $('.errors').html('');
                 var formdata = new FormData(form);
                 $.ajax({
                     url: '{{ route('entreprise.edit') }}',
@@ -168,9 +175,18 @@
                     success: function(response) {
                         table.ajax.reload();
                         $('#entrprise_modal').modal('hide');
+                        $('.errors').html('');
+                        swal("Entreprise editer avec succes", {
+                            icon: "success",
+                        });
                         console.log(response);
                     },
                     error: function(error) {
+                        $('#nom_entreprise_error').html(error.responseJSON.errors.nom_entreprise);
+                        $('#type_entreprise_error').html(error.responseJSON.errors.type_entreprise);
+                        $('#image_error').html(error.responseJSON.errors.image);
+                        $('#nom_respon_error').html(error.responseJSON.errors.nom_respon);
+                        $('#cni_respon_error').html(error.responseJSON.errors.cni_respon);
                         console.log(error);
                     }
                 });

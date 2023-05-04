@@ -87,8 +87,8 @@ class ClientController extends Controller
                 $data->image = 'default.png';
             }
             $data->save();
-            Toastr::success('Enregistrement du client réussit : ' . $request->nom);
-            return redirect()->route('Client.index',[$data->id]);
+            // Toastr::success('Enregistrement du client réussit : ' . $request->nom);
+            return redirect()->route('Client.index',[$data->id])->with("success","Enregistrement réussit de l'entreprise : ".$request->nom);
         } catch(Exception $e) {
 
             Toastr::error(
@@ -147,8 +147,9 @@ class ClientController extends Controller
                 $data->image = 'default.png';
             }
             $data->save();
-            Toastr::success('Enregistrement du client réussit : ' . $request->nom);
-            return redirect()->route('compte',[$data->id]);
+            // Toastr::success('Enregistrement du client réussit : ' . $request->nom);
+            // return redirect()->route('compte',[$data->id]);
+            return redirect()->route('compte',[$data->id])->with("success","Enregistrement réussit de l'entreprise : ".$request->nom);
         } catch(Exception $e) {
 
             Toastr::error(

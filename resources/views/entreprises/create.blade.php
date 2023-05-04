@@ -93,5 +93,5 @@
           // alert("Vous avez sélectionné le langage : " + langage);
         });
       });
-      </script>
+    </script>
 @endsection

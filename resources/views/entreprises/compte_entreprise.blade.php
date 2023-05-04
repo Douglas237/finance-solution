@@ -5,50 +5,50 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header modalhead">
                     <h1 class="modal-title fs-5" id="modaltitle">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="close" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form class="form-control" id="compte_forme">
+                {{-- <div class="note">
+                    <p id="formtitle"><strong>Informations du client</strong></p>
+                </div> --}}
+                <div class="modal-body"> 
+                    <form class="form-control modalform" id="compte_forme">
                         @csrf
                         <input type="hidden" name="compte_id" id="compte_id">
-                        <div class="note">
-                            <p id="formtitle"><strong>Informations du client</strong></p>
-                        </div>
                         <div class="row tout">
                             <div class="col right">
-                                <input type="text" name="num" id="num" class="form-control first"
+                                <input type="text" name="num" id="num" class="form-control firstmodal"
                                     placeholder="numero du compte" aria-label="numero du compte">
                                 <select class="form-select first" name="nature" aria-label="Default select example">
                                     <option selected>Nature du compte</option>
                                     <option value="client">Client</option>
                                     <option value="entreprise">Entreprise</option>
                                 </select>
-                                <input type="text" name="solde" id="solde" class="form-control first"
+                                <input type="text" name="solde" id="solde" class="form-control firstmodal"
                                     placeholder="solde" aria-label="solde">
-                                <input type='text' name="code" id="code" class="form-control first"
+                                <input type='text' name="code" id="code" class="form-control firstmodal"
                                     placeholder="code" aria-label="code" />
                             </div>
                             <div class="col gauche">
-                                <select class="form-select first" name="type" aria-label="Default select example">
+                                <select class="form-select firstmodal" name="type" aria-label="Default select example">
                                     <option selected>Type de compte</option>
                                     <option value="Compte courant">Compte courant</option>
                                     <option value="Compte epagne">Compte epagne</option>
                                 </select>
-                                <input type='date' name="date_ouverture" id="date_ouverture" class="form-control first"
+                                <input type='date' name="date_ouverture" id="date_ouverture" class="form-control firstmodal"
                                     placeholder="Select Date" />
                                 <div>
                                     <p style="padding: 0;margin: 0;">Status</p>
                                     <div class="form-check">
-                                        <input class="form-check-input sex" type="radio" name="statut" id="actif"
+                                        <input class="form-check-input sexM" type="radio" name="statut" id="actif"
                                             value="1" checked>
                                         <label class="form-check-label" for="actif">
                                             Actif
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input sex" type="radio" name="statut" id="inactif"
+                                        <input class="form-check-input sexM" type="radio" name="statut" id="inactif"
                                             value="0">
                                         <label class="form-check-label" for="inactif">
                                             Inactif
@@ -58,14 +58,14 @@
                                 <div>
                                     <p style="padding: 0;margin: 0;">Lier a une carte</p>
                                     <div class="form-check">
-                                        <input class="form-check-input sex" type="radio" name="lier" id="oui"
+                                        <input class="form-check-input sexM" type="radio" name="lier" id="oui"
                                             value="oui" checked>
                                         <label class="form-check-label" for="oui">
                                             oui
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input sex" type="radio" name="lier" id="non"
+                                        <input class="form-check-input sexM" type="radio" name="lier" id="non"
                                             value="non">
                                         <label class="form-check-label" for="non">
                                             non
@@ -77,7 +77,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="close" data-bs-dismiss="modal">Close</button>
                     <button type="button" id="edition" class="btn btn-success">Edite</button>
                 </div>
             </div>
@@ -189,6 +189,11 @@
                 ]
             });
 
+            $('body').on('click', '#close', function() {
+                $('.errors').html('');
+                $("#paymentmodal").trigger("reset");
+                $('#payment_id').val('');
+            });
             // Edition d'un compte
             $('body').on('click', '#edite', function() {
                 var id = $(this).data("id");

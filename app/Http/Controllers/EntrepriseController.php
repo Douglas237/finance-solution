@@ -23,7 +23,7 @@ class EntrepriseController extends Controller
             'nom_respon' => 'required|string',
             'type_entreprise' => 'required|string',
             'cni_respon' => 'required|string',
-            'image'=>'nullable|image|mimes:jpeg,jpg,png,gif|max:10000',
+            'image'=>'required|image|mimes:jpeg,jpg,png,gif|max:10000',
         ]);
 
         // if ($validatedData->fails()) {
@@ -43,7 +43,7 @@ class EntrepriseController extends Controller
             $image = $filename;
         }
         else
-        {
+        { 
             $image = 'default.png';
         }
         $entreprise = Entreprise::create(
@@ -55,8 +55,12 @@ class EntrepriseController extends Controller
                 'image' => $image,
             ]
         );
-        Toastr::success("Enregistrement réussit de l'entreprise : " . $request->nom_entreprise);
-        return redirect()->route('entreprise.list');
+        // if ($entreprise) {
+        //     # code...
+        //     Toastr::success("Enregistrement réussit de l'entreprise : " . $request->nom_entreprise);
+        // }
+        // return redirect()->route('entreprise.list');
+        return redirect()->route('entreprise.list')->with("success","Enregistrement réussit de l'entreprise : ".$request->nom_entreprise);
         // , ['id' => $entreprise->id]
     }
 }

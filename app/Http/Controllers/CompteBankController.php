@@ -121,7 +121,7 @@ class CompteBankController extends Controller
         $client = Client::Find($request->client_id);
         $client->comptebanks()->create(
             [
-                'numero_compte' =>(string) request('num'),
+                'numero_compte' =>(string) request('num'), 
                 'solde' => (float) request('solde'),
                 'type_compte' => request('type'),
                 'date_ouverture' => request('date_ouverture'),
@@ -131,8 +131,8 @@ class CompteBankController extends Controller
             ]
         );
         // dd($client->comptebanks);
-        Toastr::success("Creation du compte client effectuée avec succès");
-        return redirect()->route('compte.list');
+        // Toastr::success("Creation du compte client effectuée avec succès");
+        return redirect()->route('compte.list')->with("success","Enregistrement du compte réussit ");
 
     }
 
@@ -172,7 +172,7 @@ class CompteBankController extends Controller
                         'statut' => request('statut'),
                     ]
                 );
-                Toastr::success("Creation du compte entreprise effectuée avec succès");
-                return redirect()->route('compte.entreprise');
+                // Toastr::success("Creation du compte entreprise effectuée avec succès");
+                return redirect()->route('compte.entreprise')->with("success","Enregistrement du compte réussit ");
     }
 }
