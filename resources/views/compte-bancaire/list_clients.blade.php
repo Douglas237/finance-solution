@@ -82,7 +82,7 @@
                 href="{{ route('Client.create') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem;" type="button" class="btn btn-success"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter client</button></a>
             </div>
             <div class="alltabs">
-                <div class="tabs_1">
+                <div class="tabs_1"> 
                     <table class="table table-bordered data-table">
                         <thead>
                             <tr>

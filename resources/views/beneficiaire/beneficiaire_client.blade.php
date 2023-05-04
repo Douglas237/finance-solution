@@ -45,7 +45,7 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true">
 </div>
 </div>
 <div class="form-control">
-    <div class="formcompte">
+    <div class="formcompte"> 
         <div class="title">
             <p><strong>Liste des Beneficiaires</strong></p>
             <a
@@ -143,7 +143,7 @@ var table = $(".data-table").DataTable
             },
 
       ]
-});
+}); 
 
     // Edition d'un beneficiaire
     $('body').on('click', '#edite', function() {

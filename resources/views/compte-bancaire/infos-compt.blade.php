@@ -213,8 +213,9 @@
                     contentType: false,
 
                     success: function(response) {
-                        $('#newclientModal').modal('hide');
-                        console.log(response);
+                      $('#newclientModal').modal('hide');
+                      console.log(response);
+                      window.location.reload();
                     },
                     error: function(error) {
 

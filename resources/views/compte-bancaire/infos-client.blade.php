@@ -9,7 +9,7 @@
         </div>
         <form action="{{ route('Client.store') }}" method="POST" id="oui" class="form-control" enctype="multipart/form-data">
             @csrf
-            <div class="row tout" style="margin: 1rem;">
+            <div class="row tout" style="margin: 1rem;"> 
                 <div class="col right">
                     <input type="text" name="nom" class="form-control first" placeholder="nom" aria-label="nom" value="{{old('nom')}}"/>
                         {!!$errors->first('nom','<p class="errors">:message</p>')!!}
