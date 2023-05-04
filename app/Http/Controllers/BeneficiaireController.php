@@ -74,33 +74,33 @@ class BeneficiaireController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = Validator::make($request->all(),[
+        $this->validate($request,[
             'nom_beneficiaire'=> 'required|string',
             'prenom'=> 'required|string',
             'cni'=>'required|string',
-            'telephone'=>'required|string',
+            'telephone'=> array('required','regex:/(^6[25-9][0-9]([ ]([0-9]){3}){2}$)/u'),
             'entreprise_id'=>'required',
             'sexe' => 'required|string',
         ]);
 
-        if($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-            ->back()
-            ->withErrors($validatedData)
-            ->withInput();
-        }
+        // if($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.'); 
+        //     return redirect()
+        //     ->back()
+        //     ->withErrors($validatedData)
+        //     ->withInput();
+        // }
             # code...
-            $entreprise = Entreprise::Find($request->entreprise_id);
-            $entreprise->beneficiaire()->create(
-                [
-                    'nom_beneficiaire'=> request('nom_beneficiaire'),
-                    'prenom'=> request('prenom'),
-                    'cni'=>request('cni'),
-                    'telephone'=> request('telephone'),
-                    'beneficiaireable_id'=> (int)request('entreprise_id'),
-                    'sexe' => request('sexe'),
-                ]);
+        $entreprise = Entreprise::Find($request->entreprise_id);
+        $entreprise->beneficiaire()->create(
+        [
+            'nom_beneficiaire'=> request('nom_beneficiaire'),
+            'prenom'=> request('prenom'),
+            'cni'=>request('cni'),
+            'telephone'=> request('telephone'),
+            'beneficiaireable_id'=> (int)request('entreprise_id'),
+            'sexe' => request('sexe'),
+        ]);
         return redirect()->route('beneficiaire.entreprise');
 
     }
@@ -113,33 +113,33 @@ class BeneficiaireController extends Controller
 
     public function storebeneclient(Request $request)
     {
-        $validatedData = Validator::make($request->all(),[
+        $this->validate($request,[
             'nom_beneficiaire'=> 'required|string',
             'prenom'=> 'required|string',
             'cni'=>'required|string',
-            'telephone'=>'required|numeric',
+            'telephone'=> array('required','regex:/(^6[25-9][0-9]([ ]([0-9]){3}){2}$)/u'),
             'client_id'=>'required',
             'sexe' => 'required|string',
         ]);
 
-        if($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-            ->back()
-            ->withErrors($validatedData)
-            ->withInput();
-        }
+        // if($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //     ->back()
+        //     ->withErrors($validatedData)
+        //     ->withInput();
+        // }
         $client = Client::Find($request->client_id);
-            $client->beneficiaire()->create(
-                [
-                    'nom_beneficiaire'=> request('nom_beneficiaire'),
-                    'prenom'=> request('prenom'),
-                    'cni'=>request('cni'),
-                    'telephone'=> request('telephone'),
-                    'beneficiaireable_id'=> (int)request('client_id'),
-                    'sexe' => request('sexe'),
-                ]
-            );
-            return redirect()->route('beneficiaire.client');
+        $client->beneficiaire()->create(
+            [
+                'nom_beneficiaire'=> request('nom_beneficiaire'),
+                'prenom'=> request('prenom'),
+                'cni'=>request('cni'),
+                'telephone'=> request('telephone'),
+                'beneficiaireable_id'=> (int)request('client_id'),
+                'sexe' => request('sexe'),
+            ]
+        );
+        return redirect()->route('beneficiaire.client');
     }
 }

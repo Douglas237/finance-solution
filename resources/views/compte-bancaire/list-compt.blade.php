@@ -7,7 +7,7 @@
             <div class="modal-content">
                 <div class="modal-header modalhead">
                     <h1 class="modal-title fs-5" id="modaltitle">Edition Compte</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="close" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form class="form-control modalform" id="compte_forme">
@@ -16,21 +16,29 @@
                         <div class="row tout">
                             <div class="col right">
                                 <input type="text" name="num" id="num" class="form-control firstmodal"
-                                    placeholder="numero du compte" aria-label="numero du compte">
-                                <input type="number" min="0" name="solde" id="solde" class="form-control firstmodal"
+                                    placeholder="numero du compte" readonly aria-label="numero du compte">
+                                <span style="margin-left: 1.5rem" id="num_error"
+                                    class="text-danger errors"></span>
+                                <input type="number" min="0" name="solde" id="solde" class="form-control firstmodal" 
                                     placeholder="solde" aria-label="solde">
+                                <span style="margin-left: 1.5rem" id="solde_error"
+                                    class="text-danger errors"></span>
                                 <input type='text' name="code" id="code" class="form-control firstmodal"
                                     placeholder="code" aria-label="code" />
+                                <span style="margin-left: 1.5rem" id="code_error"
+                                    class="text-danger errors"></span>
                             </div>
                             <div class="col gauche">
+                                <input type='date' name="date_ouverture" id="date_ouverture" class="form-control firstmodal"
+                                    placeholder="Select Date" />
+                                <span style="margin-left: 1.5rem" id="date_ouverture_error"
+                                    class="text-danger errors"></span>
                                 <select style="margin-left: 0.5rem;" class="form-select firstmodal" name="type" aria-label="Default select example">
                                     <option selected>Type de compte</option>
                                     <option value="Compte courant">Compte courant</option>
                                     <option value="Compte epagne">Compte epagne</option>
                                 </select>
-                                <input type='date' name="date_ouverture" id="date_ouverture" class="form-control firstmodal"
-                                    placeholder="Select Date" />
-                                <div style="padding-top: 0.5rem;" class="modalsex">
+                                <div style="padding-top: 2.5rem;" class="modalsex">
                                     <p style="padding: 0;margin: 0;">Status :</p>
                                     <div class="form-check">
                                         <input class="form-check-input sexM" type="radio" name="statut" id="actif"
@@ -69,7 +77,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="close" data-bs-dismiss="modal">Close</button>
                     <button type="button" id="edition" class="btn btn-success">Edite</button>
                 </div>
             </div>
@@ -106,7 +114,7 @@
             </div>
         </div>
     </div>
-
+    
     <script type="text/javascript">
         $(function() {
 
@@ -176,6 +184,11 @@
                 ]
             });
 
+            $('body').on('click', '#close', function() {
+                $('.errors').html('');
+                $("#paymentmodal").trigger("reset");
+                $('#payment_id').val('');
+            });
             // Edition d'un compte
             $('body').on('click', '#edite', function() {
                 var id = $(this).data("id");
@@ -201,6 +214,7 @@
             });
             var form = $('#compte_forme')[0];
             $('body').on('click', '#edition', function() {
+                $('.errors').html('');
                 var formdata = new FormData(form);
                 $.ajax({
                     url: '{{ route('charger') }}',
@@ -212,9 +226,15 @@
                     success: function(response) {
                         table.ajax.reload();
                         $('#compte_modal').modal('hide');
+                        $('.errors').html('');
                         console.log(response);
                     },
                     error: function(error) {
+                        $('#num_error').html(error.responseJSON.errors
+                            .num);
+                        $('#solde_error').html(error.responseJSON.errors.solde);
+                        $('#code_error').html(error.responseJSON.errors.code);
+                        $('#date_ouverture_error').html(error.responseJSON.errors.date_ouverture);
                         console.log(error);
                     },
                 });

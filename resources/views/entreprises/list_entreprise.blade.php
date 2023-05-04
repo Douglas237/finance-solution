@@ -7,7 +7,7 @@
             <div class="modal-content">
                 <div class="modal-header modalhead">
                     <h1 class="modal-title fs-5" id="modaltitle">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="close" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form class="form-control modalform" id="entrepriseforme" enctype="multipart/form-data">
@@ -37,7 +37,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
                     <button type="button" id="editer" class="btn btn-primary">Edite</button>
                 </div>
             </div>
@@ -134,7 +134,12 @@
 
                 ]
             });
-
+            
+            $('body').on('click', '#close', function() {
+                $('.errors').html('');
+                $("#paymentmodal").trigger("reset");
+                $('#payment_id').val('');
+            });  
             // edit entreprise
             $('body').on('click', '#edite', function() {
                 var id = $(this).data("id");
@@ -170,6 +175,7 @@
                     success: function(response) {
                         table.ajax.reload();
                         $('#entrprise_modal').modal('hide');
+                        $('.errors').html('');
                         swal("Entreprise editer avec succes", {
                             icon: "success",
                         });

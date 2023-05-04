@@ -5,7 +5,7 @@
             <p><strong>Nouveau Client</strong></p>
         </div>
         <div class="note">
-            <p><strong>Informations du client</strong></p>
+            <p><strong>Informations du client</strong></p> 
         </div>
         <form action="{{ route('Client.store') }}" method="POST" id="oui" class="form-control" enctype="multipart/form-data">
             @csrf

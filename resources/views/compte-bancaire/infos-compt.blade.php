@@ -99,7 +99,7 @@
           <button type="button" id="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
       <div class="modal-body">
-          <form id="formnewclient" class="form-control modalform" enctype="multipart/form-data">
+          <form id="formnewclient" class="form-control modalform" enctype="multipart/form-data"> 
               @csrf
               <div class="row tout">
                   <div class="col right">
@@ -138,7 +138,7 @@
                       <input type="text" name="prenom" id="prenom" class="form-control firstmodal"
                           placeholder="prenom" aria-label="prenom" required>
                       <span style="margin-left: 1.5rem" id="prenom_error" class="text-danger errors"></span>
-                      <input type="tel" name="telephone" id="telephone" class="form-control firstmodal"
+                      <input type="text" name="telephone" id="telephone" class="form-control firstmodal"
                           placeholder="telephone" aria-label="telephone" required>
                       <span style="margin-left: 1.5rem" id="telephone_error" class="text-danger errors"></span>
                       <input type="text" name="cni" id="cni" class="form-control firstmodal"
@@ -173,14 +173,14 @@
         }
         // alert("Vous avez sélectionné le langage : " + langage);
       });
+      var val = $("select.first").val()
+      if (val == "Compte courant") {
+        $('#num').val({{'1001'.random_int(1000, 9999).random_int(1000, 9999);}})
+      }
+      if (val == "Compte epagne") {
+        $('#num').val({{'1111'.random_int(1000, 9999).random_int(1000, 9999);}})
+      }
     });
-    var val = $("select.first").val()
-    if (val == "Compte courant") {
-      $('#num').val({{'1001'.random_int(1000, 9999).random_int(1000, 9999);}})
-    }
-    if (val == "Compte epagne") {
-      $('#num').val({{'1111'.random_int(1000, 9999).random_int(1000, 9999);}})
-    }
   </script>
   <script type="text/javascript">
     $(function () {

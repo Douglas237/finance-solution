@@ -5,46 +5,56 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header modalhead">
                     <h1 class="modal-title fs-5" id="modaltitle">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    {{-- <div class="note">
+                        <p id="formtitle"><strong>Informations sur la carte</strong></p> 
+                    </div> --}}
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="close" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="form-control" id="carte_forme">
+                    <form class="form-control modalform" id="carte_forme">
                         @csrf
                         <input type="hidden" name="carte_id" id="carte_id">
-                        <div class="note">
-                            <p id="formtitle"><strong>Informations sur la carte</strong></p>
-                        </div>
                         <div class="row tout">
                             <div class="col right">
-                                <input type="number" name="numero_carte" id="numero_carte" class="form-control first"
-                                    placeholder="numero de carte" aria-label="numero de carte">
-                                <select class="form-select first" name="type" aria-label="Default select example">
+                                <input type="number" name="numero_carte" id="numero_carte" class="form-control firstmodal"
+                                    placeholder="numero de carte" min="0" aria-label="numero de carte">
+                                <span style="margin-left: 1.5rem" id="numero_carte_error"
+                                    class="text-danger errors"></span>
+                                <input type="date" name="date_creation" id="date_creation" class="form-control firstmodal"
+                                    placeholder="Select Date" aria-label="date_creation">
+                                <span style="margin-left: 1.5rem" id="date_creation_error"
+                                    class="text-danger errors"></span>
+                                <select class="form-select firstmodal" style="margin-left: 0.5rem; margin-top: 1rem !important;" name="type" aria-label="Default select example">
                                     <option selected>Type de carte</option>
                                     <option value="carte electron">Carte electron</option>
                                     <option value="carte visa">Carte visa</option>
                                     <option value="master carte">Master carte</option>
                                 </select>
-                                <input type="date" name="date_creation" id="date_creation" class="form-control first"
-                                    placeholder="Select Date" aria-label="date_creation">
+                                <span style="margin-left: 1.5rem"  
+                                    class="text-danger errors"></span>
                             </div>
                             <div class="col gauche">
-                                <input type='number' name="codesecret" id="codesecret" class="form-control first"
-                                    placeholder="code secret" aria-label="codesecret" />
-                                <input type="date" name="date_expiration" id="date_expiration" class="form-control first"
+                                <input type='number' name="codesecret" id="codesecret" class="form-control firstmodal"
+                                    placeholder="code secret" min="0" aria-label="codesecret" />
+                                <span style="margin-left: 1.5rem" id="codesecret_error"
+                                    class="text-danger errors"></span>
+                                <input type="date" name="date_expiration" id="date_expiration" class="form-control firstmodal"
                                     placeholder="Select Date" aria-label="date_expiration">
-                                <div>
+                                <span style="margin-left: 1.5rem" id="date_expiration_error"
+                                    class="text-danger errors"></span>
+                                <div  class="modalsex">
                                     <p style="padding: 0;margin: 0;">Status</p>
                                     <div class="form-check">
-                                        <input class="form-check-input sex" type="radio" name="statut" id="actif"
+                                        <input class="form-check-input sexM" type="radio" name="statut" id="actif"
                                             value="1" checked>
                                         <label class="form-check-label" for="actif">
                                             Actif
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input sex" type="radio" name="statut" id="inactif"
+                                        <input class="form-check-input sexM" type="radio" name="statut" id="inactif"
                                             value="0">
                                         <label class="form-check-label" for="inactif">
                                             Inactif
@@ -56,7 +66,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="close" data-bs-dismiss="modal">Close</button>
                     <button type="button" id="edit" class="btn btn-success">Edite</button>
                 </div>
             </div>
@@ -158,6 +168,11 @@
                 ]
             });
 
+            $('body').on('click', '#close', function() {
+                $('.errors').html('');
+                $("#paymentmodal").trigger("reset");
+                $('#payment_id').val('');
+            });
             // Edition d'une carte
             $('body').on('click', '#edite', function() {
                 var id = $(this).data("id");
@@ -183,6 +198,7 @@
             });
             var form = $('#carte_forme')[0];
             $('body').on('click', '#edit', function() {
+                $('.errors').html('');
                 var formdata = new FormData(form);
                 $.ajax({
                     url: '{{ route('carte.edit') }}',
@@ -194,9 +210,15 @@
                     success: function(response) {
                         table.ajax.reload();
                         $('#carte_modal').modal('hide');
+                        $('.errors').html('');
                         console.log(response);
                     },
                     error: function(error) {
+                        $('#numero_carte_error').html(error.responseJSON.errors
+                            .numero_carte);
+                        $('#date_creation_error').html(error.responseJSON.errors.date_creation);
+                        $('#codesecret_error').html(error.responseJSON.errors.codesecret);
+                        $('#date_expiration_error').html(error.responseJSON.errors.date_expiration);
                         console.log(error);
                     },
                 });

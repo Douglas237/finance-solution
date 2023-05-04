@@ -61,9 +61,7 @@ class ModalCarteController extends Controller
             # code...
             abort(404);
         }
-        $validatedData = Validator::make(
-            $request->all(),
-            [
+        $this->validate($request,[
                 'numero_carte' => 'required|string',
                 'codesecret' => 'required|string',
                 'type' => 'required|string',
@@ -72,13 +70,13 @@ class ModalCarteController extends Controller
                 'statut' => 'required|boolean',
             ]
         );
-        if ($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-                ->back()
-                ->withErrors($validatedData)
-                ->withInput();
-        }
+        // if ($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //         ->back()
+        //         ->withErrors($validatedData)
+        //         ->withInput();
+        // }
         $carte->update([
             'numero_carte' => request('numero_carte'),
             'codesecret' => request('codesecret'),
