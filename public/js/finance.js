@@ -18,6 +18,10 @@ $(".navbare .navbar .content .dropdown").click(function () {
     $(".navbare .navbar .content .elmts").toggleClass("show3");
     $(".navbare .navbar .content .toggle").toggleClass("rotate3");
 });
+$(".sidebar .grandul .paramt-btn").click(function () {
+    $(".sidebar .grandul .paramt").toggleClass("show6");
+    $(".sidebar .grandul .toggle6").toggleClass("rotate6");
+});
 
 // gestion du menu
 $('#menu_icon').click(function () {
@@ -28,7 +32,7 @@ $('#menu_icon').click(function () {
     $("#navbare").addClass("ajout");
     $("#centre").addClass("ajout1");
     console.log('oui');
-}); 
+});
 
 $("#menu_icon1").click(function () {
     $("#sidebar").removeClass("augmenter");
@@ -39,11 +43,13 @@ $("#menu_icon1").click(function () {
     $(".sidebar .grandul .souscpt").removeClass("show2");
     $(".sidebar .grandul .soustrans").removeClass("show4");
     $(".sidebar .grandul .sousul").removeClass("show5");
+    $(".sidebar .grandul .paramt").removeClass("show6");
     $(".navbare .navbar .content .elmts").removeClass("show3");
     $(".sidebar .grandul .toggle1").removeClass("rotate1");
     $(".sidebar .grandul .toggle2").removeClass("rotate2");
     $(".sidebar .grandul .toggle4").removeClass("rotate4");
     $(".sidebar .grandul .toggle5").removeClass("rotate5");
+    $(".sidebar .grandul .toggle6").removeClass("rotate6");
     $(".navbare .navbar .content .toggle").removeClass("rotate3");
     $('#menu_icon1').css('display','');
     $('#menu_icon').css('display', 'block');

@@ -14,13 +14,13 @@
     <link rel="stylesheet" href="{{ asset('css/finance.css') }}">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <style type="text/css">
-        .errors{
-          color: red;
-          font-style: italic;
-          font-weight: bold;
-          margin-top: -1.5rem;
+        .errors {
+            color: red;
+            font-style: italic;
+            font-weight: bold;
+            margin-top: -1.5rem;
         }
-      </style>
+    </style>
     <title>Finance-solution</title>
 </head>
 
@@ -30,11 +30,13 @@
         <div class="navbare" id="navbare">
             <nav class="navbar navbar-expand-lg">
                 <div class="content">
-                    <div >
-                        <img class="menu_icon" id="menu_icon" style="height: 3rem; width: 3rem" src="{{ asset('imgcon/menuh.png') }}" alt="">
+                    <div>
+                        <img class="menu_icon" id="menu_icon" style="height: 3rem; width: 3rem"
+                            src="{{ asset('imgcon/menuh.png') }}" alt="">
                     </div>
-                    <div >
-                        <img class="menu_icon1" id="menu_icon1" style="height: 3rem; width: 3rem" src="{{ asset('imgcon/menuh.png') }}" alt="">
+                    <div>
+                        <img class="menu_icon1" id="menu_icon1" style="height: 3rem; width: 3rem"
+                            src="{{ asset('imgcon/menuh.png') }}" alt="">
                     </div>
                     <div class="toutleft">
                         <div class="icons">
@@ -44,12 +46,27 @@
                         </div>
                         <div class="toutimgs">
                             <div class="img">
-                                <img src="{{ asset('uploads/images/client/202303090853Francoi.jpg') }}" alt="" style="border-radius: 50%; width:45px;">
+                                <img src="{{ asset('img-side/avatarm.png') }}" alt=""
+                                    style="border-radius: 50%; width:50px;">
                             </div>
-                            <a href="#" class="dropdown"><i class="fa fa-caret-down toggle" aria-hidden="true"></i></a>
+                            <a href="#" class="dropdown"><i class="fa fa-caret-down toggle"
+                                    aria-hidden="true"></i></a>
                             <ul class="elmts">
-                                <li><a href="#"><i class="fa-solid fa-id-card-clip" style="margin-right: 1rem; font-size: 0.8em"></i>Profil</a></li>
-                                <li><a href=""><i class="fa-solid fa-gear" style="margin-right: 1rem;"></i>parametre</a></li>
+                                @auth
+                                    <p style="color: #fff; text-align:center">{{ auth()->user()->name }}</p>
+                                @endauth
+                                <li><a href="#"><i class="fa-solid fa-id-card-clip"
+                                            style="margin-right: 1rem; font-size: 0.8em"></i>Profil</a></li>
+                                {{-- <li><a href=""><i class="fa-solid fa-gear"
+                                            style="margin-right: 1rem;"></i>parametre</a></li> --}}
+                                @auth
+                                    <li>
+                                        <a href="{{ route('logout.perform') }}"><i
+                                                class="fa-solid fa-arrow-right-from-bracket"
+                                                style="color: #ffffff;margin-right: 1rem; font-size: 0.8em"></i>Logout</a>
+                                    </li>
+                                @endauth
+
                             </ul>
                         </div>
                     </div>
@@ -66,48 +83,83 @@
                     <img src="{{ asset('img-side/09.png') }}" alt="">
                 </div>
                 <div class="logotext">
-                    <p style="color: rgba(255, 255, 255, 0.63)"><span>FINANCE-SOLUTION</span><br> <span>l'argent du peuple</span></p>
+                    <p style="color: rgba(255, 255, 255, 0.63)"><span>FINANCE-SOLUTION</span><br> <span>l'argent du
+                            peuple</span></p>
                 </div>
             </div>
             <ul class="grandul">
-                <li><a href="{{route('dashboard')}}"><i class="fa fa-home" aria-hidden="true" style="margin-right: 1.2rem; font-size: 0.8em;"></i><span class="dash">Dashboard</span></a></li>
+                <li><a href="{{ route('dashboard') }}"><i class="fa fa-home" aria-hidden="true"
+                            style="margin-right: 1.2rem; font-size: 0.8em;"></i><span
+                            class="dash">Dashboard</span></a></li>
                 <li>
                     <a href="#" class="client-btn">
-                        <i class="fa fa-user" aria-hidden="true" style="margin-right: 1.2rem;font-size: 0.8em;"></i> <span class="dash">Clients</span><span class="clitogle"><i
-                                class="fa fa-caret-down toggle1" style="font-size: 0.8em;" aria-hidden="true"></i></span>
+                        <i class="fa fa-user" aria-hidden="true" style="margin-right: 1.2rem;font-size: 0.8em;"></i>
+                        <span class="dash">Clients</span><span class="clitogle"><i class="fa fa-caret-down toggle1"
+                                style="font-size: 0.8em;" aria-hidden="true"></i></span>
                     </a>
                     <ul class="souscli">
                         {{-- <li><a href="{{route('Client.create')}}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem;font-size: 0.5em;"></i>Nouveau client</a></li> --}}
-                        <li><a href="{{ route('Client.index') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem;font-size: 0.5em;"></i>Liste de client</a></li>
+                        <li><a href="{{ route('Client.index') }}"><i class="fa-regular fa-circle"
+                                    style="margin-right: 0.8rem;font-size: 0.5em;"></i>Liste de client</a></li>
                         {{-- <li><a href="{{ route('beneficiaire.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem;font-size: 0.5em;"></i>beneficiaires</a></li> --}}
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="compte-btn"><i class="fa fa-user-plus" aria-hidden="true" style="margin-right: 1rem; font-size: 0.8em;"></i><span class="dash">Comptes</span><i class="fa fa-caret-down toggle2" style="font-size: 0.8em;" aria-hidden="true"></i></a>
+                    <a href="#" class="compte-btn"><i class="fa fa-user-plus" aria-hidden="true"
+                            style="margin-right: 1rem; font-size: 0.8em;"></i><span class="dash">Comptes</span><i
+                            class="fa fa-caret-down toggle2" style="font-size: 0.8em;" aria-hidden="true"></i></a>
                     <ul class="souscpt">
                         {{-- <li><a href="{{ route('compte_client')}}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Nouveau compte</a></li> --}}
-                        <li><a href="{{ route('carte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Liste des cartes</a></li>
-                        <li><a href="{{ route('compte.list') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Compte clients</a></li>
-                        <li><a href="{{ route('compte.entreprise') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Compte entreprise</a></li>
+                        <li><a href="{{ route('carte.list') }}"><i class="fa-regular fa-circle"
+                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Liste des cartes</a></li>
+                        <li><a href="{{ route('compte.list') }}"><i class="fa-regular fa-circle"
+                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Compte clients</a></li>
+                        <li><a href="{{ route('compte.entreprise') }}"><i class="fa-regular fa-circle"
+                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Compte entreprise</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="beneficiaire-btn"><i class="fa fa-user-plus" aria-hidden="true" style="margin-right: 1rem; font-size: 0.8em;"></i><span class="dash">Beneficiaires</span><i class="fa fa-caret-down toggle5" style="font-size: 0.8em;" aria-hidden="true"></i></a>
+                    <a href="#" class="beneficiaire-btn"><i class="fa fa-user-plus" aria-hidden="true"
+                            style="margin-right: 1rem; font-size: 0.8em;"></i><span
+                            class="dash">Beneficiaires</span><i class="fa fa-caret-down toggle5"
+                            style="font-size: 0.8em;" aria-hidden="true"></i></a>
                     <ul class="sousul">
-                        <li><a href="{{ route('beneficiaire.client') }}"> <i class="fa-regular fa-circle" style="margin-right: 0.8rem;font-size: 0.5em;"></i>Clients</a></li>
-                        <li><a href="{{ route('beneficiaire.entreprise') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Entreprises</a></li>
+                        <li><a href="{{ route('beneficiaire.client') }}"> <i class="fa-regular fa-circle"
+                                    style="margin-right: 0.8rem;font-size: 0.5em;"></i>Clients</a></li>
+                        <li><a href="{{ route('beneficiaire.entreprise') }}"><i class="fa-regular fa-circle"
+                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Entreprises</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('employer') }}"><i class="fa fa-users left" aria-hidden="true" style="margin-right: 0.7rem;font-size: 0.8em;"></i>
-                    <span class="dash">Employer</span></a></li>
-                <li><a href="{{ route('entreprise.list') }}"><i class="fa fa-building" aria-hidden="true" style="margin-right: 1.3rem;font-size: 0.8em;"></i>
-                    <span class="dash">Entreprise</span></a></li>
-                <li><a href="#" class="transaction-btn"> <i class="fa fa-share" aria-hidden="true" style="margin-right: 0.8rem;font-size: 0.8em;"></i>
-                    <span class="dash">Transaction</span><i class="fa fa-caret-down toggle4" style="font-size: 0.8em;" aria-hidden="true"></i></a>
+                <li><a href="{{ route('employer') }}"><i class="fa fa-users left" aria-hidden="true"
+                            style="margin-right: 0.7rem;font-size: 0.8em;"></i>
+                        <span class="dash">Employer</span></a></li>
+                <li><a href="{{ route('entreprise.list') }}"><i class="fa fa-building" aria-hidden="true"
+                            style="margin-right: 1.3rem;font-size: 0.8em;"></i>
+                        <span class="dash">Entreprise</span></a></li>
+                <li><a href="#" class="transaction-btn"> <i class="fa fa-share" aria-hidden="true"
+                            style="margin-right: 0.8rem;font-size: 0.8em;"></i>
+                        <span class="dash">Transaction</span><i class="fa fa-caret-down toggle4"
+                            style="font-size: 0.8em;" aria-hidden="true"></i></a>
                     <ul class="soustrans">
-                        <li><a href="{{ route('transfert') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Transferts</a></li>
-                        <li><a href="{{ route('versements') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Versements</a></li>
-                        <li><a href="{{ route('retrait') }}"><i class="fa-regular fa-circle" style="margin-right: 0.8rem; font-size: 0.5em"></i>Retrait</a></li>
+                        <li><a href="{{ route('transfert') }}"><i class="fa-regular fa-circle"
+                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Transferts</a></li>
+                        <li><a href="{{ route('versements') }}"><i class="fa-regular fa-circle"
+                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Versements</a></li>
+                        <li><a href="{{ route('retrait') }}"><i class="fa-regular fa-circle"
+                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Retrait</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="paramt-btn"> <i class="fa-solid fa-gear" aria-hidden="true"
+                            style="margin-right: 0.8rem;font-size: 0.8em;"></i>
+                        <span class="dash">Paramètres</span><i class="fa fa-caret-down toggle6"
+                            style="font-size: 0.8em;" aria-hidden="true"></i></a>
+                    <ul class="paramt">
+                        <li><a href="{{ route('logout.perform') }}"><i class="fa-regular fa-circle"
+                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Logout</a></li>
+                        <li><a href="{{ route('register.show') }}"><i class="fa-regular fa-circle"
+                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Utilisateur</a></li>
+                        <li><a href="#}"><i class="fa-regular fa-circle"
+                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Rôles</a></li>
                     </ul>
                 </li>
             </ul>
