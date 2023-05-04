@@ -46,26 +46,26 @@ class ModalEmployerController extends Controller
         $new_employer = Employe::find($request->employer_id);
         if (! $new_employer) {
             # code...
-            $validatedData = Validator::make($request->all(), [
+            $this->validate($request, [
                 'nom' => 'required|string',
                 'prenom' => 'required|string',
                 'date_naissance' => 'required|date',
                 'sexe' => 'required|string',
                 'cni' => 'required|string',
                 'email' => 'required|string',
-                'telephone' => 'required|numeric',
+                'telephone'=> array('required','regex:/(^6[25-9][0-9]([ ]([0-9]){3}){2}$)/u'),
                 'poste' => 'required|string',
                 'password' => 'required|string',
-                'image' => 'nullable', 'image', 'mimes:jpeg,jpg,png,gif', 'max:10000',
+                'image' => 'required|image|mimes:jpeg,jpg,png,gif|max:10000',
             ]);
 
-            if ($validatedData->fails()) {
-                Toastr::error('The field not be empty.');
-                return redirect()
-                    ->back()
-                    ->withErrors($validatedData)
-                    ->withInput();
-            }
+            // if ($validatedData->fails()) {
+            //     Toastr::error('The field not be empty.');
+            //     return redirect()
+            //         ->back()
+            //         ->withErrors($validatedData)
+            //         ->withInput();
+            // }
 
             if ($request->hasFile('image'))
             {
@@ -92,30 +92,31 @@ class ModalEmployerController extends Controller
                 'password'=>$request->password,
                 'image'=>$image,
             ]);
-
-            return $employer;
+            $message = array('message' => 'Success!', 'title' => 'Updated');
+            return response()->json($message);
+            // return response("employer creer avec succes");
         }
 
-        $validatedData = Validator::make($request->all(), [
+        $this->validate($request, [
             'nom' => 'required|string',
             'prenom' => 'required|string',
             'date_naissance' => 'required|date',
             'sexe' => 'required|string',
             'cni' => 'required|string',
             'email' => 'required|string',
-            'telephone' => 'required|numeric',
+            'telephone'=> array('required','regex:/(^6[25-9][0-9]([ ]([0-9]){3}){2}$)/u'),
             'poste' => 'required|string',
             'password' => 'required|string',
-            'image' => 'nullable', 'image', 'mimes:jpeg,jpg,png,gif', 'max:10000',
+            'image' => 'required|image|mimes:jpeg,jpg,png,gif|max:10000',
         ]);
 
-        if ($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-                ->back()
-                ->withErrors($validatedData)
-                ->withInput();
-        }
+        // if ($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //         ->back()
+        //         ->withErrors($validatedData)
+        //         ->withInput();
+        // }
 
         if ($request->hasFile('image'))
         {

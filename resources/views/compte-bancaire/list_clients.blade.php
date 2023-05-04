@@ -9,12 +9,12 @@
             <div class="modal-content">
                 <div class="modal-header modalhead">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Edition Client</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="close" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="clientmodal" class="form-control modalform" enctype="multipart/form-data">
                         @csrf
-                        <div class="row tout">
+                        <div class="row tout"> 
                             <div class="col right">
                                 <input type="hidden" id="client_id" name="client_id">
                                 <input type="text" name="nom" id="nom" class="form-control firstmodal"
@@ -68,7 +68,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
                     <button type="submit" id="editer" class="btn btn-primary">Edite</button>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                 href="{{ route('Client.create') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem;" type="button" class="btn btn-success"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter client</button></a>
             </div>
             <div class="alltabs">
-                <div class="tabs_1">
+                <div class="tabs_1"> 
                     <table class="table table-bordered data-table">
                         <thead>
                             <tr>
@@ -195,7 +195,11 @@
             });
 
 
-
+            $('body').on('click', '#close', function() {
+                $('.errors').html('');
+                $("#paymentmodal").trigger("reset");
+                $('#payment_id').val('');
+            }); 
             // Edition d'un client
             $('body').on('click', '#edite', function() {
                 var id = $(this).data("id");

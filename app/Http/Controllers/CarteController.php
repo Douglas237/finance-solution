@@ -21,7 +21,7 @@ class CarteController extends Controller
     }
     public function store(Request $request) {
 
-        $validatedData = Validator::make($request->all(),[
+        $this->validate($request,[
             'numero_carte'=> 'required|string',
             'codesecret'=>'required|string',
             'type'=>'required|string',
@@ -29,13 +29,13 @@ class CarteController extends Controller
             'date_expiration'=>'required|date',
             'statut'=>'required|boolean',
         ]);
-        if($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-            ->back()
-            ->withErrors($validatedData)
-            ->withInput();
-        }
+        // if($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //     ->back()
+        //     ->withErrors($validatedData)
+        //     ->withInput();
+        // }
         $comptebank = CompteBank::Find($request->comptebank_id);
         try {
         DB::beginTransaction();

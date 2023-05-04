@@ -90,7 +90,7 @@ class ClientController extends Controller
             Toastr::success('Enregistrement du client réussit : ' . $request->nom);
             return redirect()->route('Client.index', [$data->id]);
         } catch (Exception $e) {
-            dd($e);
+
             Toastr::error(
                 "Echec d'enregistrement du client : " . $request->nom
             );
@@ -149,6 +149,10 @@ class ClientController extends Controller
             $data->save();
             Toastr::success('Enregistrement du client réussit : ' . $request->nom);
             return redirect()->route('compte', [$data->id]);
+        } catch (Exception $e) {
+            // Toastr::success('Enregistrement du client réussit : ' . $request->nom);
+            // return redirect()->route('compte',[$data->id]);
+            return redirect()->route('compte', [$data->id])->with("success", "Enregistrement réussit de l'entreprise : " . $request->nom);
         } catch (Exception $e) {
 
             Toastr::error(

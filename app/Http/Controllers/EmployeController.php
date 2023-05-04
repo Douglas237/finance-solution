@@ -24,8 +24,8 @@ class EmployeController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = Validator::make($request->all(), [
-            'nom' => 'required|string|unique:clients',
+        $this->validate($request, [
+            'nom' => 'required|string',
             'prenom' => 'required|string',
             'date_naissance' => 'required|date',
             'sexe' => 'required|enum',
@@ -37,13 +37,13 @@ class EmployeController extends Controller
             'image' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:10000',
         ]);
 
-        if ($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-                ->back()
-                ->withErrors($validatedData)
-                ->withInput();
-        }
+        // if ($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //         ->back()
+        //         ->withErrors($validatedData)
+        //         ->withInput();
+        // }
 
         try {
 
@@ -69,8 +69,8 @@ class EmployeController extends Controller
             }
             $data->save();
 
-            Toastr::success("Employé enregistré avec success : " . $request->nom);
-            return redirect()->route('employe.index');
+            // Toastr::success("Employé enregistré avec success : " . $request->nom);
+            return redirect()->route('employe.index')->with("success","Enregistrement réussit de l'entreprise : ".$request->nom); 
         } catch (Exception $e) {
 
             Toastr::error(
@@ -88,7 +88,7 @@ class EmployeController extends Controller
 
     public function update(Request $request)
     {
-        $validatedData = Validator::make($request->all(), [
+        $this->validate($request, [
             'nom' => 'required|string|unique:clients',
             'prenom' => 'required|string',
             'date_naissance' => 'required|date',
@@ -101,13 +101,13 @@ class EmployeController extends Controller
             'image' => 'nullable', 'image', 'mimes:jpeg,jpg,png,gif', 'max:10000',
         ]);
 
-        if ($validatedData->fails()) {
-            Toastr::error('The field not be empty.');
-            return redirect()
-                ->back()
-                ->withErrors($validatedData)
-                ->withInput();
-        }
+        // if ($validatedData->fails()) {
+        //     Toastr::error('The field not be empty.');
+        //     return redirect()
+        //         ->back()
+        //         ->withErrors($validatedData)
+        //         ->withInput();
+        // }
 
         try {
 
@@ -136,8 +136,8 @@ class EmployeController extends Controller
             }
 
             $data->update();
-            Toastr::success("Employé enregistré avec success : " . $request->nom);
-            return redirect()->route('employe.index');
+            // Toastr::success("Employé enregistré avec success : " . $request->nom);
+            return redirect()->route('employe.index')->with("success","Enregistrement réussit de l'entreprise : ".$request->nom);
         } catch (Exception $e) {
 
             Toastr::error(

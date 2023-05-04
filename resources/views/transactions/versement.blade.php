@@ -218,7 +218,7 @@
                 $('.error_message').html('');
                 $("#paymentmodal").trigger("reset");
                 $('#payment_id').val('');
-            });
+            }); 
 
             // cree et update
             var form = $('#paymentmodal')[0];
@@ -312,7 +312,7 @@
                         $('#prenom_versant_error').html(error.responseJSON.errors.prenom_versant);
                         $('#num_cni_error').html(error.responseJSON.errors.num_cni);
                         $('#montant_error').html(error.responseJSON.errors.montant);
-                        $('#num_compte_error').html(error.responseJSON.errors.num_compte);
+                        $('#num_compte_error').html(error.responseJSON.errors.num_compte); 
 
                         console.log(error);
                     }
