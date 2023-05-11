@@ -44,6 +44,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/', [LoginController::class, 'show'])->name('login.show');
     Route::post('/login-perform', [LoginController::class, 'login'])->name('login.perform');
 
+    
     // Route::group(['middleware' => ['guest']], function () {
 
     // });
@@ -51,8 +52,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::group(['middleware' => ['auth']], function () {
 
         //manager register
-        Route::get('/register-show', [RegisterController::class, 'show'])->name('register.show');
-        Route::post('/register-perform', [RegisterController::class, 'register'])->name('register.perform');
+    Route::get('/register-show', [RegisterController::class, 'show'])->name('register.show');
+    Route::post('/register-perform', [RegisterController::class, 'register'])->name('register.perform');
 
         //Accueil
         Route::get('/dasboard', [DashboardController::class, 'index'])->name('dashboard');

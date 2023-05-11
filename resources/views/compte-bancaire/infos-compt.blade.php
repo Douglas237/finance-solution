@@ -172,7 +172,7 @@
           $('#num').val({{'1111'.random_int(1000, 9999).random_int(1000, 9999);}})
         }
         // alert("Vous avez sélectionné le langage : " + langage);
-      });
+      }); 
       var val = $("select.first").val()
       if (val == "Compte courant") {
         $('#num').val({{'1001'.random_int(1000, 9999).random_int(1000, 9999);}})

@@ -40,9 +40,9 @@ class RetraitController extends Controller
                 })
                 ->addColumn('action', function ($row) {
                     $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
-                ' . $row->id . '" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delet">Del</a>';
+                ' . $row->id . '" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delet"><i class="fa-solid fa-trash"></i></a>'."  ";
                     $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
-                ' . $row->id . '" data-original-title="Detail" class="edit btn btn-warning btn_sm detailcompt" id="detail">Detail</a>';
+                ' . $row->id . '" data-original-title="Detail" class="edit btn btn-warning btn_sm detailcompt" id="detail"><i class="fa-solid fa-circle-info"></i></a>'."  ";
                     return $btn;
                 })
                 ->rawColumns(['action'])

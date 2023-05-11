@@ -2,7 +2,7 @@
 @section('content')
     <div class="formcompte">
         <div class="title" style="display: flex;flex-direction: row;justify-content: space-between">
-            <p><strong>Nouveau beneficiaire</strong></p> 
+            <p><strong>Nouveau beneficiaire pour un client</strong></p> 
         </div>
         <div class="note">
           <p><strong>Informations du beneficiaire</strong></p>

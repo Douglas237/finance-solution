@@ -76,9 +76,11 @@
 
     <div class="form-control">
         <div class="title" style="display: flex;flex-direction: row;justify-content: space-between">
-            <p><strong>Nouveau employer</strong></p>
-            <button style="margin-right: 7rem;height: 3.5rem;" type="button" id="addemployer"
-                class="btn btn-outline-success">Add employer</button>
+            {{-- <p><strong>Nouveau employer</strong></p> --}}
+            <button style="margin-right: 7rem;position: absolute; 
+            right: -5.2rem;
+            top: 5.5rem;" type="button" id="addemployer"
+                class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Nouveau employer</button>
         </div>
         <div class="formcompte">
             <div class="title">
@@ -86,21 +88,21 @@
             </div>
             <div class="alltabs">
                 <div class="tabs_1">
-                    <table class="table table-bordered data-table">
-                        <thead>
+                    <table class="table table-bordered data-table table-striped table-hover" style="width: 100% !important;">
+                        <thead class="tableheade">
                             <tr>
-                                <th scope="col">N° </th>
-                                <th scope="col">nom</th>
-                                <th scope="col">prenom</th>
-                                <th scope="col">date naissance</th>
-                                <th scope="col">sexe</th>
-                                <th scope="col">cni</th>
-                                <th scope="col">email</th>
-                                I<th scope="col">telephone</th>
-                                <th scope="col">Poste</th>
-                                <th scope="col">Password</th>
-                                <th scope="col">image</th>
-                                <th scope="col">Action</th>
+                                <th scope="col"><span>N° </span></th>
+                                <th scope="col"><span>nom</span></th>
+                                <th scope="col"><span>prenom</span></th>
+                                <th scope="col"><span>date naissance</span></th>
+                                <th scope="col"><span>sexe</span></th>
+                                <th scope="col"><span>cni</span></th>
+                                <th scope="col"><span>email</span></th>
+                                I<th scope="col"><span>telephone</span></th>
+                                <th scope="col"><span>Poste</span></th>
+                                <th scope="col"><span>Password</span></th>
+                                <th scope="col"><span>image</span></th>
+                                <th scope="col"><span>Action</span></th>
                             </tr>
                         </thead>
                         <tbody>

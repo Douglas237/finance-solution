@@ -76,22 +76,24 @@
         <div class="formcompte">
             <div class="title">
                 <p><strong>Liste des cartes</strong></p>
-                <a
-                href="{{ route('carte.create') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem; floating: right;" type="button" class="btn btn-success"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter Carte</button></a>
+                {{-- <a
+                href="{{ route('carte.create') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem; floating: right;" type="button" class="btn btn-success"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter Carte</button></a> --}}
+                <button style="position: absolute; right:4.2rem;top: 3.7rem" type="button" onclick="linck()"
+                class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Ajouter Carte</button>
             </div>
             <div class="alltabs">
                 <div class="tabs_1">
-                    <table class="table table-bordered data-table">
-                        <thead>
+                    <table class="table table-bordered data-table table-striped table-hover">
+                        <thead class="tableheade">
                             <tr>
-                                <th scope="col">N° </th>
-                                <th scope="col">N° Carte</th>
-                                <th scope="col">Numero compte</th>
-                                <th scope="col">Type de carte</th>
-                                <th scope="col">Date creation</th>
-                                <th scope="col">Date expiration</th>
-                                <th scope="col">Statut</th>
-                                <th scope="col">Action</th>
+                                <th scope="col"><span>N° </span></th>
+                                <th scope="col"><span>N° Carte</span></th>
+                                <th scope="col"><span>Numero compte</span></th>
+                                <th scope="col"><span>Type de carte</span></th>
+                                <th scope="col"><span>Date creation</span></th>
+                                <th scope="col"><span>Date expiration</span></th>
+                                <th scope="col"><span>Statut</span></th>
+                                <th scope="col"><span>Action</span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -102,7 +104,11 @@
             </div>
         </div>
     </div>
-
+    <script type="text/javascript">
+        function linck(){
+         window.location.href="{{ route('carte.create') }}";
+        }
+     </script>
     <script type="text/javascript">
         $(function() {
 

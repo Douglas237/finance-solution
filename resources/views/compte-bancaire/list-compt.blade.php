@@ -87,23 +87,25 @@
         <div class="formcompte">
             <div class="title">
                 <p><strong>Liste des comptes</strong></p>
-                <a
-                href="{{ route('compte_client') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem;" type="button" class="btn btn-success"> <i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter compte</button></a>
+                {{-- <a
+                href="{{ route('compte_client') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem;" type="button" class="btn btn-success"> <i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter compte</button></a> --}}
+                <button style="position: absolute; right:4.2rem;top: 3.7rem" type="button" onclick="linck()"
+                class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Ajouter Compte</button>
             </div>
             <div class="alltabs">
                 <div class="tabs_1">
-                    <table class="table table-bordered data-table">
-                        <thead>
+                    <table class="table table-bordered data-table table-striped table-hover">
+                        <thead class="tableheade">
                             <tr>
-                                <th scope="col">N° </th>
-                                <th scope="col">N° compte</th>
-                                <th scope="col">Proprietaire</th>
-                                <th scope="col">Solde</th>
-                                <th scope="col">Type de compte</th>
-                                <th scope="col">Date ouverture</th>
-                                <th scope="col">Code</th>
-                                <th scope="col">Statut</th>
-                                <th scope="col">Action</th>
+                                <th scope="col"><span>N° </span></th>
+                                <th scope="col"><span>N° compte</span></th>
+                                <th scope="col"><span>Proprietaire</span></th>
+                                <th scope="col"><span>Solde</span></th>
+                                <th scope="col"><span>Type de compte</span></th>
+                                <th scope="col"><span>Date ouverture</span></th>
+                                <th scope="col"><span>Code</span></th>
+                                <th scope="col"><span>Statut</span></th>
+                                <th scope="col"><span>Action</span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -114,7 +116,12 @@
             </div>
         </div>
     </div>
-    
+    <script type="text/javascript">
+        function linck(){
+         window.location.href="{{ route('compte_client') }}";
+        }
+    </script>
+
     <script type="text/javascript">
         $(function() {
 

@@ -149,27 +149,27 @@ ul ul {
 } */
 .sidebar .grandul li a .toggle1 {
     position: relative;
-    left: 2.3rem;
+    left: 4rem;
     top: -0.025rem;
 }
 .sidebar .grandul li a .toggle2 {
     position: relative;
-    left: 2.3rem;
+    left: 3rem;
     top: -0.025rem;
 }
 .sidebar .grandul li a .toggle4 {
     position: relative;
-    left: 2.3rem;
+    left: 2.2rem;
     top: -0.025rem;
 }
 .sidebar .grandul li a .toggle5 {
     position: relative;
-    left: 2.3rem;
+    left: 1.2rem;
     top: -0.025rem;
 }
 .sidebar .grandul li a .toggle6 {
     position: relative;
-    left: 2.3rem;
+    left: 2.2rem;
     top: -0.025rem;
 }
 .sidebar .grandul li ul li {
@@ -572,6 +572,23 @@ form,
 .paymentmodal{
     margin-left: 3rem;
     margin-right: 3rem;
+}
+/* ----------- style sur les tables ------------ */
+.tableheade{
+    background-color: #02501c;
+    color: white;
+    height: 4rem !important;
+}
+tr th{
+    text-align: center !important;
+}
+tr th span{
+    position: relative;
+    top: -0.8rem;
+}
+div.dataTables_wrapper div.dataTables_filter label{
+    position: absolute !important;
+    left: 30rem !important;
 }
 /* --------------- Media query ---------------- */
 @media screen and (min-width: 1000px) and (max-width: 1144px){
