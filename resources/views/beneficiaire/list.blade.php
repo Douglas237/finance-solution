@@ -52,25 +52,27 @@
     <div class="form-control">
         <div class="formcompte">
             <div class="title">
-                <p><strong>Liste des Beneficiaires</strong></p>
-                <a href="{{ route('beneficiaire.create') }}"><button
+                <p><strong>Liste des Beneficiaires pour les entreprises</strong></p>
+                {{-- <a href="{{ route('beneficiaire.create') }}"><button
                         style="margin-left: 55rem;height: 2.9rem;width: 10rem; floating: right;" type="button"
                         class="btn btn-success"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter
-                        beneficiaire</button></a>
+                        beneficiaire</button></a> --}}
+                        <button style="position: absolute; right:4.2rem;top: 3.7rem" type="button" onclick="linck()"
+                class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Ajouter beneficiaire</button>
             </div>
             <div class="alltabs">
                 <div class="tabs_1">
-                    <table class="table table-bordered data-table">
-                        <thead>
+                    <table class="table table-bordered data-table table-striped table-hover">
+                        <thead class="tableheade">
                             <tr>
-                                <th scope="col">N°</th>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Prenom</th>
-                                <th scope="col">N° CNI</th>
-                                <th scope="col">Telephone</th>
-                                <th scope="col">Entreprise</th>
-                                <th scope="col">Sexe</th>
-                                <th scope="col">Action</th>
+                                <th scope="col"><span>N°</span></th>
+                                <th scope="col"><span>Nom</span></th>
+                                <th scope="col"><span>Prenom</span></th>
+                                <th scope="col"><span>N° CNI</span></th>
+                                <th scope="col"><span>Telephone</span></th>
+                                <th scope="col"><span>Entreprise</span></th>
+                                <th scope="col"><span>Sexe</span></th>
+                                <th scope="col"><span>Action</span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,7 +85,11 @@
             </div>
         </div>
     </div>
-
+    <script type="text/javascript">
+        function linck(){
+         window.location.href="{{ route('beneficiaire.create') }}";
+        }
+     </script>
     <script type="text/javascript">
         $(function() {
 

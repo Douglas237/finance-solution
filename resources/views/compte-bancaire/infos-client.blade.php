@@ -35,7 +35,7 @@
                                 Femme
                             </label>
                         </div>
-                    </div>
+                    </div> 
                 </div>
                 <div class="col gauche" style="padding-right: 0;">
                     <input type="text" name="prenom" class="form-control first" placeholder="prenom" aria-label="prenom" value="{{old('prenom')}}">

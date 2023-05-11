@@ -94,9 +94,11 @@
     </div>
     <div class="form-control">
         <div class="title" style="display: flex;flex-direction: row;justify-content: space-between">
-            <p><strong>Nouveau retrait</strong></p>
-            <button style="margin-right: 7rem;height: 3.5rem;" type="button" id="addretrait"
-                class="btn btn-outline-success">Nouveau retrait</button> 
+            {{-- <p><strong>Nouveau retrait</strong></p> --}}
+            <button style="margin-right: 7rem;position: absolute;
+            right: -5.2rem;
+            top: 4rem;" type="button" id="addretrait"
+                class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Nouveau retrait</button> 
         </div>
         <div class="formcompte">
             <div class="title">
@@ -104,14 +106,14 @@
             </div>
             <div class="alltabs">
                 <div class="tabs_1">
-                    <table class="table table-bordered data-table">
-                        <thead>
+                    <table class="table table-bordered data-table table-striped table-hover">
+                        <thead class="tableheade">
                             <tr>
-                                <th scope="col">N° </th>
-                                <th scope="col">N° du compte</th>
-                                <th scope="col">Proprietaire</th>
-                                <th scope="col">Montant retirer</th>
-                                <th scope="col">Action</th>
+                                <th scope="col"><span>N° </span></th>
+                                <th scope="col"><span>N° du compte</span></th>
+                                <th scope="col"><span>Proprietaire</span></th>
+                                <th scope="col"><span>Montant retirer</span></th>
+                                <th scope="col"><span>Action</span></th>
                             </tr>
                         </thead>
                         <tbody>
