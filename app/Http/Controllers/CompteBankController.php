@@ -23,7 +23,7 @@ class CompteBankController extends Controller
                                     ->get('compte_banks.*','clients.*');
         // dd($compte_banks);
         // $compte_banks = CompteBank::all();
-        if ($request->ajax()) {
+        if ($request->ajax()) { 
             $allData = DataTables::of($compte_banks)
                 ->addIndexColumn()
                 ->addColumn('proprietaire', function($compte_banks){
@@ -33,11 +33,9 @@ class CompteBankController extends Controller
                 })
                 ->addColumn('action', function ($row) {
                     $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
-                ' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn_sm editCompte" id="edite">Edite</a>';
+                ' . $row->id . '" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delete"><i class="fa-solid fa-trash"></i></a>'."  ";
                     $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
-                ' . $row->id . '" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delete">Del</a>';
-                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
-                ' . $row->id . '" data-original-title="Detail" class="edit btn btn-warning btn_sm detailcompt" id="detail">Detail</a>';
+                ' . $row->id . '" data-original-title="Detail" class="edit btn btn-warning btn_sm detailcompt" id="detail"><i class="fa-solid fa-circle-info"></i></a>'."  ";
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -76,12 +74,10 @@ class CompteBankController extends Controller
                     return $nom_resp[0]->nom_entreprise;
                 })
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
-                ' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn_sm editCompte" id="edite">Edite</a>';
+                    $btn= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
+                ' . $row->id . '" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delete"><i class="fa-solid fa-trash"></i></a>'."  ";
                     $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
-                ' . $row->id . '" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delete">Del</a>';
-                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="
-                ' . $row->id . '" data-original-title="Detail" class="edit btn btn-warning btn_sm detailcompt" id="detail">Detail</a>';
+                ' . $row->id . '" data-original-title="Detail" class="edit btn btn-warning btn_sm detailcompt" id="detail"><i class="fa-solid fa-circle-info"></i></a>'."  ";
                     return $btn;
                 })
                 ->rawColumns(['action'])

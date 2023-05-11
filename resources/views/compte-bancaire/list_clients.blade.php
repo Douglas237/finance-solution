@@ -78,36 +78,31 @@
         <div class="formcompte">
             <div class="title">
                 <p><strong>Liste des Clients</strong></p>
-                <a
-                href="{{ route('Client.create') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem;" type="button" class="btn btn-success"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter client</button></a>
+                {{-- <a
+                href="{{ route('Client.create') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem;" type="button" class="btn btn-success"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter client</button></a> --}}
+                <button style="position: absolute; right:4.2rem;top: 3.7rem" type="button" onclick="linck()"
+                class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Ajouter Client</button>
             </div>
             <div class="alltabs">
                 <div class="tabs_1"> 
-                    <table class="table table-bordered data-table">
-                        <thead>
+                    <table class="table table-bordered data-table table-striped table-hover" style="width: 80% !important;">
+                        <thead class="tableheade">
                             <tr>
-                                <th scope="col">N° </th>
-                                <th scope="col">nom</th>
-                                <th scope="col">prenom</th>
-                                <th scope="col">date naissance</th>
-                                <th scope="col">sexe</th>
-                                <th scope="col">email</th>
-                                <th scope="col">telephone</th>
-                                <th scope="col">cni</th>
-                                <th scope="col">ville</th>
-                                <th scope="col">adress</th>
-                                <th scope="col">Action</th>
+                                <th scope="col"><span>N°</span></th>
+                                <th scope="col"><span>nom</span></th>
+                                <th scope="col"><span>prenom<span></th>
+                                <th scope="col"><span>date naissance</span></th>
+                                <th scope="col"><span>sexe</span></th>
+                                <th scope="col"><span>email</span></th>
+                                <th scope="col"><span>telephone</span></th>
+                                <th scope="col"><span>cni</span></th>
+                                <th scope="col"><span>ville</span></th>
+                                {{-- <th scope="col"><span>adress</span></th> --}}
+                                <th scope="col"><span>Action</span></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                        </tr> --}}
-
+                           
                         </tbody>
                     </table>
                 </div>
@@ -115,6 +110,12 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function linck(){
+         window.location.href="{{ route('Client.create') }}";
+        }
+    </script>
+
     <script type="text/javascript">
     
         $(function() {
@@ -136,10 +137,10 @@
                         sWidth: '50px'
                     },
                     {
-                        sWidth: '100px'
+                        sWidth: '20px'
                     },
                     {
-                        sWidth: '120px'
+                        sWidth: '20px'
                     },
                     {
                         sWidth: '30px'
@@ -182,10 +183,10 @@
                         data: 'ville',
                         name: 'ville'
                     },
-                    {
-                        data: 'adress',
-                        name: 'adress'
-                    },
+                    // {
+                    //     data: 'adress',
+                    //     name: 'adress'
+                    // },
                     {
                         data: 'action',
                         name: 'action'

@@ -22,8 +22,8 @@ class VersementController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     // $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary  btn_sm editCompte" id="edite">Edite</a>';
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delet">Del</a>';
-                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Detail" class="edit btn btn-warning btn_sm deleteCompte" id="detail">Detail</a>';
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Delete" class="edit btn btn-danger btn_sm deleteCompte" id="delet"><i class="fa-solid fa-trash"></i></a>'."  ";
+                    $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $row->id . '" data-original-title="Detail" class="edit btn btn-warning btn_sm deleteCompte" id="detail"><i class="fa-solid fa-circle-info"></i></a>'."  ";
                     return $btn;
                 })
                 ->rawColumns(['action'])

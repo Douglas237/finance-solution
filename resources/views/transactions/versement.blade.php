@@ -108,9 +108,11 @@
     </div>
     <div class="form-control">
         <div class="title" style="display: flex;flex-direction: row;justify-content: space-between">
-            <p><strong>Nouveau versement</strong></p>
-            <button style="margin-right: 7rem;height: 3.5rem;" type="button" id="addpayment"
-                class="btn btn-outline-success">Nouveau versement</button>
+            {{-- <p><strong>Nouveau versement</strong></p> --}}
+            <button style="margin-right: 7rem;position: absolute;
+            right: -5.2rem;
+            top: 4rem;" type="button" id="addpayment"
+                class="btn btn-outline-success"><i class="fa-solid fa-plus"></i>Nouveau versement</button>
         </div>
         <div class="formcompte">
             <div class="title">
@@ -118,31 +120,23 @@
             </div>
             <div class="alltabs">
                 <div class="tabs_1">
-                    <table class="table table-bordered data-table">
-                        <thead>
+                    <table class="table table-bordered data-table table-striped table-hover">
+                        <thead class="tableheade">
                             <tr>
-                                <th scope="col">N° </th>
-                                <th scope="col">Nom du versant</th>
-                                <th scope="col">Prenom du versant</th>
-                                <th scope="col">N° cni</th>
-                                <th scope="col">montant</th>
-                                I<th scope="col">N° du compte</th>
-                                <th scope="col">Action</th>
+                                <th scope="col"><span>N° </span></th>
+                                <th scope="col"><span>Nom du versant</span></th>
+                                <th scope="col"><span>Prenom du versant</span></th>
+                                <th scope="col"><span>N° cni</span></th>
+                                <th scope="col"><span>Montant</span></th>
+                                <th scope="col"><span>N° du compte</span></th>
+                                <th scope="col"><span>Action</span></th>
                             </tr>
                         </thead>
                         <tbody> 
-                            {{-- <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                        </tr> --}}
-
+                           
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>

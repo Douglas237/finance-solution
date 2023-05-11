@@ -96,26 +96,28 @@
     </div>
     <div class="form-control">
         <div class="title" style="display: flex;flex-direction: row;justify-content: space-between">
-            <p><strong>Nouveau transfert</strong></p>
-            <button style="margin-right: 7rem;height: 3.5rem;" type="button" id="addtransfert"
-                class="btn btn-outline-success">Nouveau transfert</button>
+            {{-- <p><strong>Nouveau transfert</strong></p> --}}
+            <button style="margin-right: 7rem;position: absolute;
+            right: -5.2rem;
+            top: 4rem;" type="button" id="addtransfert"
+                class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Nouveau transfert</button>
         </div>
         <div class="formcompte">
             <div class="title">
                 <p><strong>Liste des transfert</strong></p>
             </div>
             <div class="alltabs">
-                <div class="tabs_1">
-                    <table class="table table-bordered data-table">
-                        <thead>
+                <div class="tabs_1"> 
+                    <table class="table table-bordered data-table table-striped table-hover">
+                        <thead class="tableheade">
                             <tr>
-                                <th scope="col">N° </th>
-                                I<th scope="col">N° du compte destinatair</th>
-                                <th scope="col">Nom du destinatair</th>
-                                <th scope="col">Montant de transfert</th>
-                                I<th scope="col">N° du compte destinateur</th>
-                                I<th scope="col">nom du destinateur</th>
-                                <th scope="col">Action</th>
+                                <th scope="col"><span>N° </span></th>
+                                <th scope="col"><span>N° du compte destinatair</span></th>
+                                <th scope="col"><span>Nom du destinatair</span></th>
+                                <th scope="col"><span>Montant de transfert</span></th>
+                                <th scope="col"><span>N° du compte destinateur</span></th>
+                                <th scope="col"><span>nom du destinateur</span></th>
+                                <th scope="col"><span>Action</span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -130,7 +132,6 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>
