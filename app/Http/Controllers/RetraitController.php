@@ -119,6 +119,11 @@ class RetraitController extends Controller
                 # code...
                 abort(404);
             }
+
+            if (((float)$compte[0]->solde - (float)request('montant_retrait')) < 25000) {
+                # code...
+                abort(501);
+            }
             Retrai::create([
                 'num_compte' => $request->num_compte,
                 'montant_retrait' =>(float) $request->montant_retrait,
