@@ -109,6 +109,10 @@ class RetraitController extends Controller
             # code...
             abort(405);
         }
+        if ((float)$compte[0]->solde < 25000 ) {
+            # code...
+            abort(501);
+        }
         // $compte = CompteBank::where('numero_compte', $request->num_compte)->get();
         DB::transaction(function () use ($request, $compte) {
             if ((float)$compte[0]->solde < (float)request('montant_retrait')) {

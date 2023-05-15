@@ -79,7 +79,7 @@
             {{-- <p><strong>Nouveau employer</strong></p> --}}
             <button style="margin-right: 7rem;position: absolute; 
             right: -5.2rem;
-            top: 5.5rem;" type="button" id="addemployer"
+            top: 3.6rem;" type="button" id="addemployer"
                 class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Nouveau employer</button>
         </div>
         <div class="formcompte">
@@ -98,9 +98,9 @@
                                 <th scope="col"><span>sexe</span></th>
                                 <th scope="col"><span>cni</span></th>
                                 <th scope="col"><span>email</span></th>
-                                I<th scope="col"><span>telephone</span></th>
+                                <th scope="col"><span>telephone</span></th>
                                 <th scope="col"><span>Poste</span></th>
-                                <th scope="col"><span>Password</span></th>
+                                {{-- <th scope="col"><span>Password</span></th> --}}
                                 <th scope="col"><span>image</span></th>
                                 <th scope="col"><span>Action</span></th>
                             </tr>
@@ -187,10 +187,10 @@
                         data: 'poste',
                         name: 'poste'
                     },
-                    {
-                        data: 'password',
-                        name: 'password'
-                    },
+                    // {
+                    //     data: 'password',
+                    //     name: 'password'
+                    // },
                     {
                         data: 'image',
                         name: 'image'

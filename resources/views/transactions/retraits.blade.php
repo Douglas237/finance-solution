@@ -247,6 +247,12 @@
                                             title: "Ce compte n'existe pas",
                                         });
                                     }
+                                    if (error.status == 501)
+                                    {
+                                        swal({
+                                            title: "vous ne pouvez pas retirer en dessous de 25000",
+                                        });
+                                    }
 
                                     $('#num_compte_error').html(error.responseJSON.errors.num_compte);
                                     $('#montant_retrait_error').html(error.responseJSON.errors.montant_retrait);
