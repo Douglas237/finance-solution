@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarteController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\EmployeController;
@@ -17,6 +19,7 @@ use App\Http\Controllers\EntrepriseController;
 use App\Http\Controllers\ModalCarteController;
 use App\Http\Controllers\ModalClientController;
 use App\Http\Controllers\ModalCompteController;
+use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\BeneficiaireController;
 use App\Http\Controllers\ModalEmployerController;
 use App\Http\Controllers\ModalEntreprisController;
@@ -35,7 +38,7 @@ use App\Http\Controllers\ModalBeneficiaireController;
 
 
 //return view('layouts.dashboard');
-Route::group(['namespace' => 'App\Http\Controllers'], function () {
+// Route::group(['namespace' => 'App\Http\Controllers'], function () {
     // Route::get('/', function () {
     //     return view('login.show');
     // });
@@ -44,12 +47,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/', [LoginController::class, 'show'])->name('login.show');
     Route::post('/login-perform', [LoginController::class, 'login'])->name('login.perform');
 
-    
+
     // Route::group(['middleware' => ['guest']], function () {
 
     // });
 
-    Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['auth:sanctum', 'permission', 'role:admin']], function () {
 
         //manager register
     Route::get('/register-show', [RegisterController::class, 'show'])->name('register.show');
@@ -147,10 +150,22 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/beneficiaire/toshow/{id}', [ModalBeneficiaireController::class, 'toshow'])->name('beneficiaire.toshow');
         Route::get('/beneficiaire/show/{id}', [ModalBeneficiaireController::class, 'show'])->name('beneficiaire.show');
 
+        //User Routesss
+        Route::group(['prefix' => 'users'], function() {
+            Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+            Route::get('/create', [UsersController::class, 'create'])->name('users.create');
+            Route::post('/create', [UsersController::class, 'store'])->name('users.store');
+            Route::get('/{user}/show', [UsersController::class, 'show'])->name('users.show');
+            Route::get('/{user}/edit', [UsersController::class, 'edit'])->name('users.edit');
+            Route::patch('/{user}/update', [UsersController::class, 'update'])->name('users.update');
+            Route::delete('/{user}/delete', [UsersController::class, 'destroy'])->name('users.destroy');
+
+        });
+        Route::resource('roles', RolesController::class);
+        Route::resource('permissions', PermissionsController::class);
         // Auth::routes();
 
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
         Route::get('/logout-perform', [LogoutController::class, 'perform'])->name('logout.perform');
-    });
 });

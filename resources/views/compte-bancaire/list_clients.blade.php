@@ -1,7 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('content')
-
     <!-- Modal -->
     <div class="modal fade" data-bs-backdrop="static" id="client_modal" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -9,12 +8,13 @@
             <div class="modal-content">
                 <div class="modal-header modalhead">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Edition Client</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="close" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="close"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="clientmodal" class="form-control modalform" enctype="multipart/form-data">
                         @csrf
-                        <div class="row tout"> 
+                        <div class="row tout">
                             <div class="col right">
                                 <input type="hidden" id="client_id" name="client_id">
                                 <input type="text" name="nom" id="nom" class="form-control firstmodal"
@@ -26,9 +26,10 @@
                                 <input type="text" name="ville" id="ville" class="form-control firstmodal"
                                     placeholder="ville" aria-label="ville" required>
                                 <span style="margin-left: 1.5rem" id="ville_error" class="text-danger errors"></span>
-                                <input type='date' name="date_naissance" id="date_naissance" class="form-control firstmodal"
-                                    placeholder="Select Date"/>
-                                <span style="margin-left: 1.5rem" id="date_naissance_error" class="text-danger errors"></span>
+                                <input type='date' name="date_naissance" id="date_naissance"
+                                    class="form-control firstmodal" placeholder="Select Date" />
+                                <span style="margin-left: 1.5rem" id="date_naissance_error"
+                                    class="text-danger errors"></span>
                                 <div class="modalsex" style="margin-top: -1.5rem">
                                     <p style="padding: 0;margin: 0;">Sex :</p>
                                     <div class="form-check">
@@ -68,7 +69,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" id="close"
+                        data-bs-dismiss="modal">Close</button>
                     <button type="submit" id="editer" class="btn btn-primary">Edite</button>
                 </div>
             </div>
@@ -81,11 +83,12 @@
                 {{-- <a
                 href="{{ route('Client.create') }}"><button style="margin-left: 55rem;height: 2.9rem;width: 10rem;" type="button" class="btn btn-success"><i class="fa-solid fa-plus" style="color: #ffffff;"></i> Ajouter client</button></a> --}}
                 <button style="position: absolute; right:4.2rem;top: 3.7rem" type="button" onclick="linck()"
-                class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Ajouter Client</button>
+                    class="btn btn-outline-success"><i class="fa-solid fa-plus"></i> Ajouter Client</button>
             </div>
             <div class="alltabs">
-                <div class="tabs_1"> 
-                    <table class="table table-bordered data-table table-striped table-hover" style="width: 80% !important;">
+                <div class="tabs_1">
+                    <table class="table table-bordered data-table table-striped table-hover"
+                        style="width: 100% !important;">
                         <thead class="tableheade">
                             <tr>
                                 <th scope="col"><span>N°</span></th>
@@ -102,7 +105,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                           
+
                         </tbody>
                     </table>
                 </div>
@@ -111,13 +114,12 @@
         </div>
     </div>
     <script type="text/javascript">
-        function linck(){
-         window.location.href="{{ route('Client.create') }}";
+        function linck() {
+            window.location.href = "{{ route('Client.create') }}";
         }
     </script>
 
     <script type="text/javascript">
-    
         $(function() {
             var form = $('#clientmodal')[0];
             $.ajaxSetup({
@@ -200,7 +202,7 @@
                 $('.errors').html('');
                 $("#paymentmodal").trigger("reset");
                 $('#payment_id').val('');
-            }); 
+            });
             // Edition d'un client
             $('body').on('click', '#edite', function() {
                 var id = $(this).data("id");
@@ -225,9 +227,9 @@
                     error: function(error) {
                         console.log(error);
                     }
-                }); 
+                });
             });
-           
+
             $('body').on('click', '#editer', function(e) {
                 $('.errors').html('');
                 var formdata = new FormData(form);
@@ -248,7 +250,8 @@
                         $('#nom_error').html(error.responseJSON.errors.nom);
                         $('#email_error').html(error.responseJSON.errors.email);
                         $('#ville_error').html(error.responseJSON.errors.ville);
-                        $('#date_naissance_error').html(error.responseJSON.errors.date_naissance);
+                        $('#date_naissance_error').html(error.responseJSON.errors
+                            .date_naissance);
                         $('#prenom_error').html(error.responseJSON.errors.prenom);
                         $('#telephone_error').html(error.responseJSON.errors.telephone);
                         $('#cni_error').html(error.responseJSON.errors.cni);
