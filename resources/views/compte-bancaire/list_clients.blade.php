@@ -87,8 +87,7 @@
             </div>
             <div class="alltabs">
                 <div class="tabs_1">
-                    <table class="table table-bordered data-table table-striped table-hover"
-                        style="width: 100% !important;">
+                    <table class="table table-bordered data-table table-striped table-hover" style="width: 100% !important;">
                         <thead class="tableheade">
                             <tr>
                                 <th scope="col"><span>N°</span></th>
