@@ -14,5 +14,4 @@ class Employe extends Model
     {
         return $this->morphMany(Transaction::class, 'transactionable');
     }
-
 }

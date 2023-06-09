@@ -144,9 +144,9 @@
                                     style="margin-right: 0.8rem; font-size: 0.5em"></i>Entreprises</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('employer') }}"><i class="fa fa-users left" aria-hidden="true"
+                {{-- <li><a href="{{ route('employer') }}"><i class="fa fa-users left" aria-hidden="true"
                             style="margin-right: 0.7rem;font-size: 0.8em;"></i>
-                        <span class="dash">Employer</span></a></li>
+                        <span class="dash">Employer</span></a></li> --}}
                 <li><a href="{{ route('entreprise.list') }}"><i class="fa fa-building" aria-hidden="true"
                             style="margin-right: 1.3rem;font-size: 0.8em;"></i>
                         <span class="dash">Entreprise</span></a></li>
@@ -168,12 +168,24 @@
                         <span class="dash">Paramètres</span><i class="fa fa-caret-down toggle6"
                             style="font-size: 0.8em;" aria-hidden="true"></i></a>
                     <ul class="paramt">
+
+                        {{-- {{ route('register.show') }} --}}
+
+                        {{-- <li><a href="{{ route('employer') }}"><i class="fa-regular fa-circle"
+                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Utilisateur</a></li> --}}
+                        @auth
                         <li><a href="{{ route('logout.perform') }}"><i class="fa-regular fa-circle"
-                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Logout</a></li>
-                        <li><a href="{{ route('register.show') }}"><i class="fa-regular fa-circle"
-                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Utilisateur</a></li>
-                        <li><a href="#}"><i class="fa-regular fa-circle"
-                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Rôles</a></li>
+                            style="margin-right: 0.8rem; font-size: 0.5em"></i>Logout</a></li>
+                            @role('admin')
+                                <li><a href="{{ route('users.index') }}"><i class="fa-regular fa-circle"
+                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Employés</a></li>
+                                <li><a href="{{ route('roles.index') }}"><i class="fa-regular fa-circle"
+                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Roles</a></li>
+                            @endrole
+                            {{-- <li><a href="{{ route('posts.index') }}" class="nav-link px-2 text-white">Posts</a></li> --}}
+                        @endauth
+                        {{-- <li><a href="#}"><i class="fa-regular fa-circle"
+                                    style="margin-right: 0.8rem; font-size: 0.5em"></i>Rôles</a></li> --}}
                     </ul>
                 </li>
             </ul>
