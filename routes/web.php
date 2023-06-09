@@ -57,7 +57,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         //Accueil
         Route::get('/dasboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('/dasboard', [DashboardController::class, 'cal'])->name('dashboard');
+        // Route::get('/dasboard', [DashboardController::class, 'cal'])->name('dashboard');
 
         Route::get('/compte-client', [CompteBankController::class, 'createclient'])->name('compte_client');
         Route::post('/compte', [CompteBankController::class, 'storeclient'])->name('compte.client');

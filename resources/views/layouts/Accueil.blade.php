@@ -42,30 +42,44 @@
                     <h1>{{ $employes }}</h1>
                 </div>
             </div>
-        </div>
-
-        <script>
-            const data = {
-                labels: [
-                    'Red',
-                    'Blue',
-                    'Yellow'
-                ],
-                datasets: [{
-                    label: 'My First Dataset',
-                    data: [300, 50, 100],
-                    backgroundColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 205, 86)'
-                    ],
-                    hoverOffset: 4
-                }]
-            };
-            const config = {
-                type: 'pie',
-                data: data,
-            };
-        </script>
+        </div> 
     </div>
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="col-md-6">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript">
+        var months = JSON.parse('{!!json_encode($months) !!}');
+        var monthCount = JSON.parse('{!!json_encode($monthCount) !!}');
+    </script>
+    <script>
+        const ctx = document.getElementById('myChart');
+      
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: months,
+            datasets: [{
+              label: 'nouveaux clients',
+              data: monthCount,
+              backgroundColor: [
+                'rgba(2, 80, 28)',
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+    </script>          
 @endsection

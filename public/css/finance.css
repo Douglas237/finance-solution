@@ -248,7 +248,7 @@ ul ul {
     border-top: 1px solid #02501c;
 }
 .toutimgs .img {
-    border: 1px solid #02501c;
+    border: 1px solid rgb(2, 80, 28);
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
