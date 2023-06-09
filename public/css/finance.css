@@ -577,14 +577,14 @@ form,
 .tableheade{
     background-color: #02501c;
     color: white;
-    height: 4rem !important;
+    height: 2rem !important;
 }
 tr th{
     text-align: center !important;
 }
 tr th span{
     position: relative;
-    top: -0.8rem;
+    top: -0.3rem;
 }
 div.dataTables_wrapper div.dataTables_filter label{
     position: absolute !important;
